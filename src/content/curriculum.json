@@ -80,7 +80,8 @@
    "domainRange": "interval and set-builder notation",
    "naturalNumbers": "N",
    "wholeNumbers": "W"
-  }
+  },
+  "workbook": "Sections follow McGraw-Hill Ryerson Pre-Calculus 12 (workbook 1 confirmed by qasim: chapters 1-3; chapters 4-11 inferred from the textbook)."
  },
  "units": [
   {
@@ -91,21 +92,21 @@
   },
   {
    "id": "U1",
-   "title": "Transformations and function operations",
+   "title": "Transformations and inverses",
    "defaultOrder": 1,
-   "estimatedExamShare": 0.19
+   "estimatedExamShare": 0.13
+  },
+  {
+   "id": "RAD",
+   "title": "Radical functions",
+   "defaultOrder": 2,
+   "estimatedExamShare": 0.04
   },
   {
    "id": "U2",
    "title": "Polynomial functions",
-   "defaultOrder": 2,
-   "estimatedExamShare": 0.09
-  },
-  {
-   "id": "U3",
-   "title": "Exponential and logarithmic functions",
    "defaultOrder": 3,
-   "estimatedExamShare": 0.16
+   "estimatedExamShare": 0.09
   },
   {
    "id": "U4",
@@ -114,21 +115,33 @@
    "estimatedExamShare": 0.3
   },
   {
-   "id": "U5",
-   "title": "Radical and rational functions",
+   "id": "U3",
+   "title": "Exponential and logarithmic functions",
    "defaultOrder": 5,
-   "estimatedExamShare": 0.1
+   "estimatedExamShare": 0.16
+  },
+  {
+   "id": "U5",
+   "title": "Rational functions",
+   "defaultOrder": 6,
+   "estimatedExamShare": 0.06
+  },
+  {
+   "id": "OPS",
+   "title": "Function operations",
+   "defaultOrder": 7,
+   "estimatedExamShare": 0.06
   },
   {
    "id": "U6",
    "title": "Permutations, combinations, and binomial theorem",
-   "defaultOrder": 6,
+   "defaultOrder": 8,
    "estimatedExamShare": 0.16
   },
   {
    "id": "EXAM",
    "title": "Exam skills (calculator, NR, written response)",
-   "defaultOrder": 7,
+   "defaultOrder": 9,
    "estimatedExamShare": null
   }
  ],
@@ -950,6 +963,10 @@
   {
    "id": "nr-rounding",
    "description": "Rounds intermediate values or rounds to the wrong place."
+  },
+  {
+   "id": "related-fn-sign",
+   "description": "Forms the related function with a sign error, or from one side only, when solving an equation graphically by its zeros."
   }
  ],
  "nodes": [
@@ -1301,7 +1318,8 @@
     "tr-h-sign",
     "tr-k-sign"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.1"
   },
   {
    "id": "RF3.stretch-v",
@@ -1322,7 +1340,8 @@
     "tr-a-horizontal",
     "tr-reflect-axis-swap"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.2"
   },
   {
    "id": "RF3.stretch-h",
@@ -1343,7 +1362,8 @@
     "tr-b-not-reciprocal",
     "tr-a-horizontal"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.2"
   },
   {
    "id": "RF5.reflect-axes",
@@ -1362,7 +1382,8 @@
    "misconceptions": [
     "tr-reflect-axis-swap"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.2"
   },
   {
    "id": "RF3.invariant",
@@ -1380,7 +1401,8 @@
     "tr-invariant-only-reflection",
     "tr-invariant-wrong-axis"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.2"
   },
   {
    "id": "RF4.combined",
@@ -1401,7 +1423,8 @@
     "tr-h-sign",
     "tr-mapping-notation-form"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.3"
   },
   {
    "id": "RF4.factor-b",
@@ -1419,7 +1442,8 @@
    "misconceptions": [
     "tr-b-not-factored"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.3"
   },
   {
    "id": "RF4.equation-from-graph",
@@ -1437,7 +1461,8 @@
     "tr-h-sign",
     "tr-b-not-reciprocal"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.3"
   },
   {
    "id": "RF4.domain-range-image",
@@ -1455,7 +1480,8 @@
     "dr-bracket-type",
     "tr-a-horizontal"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "1.3"
   },
   {
    "id": "RF5.reflect-yx",
@@ -1476,7 +1502,8 @@
     "inv-yx-combined",
     "dr-swap"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.4"
   },
   {
    "id": "RF6.inverse-alg",
@@ -1498,7 +1525,8 @@
     "inv-reciprocal",
     "inv-swap-incomplete"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.4"
   },
   {
    "id": "RF6.restrict",
@@ -1516,7 +1544,8 @@
     "inv-restrict-wrong",
     "inv-not-function-ok"
    ],
-   "explorer": "transformation-lab"
+   "explorer": "transformation-lab",
+   "section": "1.4"
   },
   {
    "id": "RF6.params",
@@ -1534,139 +1563,95 @@
     "dr-swap",
     "inv-reciprocal"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "1.4"
   },
   {
-   "id": "RF1.ops-eval",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Evaluate f+g, f−g, f·g, f/g at a point (equations, tables, graphs)",
+   "id": "RF13.sqrt-transform",
+   "outcome": "RF13",
+   "unit": "RAD",
+   "title": "Transformations of y = √x; equation from graph",
+   "prerequisites": [
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Square roots only; one radical."
+   ],
+   "misconceptions": [
+    "tr-h-sign",
+    "tr-b-not-reciprocal"
+   ],
+   "explorer": "radical-lab",
+   "section": "2.1"
+  },
+  {
+   "id": "RF13.sqrt-of-f",
+   "outcome": "RF13",
+   "unit": "RAD",
+   "title": "y = √f(x) from y = f(x): domain, range, invariant points at y = 0 and y = 1",
+   "prerequisites": [
+    "RF13.sqrt-transform",
+    "P.quad-vertex"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "f(x) linear, quadratic, or piecewise."
+   ],
+   "misconceptions": [
+    "rad-invariant-wrong",
+    "rad-sqrt-domain",
+    "rad-sqrt-values"
+   ],
+   "explorer": "radical-lab",
+   "section": "2.2"
+  },
+  {
+   "id": "RF13.solve",
+   "outcome": "RF13",
+   "unit": "RAD",
+   "title": "Solve radical equations graphically and algebraically; zeros vs x-intercepts",
+   "prerequisites": [
+    "RF13.sqrt-of-f",
+    "P.rad-eq",
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "extraneous-keep",
+    "extraneous-reject-valid"
+   ],
+   "explorer": "radical-lab",
+   "section": "2.3"
+  },
+  {
+   "id": "RF12.characteristics",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Degree, leading coefficient, end behaviour, y-intercept",
    "prerequisites": [
     "P.func-notation"
    ],
    "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
-   ],
-   "misconceptions": [
-    "fn-notation-mult",
-    "ops-graph-add-x"
-   ],
-   "explorer": "function-ops-lab"
-  },
-  {
-   "id": "RF1.ops-equation",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Equations of f+g, f−g, f·g, f/g with domains",
-   "prerequisites": [
-    "RF1.ops-eval",
-    "P.rat-expr",
-    "P.domain-range"
-   ],
-   "standard": "acceptable",
    "examEmphasis": 3,
    "weakSpot": false,
    "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+    "Degree ≤ 5."
    ],
    "misconceptions": [
-    "ops-domain-intersection",
-    "ops-quotient-zero"
+    "poly-end-behaviour",
+    "poly-yint",
+    "poly-degree-count"
    ],
-   "explorer": "function-ops-lab"
-  },
-  {
-   "id": "RF1.ops-graph",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Sketch sums, differences and products from graphs",
-   "prerequisites": [
-    "RF1.ops-eval"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
-   ],
-   "misconceptions": [
-    "ops-graph-add-x",
-    "ops-product-vs-sum",
-    "ops-quotient-order"
-   ],
-   "explorer": "function-ops-lab"
-  },
-  {
-   "id": "RF1.compose-eval",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Evaluate compositions f(g(a)) from equations and graphs",
-   "prerequisites": [
-    "RF1.ops-eval"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
-   ],
-   "misconceptions": [
-    "ops-compose-order",
-    "ops-compose-multiply"
-   ],
-   "explorer": "function-ops-lab"
-  },
-  {
-   "id": "RF1.compose-equation",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Equation and domain of a composition f(g(x))",
-   "prerequisites": [
-    "RF1.compose-eval",
-    "RF1.ops-equation"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
-   ],
-   "misconceptions": [
-    "ops-compose-order",
-    "ops-compose-domain"
-   ],
-   "explorer": "function-ops-lab"
-  },
-  {
-   "id": "RF1.decompose",
-   "outcome": "RF1",
-   "unit": "U1",
-   "title": "Write a function as a combination/composition (incl. three functions or two compositions)",
-   "prerequisites": [
-    "RF1.compose-equation"
-   ],
-   "standard": "excellence",
-   "examEmphasis": 1,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
-    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
-   ],
-   "misconceptions": [
-    "ops-compose-order",
-    "ops-compose-multiply",
-    "ops-quotient-order",
-    "ops-product-vs-sum"
-   ],
-   "explorer": null
+   "explorer": "polynomial-lab",
+   "section": "3.1"
   },
   {
    "id": "RF11.long-division",
@@ -1686,7 +1671,8 @@
    "misconceptions": [
     "poly-missing-term"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.2"
   },
   {
    "id": "RF11.synthetic",
@@ -1707,7 +1693,8 @@
     "poly-synthetic-sign",
     "poly-missing-term"
    ],
-   "explorer": "polynomial-lab"
+   "explorer": "polynomial-lab",
+   "section": "3.2"
   },
   {
    "id": "RF11.remainder-thm",
@@ -1728,7 +1715,8 @@
    "misconceptions": [
     "poly-remainder-sign"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.2"
   },
   {
    "id": "RF11.factor-thm",
@@ -1749,7 +1737,8 @@
     "poly-remainder-sign",
     "poly-zero-sign"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.3"
   },
   {
    "id": "RF11.integral-zero",
@@ -1769,7 +1758,8 @@
    "misconceptions": [
     "poly-izt-leading"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.3"
   },
   {
    "id": "RF11.factor-full",
@@ -1791,28 +1781,8 @@
     "fac-incomplete",
     "poly-synthetic-sign"
    ],
-   "explorer": null
-  },
-  {
-   "id": "RF12.characteristics",
-   "outcome": "RF12",
-   "unit": "U2",
-   "title": "Degree, leading coefficient, end behaviour, y-intercept",
-   "prerequisites": [
-    "P.func-notation"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Degree ≤ 5."
-   ],
-   "misconceptions": [
-    "poly-end-behaviour",
-    "poly-yint",
-    "poly-degree-count"
-   ],
-   "explorer": "polynomial-lab"
+   "explorer": null,
+   "section": "3.3"
   },
   {
    "id": "RF12.zeros-multiplicity",
@@ -1833,7 +1803,8 @@
     "poly-mult-behaviour",
     "poly-zero-sign"
    ],
-   "explorer": "polynomial-lab"
+   "explorer": "polynomial-lab",
+   "section": "3.4"
   },
   {
    "id": "RF12.sketch",
@@ -1853,7 +1824,8 @@
     "poly-end-behaviour",
     "poly-yint"
    ],
-   "explorer": "polynomial-lab"
+   "explorer": "polynomial-lab",
+   "section": "3.4"
   },
   {
    "id": "RF12.equation-from-graph",
@@ -1872,7 +1844,8 @@
     "poly-yint",
     "poly-mult-behaviour"
    ],
-   "explorer": "polynomial-lab"
+   "explorer": "polynomial-lab",
+   "section": "3.4"
   },
   {
    "id": "RF12.analyze-calc",
@@ -1893,7 +1866,8 @@
     "poly-max-local",
     "dr-bracket-type"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.4"
   },
   {
    "id": "RF12.model",
@@ -1911,288 +1885,8 @@
     "poly-max-local",
     "wr-units-missing"
    ],
-   "explorer": null
-  },
-  {
-   "id": "RF9.exp-graph",
-   "outcome": "RF9",
-   "unit": "U3",
-   "title": "Graph and characteristics of y = bˣ (growth vs decay)",
-   "prerequisites": [
-    "P.exp-laws",
-    "P.domain-range"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "b > 0, b ≠ 1."
-   ],
-   "misconceptions": [
-    "exp-base-range",
-    "exp-asymptote"
-   ],
-   "explorer": "exp-log-lab"
-  },
-  {
-   "id": "RF9.exp-transform",
-   "outcome": "RF9",
-   "unit": "U3",
-   "title": "Transformations of exponential functions",
-   "prerequisites": [
-    "RF9.exp-graph",
-    "RF4.combined"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "exp-asymptote",
-    "tr-h-sign"
-   ],
-   "explorer": "exp-log-lab"
-  },
-  {
-   "id": "RF7.log-def",
-   "outcome": "RF7",
-   "unit": "U3",
-   "title": "Logarithm as the inverse of an exponential; convert between forms",
-   "prerequisites": [
-    "RF9.exp-graph",
-    "RF5.reflect-yx"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Natural logarithms and base e are beyond scope."
-   ],
-   "misconceptions": [
-    "log-def-swap"
-   ],
-   "explorer": "exp-log-lab"
-  },
-  {
-   "id": "RF7.log-eval",
-   "outcome": "RF7",
-   "unit": "U3",
-   "title": "Exact values of logarithms without technology; estimate with benchmarks",
-   "prerequisites": [
-    "RF7.log-def",
-    "P.exp-laws"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Natural logarithms and base e are beyond scope."
-   ],
-   "misconceptions": [
-    "log-def-swap",
-    "log-negative-arg"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF9.log-graph",
-   "outcome": "RF9",
-   "unit": "U3",
-   "title": "Graphs of logarithmic functions and their inverses",
-   "prerequisites": [
-    "RF7.log-def",
-    "RF9.exp-transform"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Natural logarithms and base e are beyond scope.",
-    "b > 1."
-   ],
-   "misconceptions": [
-    "exp-asymptote",
-    "log-negative-arg"
-   ],
-   "explorer": "exp-log-lab"
-  },
-  {
-   "id": "RF8.expand",
-   "outcome": "RF8",
-   "unit": "U3",
-   "title": "Expand logarithms with product, quotient, power laws",
-   "prerequisites": [
-    "RF7.log-eval"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "log-product-sum",
-    "log-quotient-divide",
-    "log-power-wrong-place"
-   ],
-   "explorer": "log-law-simplifier"
-  },
-  {
-   "id": "RF8.condense",
-   "outcome": "RF8",
-   "unit": "U3",
-   "title": "Combine several logs into a single logarithm",
-   "prerequisites": [
-    "RF8.expand"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": true,
-   "scopeLimits": [],
-   "misconceptions": [
-    "log-condense-coefficient",
-    "log-quotient-divide",
-    "log-product-sum"
-   ],
-   "explorer": "log-law-simplifier"
-  },
-  {
-   "id": "RF8.change-base",
-   "outcome": "RF8",
-   "unit": "U3",
-   "title": "Change of base",
-   "prerequisites": [
-    "RF7.log-eval"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Taught as a strategy for evaluating logarithms."
-   ],
-   "misconceptions": [
-    "log-change-base-flip"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.exp-common-base",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Solve exponential equations with a common base",
-   "prerequisites": [
-    "P.exp-laws",
-    "P.quad-solve"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "exp-common-base-coeff",
-    "exp-rational-root"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.exp-logs",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Solve exponential equations by taking logs (incl. binomial exponents, coefficients)",
-   "prerequisites": [
-    "RF10.exp-common-base",
-    "RF8.expand"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Acceptable: monomial exponents. Excellence: non-monomial exponents or numerical coefficients."
-   ],
-   "misconceptions": [
-    "exp-take-log-exponent",
-    "exp-common-base-coeff"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.log-eq",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Solve logarithmic equations (same base) and reject extraneous roots",
-   "prerequisites": [
-    "RF8.condense",
-    "P.quad-solve"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": true,
-   "scopeLimits": [
-    "Logarithmic equations restricted to the same base.",
-    "Recognizing extraneous solutions is Standard of Excellence."
-   ],
-   "misconceptions": [
-    "extraneous-keep",
-    "log-negative-arg",
-    "log-product-sum"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.growth-decay",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Growth and decay (half-life, doubling, percent change)",
-   "prerequisites": [
-    "RF10.exp-logs"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "The formula is given on the formula sheet; other formulas are given in the question."
-   ],
-   "misconceptions": [
-    "growth-p-period"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.compound-interest",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Compound interest",
-   "prerequisites": [
-    "RF10.growth-decay"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Know compounding terms: annually, semi-annually, quarterly, monthly, weekly, daily."
-   ],
-   "misconceptions": [
-    "interest-compound-period",
-    "growth-p-period"
-   ],
-   "explorer": null
-  },
-  {
-   "id": "RF10.log-scales",
-   "outcome": "RF10",
-   "unit": "U3",
-   "title": "Logarithmic scales: pH, decibels, earthquake magnitude (comparisons)",
-   "prerequisites": [
-    "RF10.exp-logs"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Formulas for logarithmic scales are always given."
-   ],
-   "misconceptions": [
-    "logscale-difference-ratio"
-   ],
-   "explorer": null
+   "explorer": null,
+   "section": "3.4"
   },
   {
    "id": "T1.radians",
@@ -2209,7 +1903,8 @@
    "misconceptions": [
     "trig-rad-convert-inverse"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.1"
   },
   {
    "id": "T1.coterminal",
@@ -2227,7 +1922,8 @@
     "trig-coterminal-180",
     "trig-domain-ignore"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.1"
   },
   {
    "id": "T1.reference",
@@ -2244,7 +1940,8 @@
    "misconceptions": [
     "ref-angle-measure-y"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.1"
   },
   {
    "id": "T1.arc-length",
@@ -2262,7 +1959,8 @@
     "trig-arc-degrees",
     "wr-units-missing"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.1"
   },
   {
    "id": "T2.unit-circle-eq",
@@ -2281,7 +1979,8 @@
     "trig-unit-xy-swap",
     "trig-cast-sign"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.2"
   },
   {
    "id": "T2.special-points",
@@ -2299,7 +1998,8 @@
     "trig-special-value",
     "trig-unit-xy-swap"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.2"
   },
   {
    "id": "T3.exact-ratios",
@@ -2318,7 +2018,8 @@
     "trig-special-value",
     "trig-cast-sign"
    ],
-   "explorer": "unit-circle"
+   "explorer": "unit-circle",
+   "section": "4.3"
   },
   {
    "id": "T3.ratio-from-point",
@@ -2337,7 +2038,8 @@
     "trig-cast-sign",
     "trig-unit-xy-swap"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "4.3"
   },
   {
    "id": "T3.angle-from-ratio",
@@ -2358,122 +2060,8 @@
     "trig-missing-solutions",
     "trig-deg-rad-mode"
    ],
-   "explorer": null
-  },
-  {
-   "id": "T4.basic-graphs",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Graphs of sin, cos, tan: period, intercepts, tan asymptotes, domain, range",
-   "prerequisites": [
-    "T2.special-points"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [
-    "Transformations of tangent and graphs of reciprocal functions are beyond scope."
-   ],
-   "misconceptions": [
-    "trig-tan-asymptote"
-   ],
-   "explorer": "sinusoid-lab"
-  },
-  {
-   "id": "T4.parameters",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Amplitude, period 2π/|b|, phase shift, midline, max/min from y = a sin[b(x − c)] + d",
-   "prerequisites": [
-    "T4.basic-graphs",
-    "RF4.combined"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "trig-period-b",
-    "trig-amplitude-range",
-    "trig-midline-avg",
-    "tr-h-sign"
-   ],
-   "explorer": "sinusoid-lab"
-  },
-  {
-   "id": "T4.factor-b",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Parameters when b must be factored: sin(bx − c)",
-   "prerequisites": [
-    "T4.parameters",
-    "RF4.factor-b"
-   ],
-   "standard": "excellence",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "trig-phase-not-factored"
-   ],
-   "explorer": "sinusoid-lab"
-  },
-  {
-   "id": "T4.sketch",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Sketch sinusoids with scaled axes and key features",
-   "prerequisites": [
-    "T4.parameters"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 2,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "wr-sketch-features",
-    "trig-period-b"
-   ],
-   "explorer": "sinusoid-lab"
-  },
-  {
-   "id": "T4.equation-from-graph",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Determine all four parameters from a graph or data",
-   "prerequisites": [
-    "T4.parameters"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "trig-amplitude-range",
-    "trig-midline-avg",
-    "trig-period-b"
-   ],
-   "explorer": "sinusoid-lab"
-  },
-  {
-   "id": "T4.model",
-   "outcome": "T4",
-   "unit": "U4",
-   "title": "Sinusoidal models (Ferris wheel, tides, daylight)",
-   "prerequisites": [
-    "T4.equation-from-graph",
-    "CALC.intersect-zero"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "trig-midline-avg",
-    "trig-deg-rad-mode",
-    "wr-units-missing"
-   ],
-   "explorer": "sinusoid-lab"
+   "explorer": null,
+   "section": "4.3"
   },
   {
    "id": "T5.first-degree",
@@ -2495,7 +2083,8 @@
     "trig-domain-ignore",
     "trig-deg-rad-mode"
    ],
-   "explorer": "trig-equation-visualizer"
+   "explorer": "trig-equation-visualizer",
+   "section": "4.4"
   },
   {
    "id": "T5.general",
@@ -2516,29 +2105,129 @@
    "misconceptions": [
     "trig-general-period"
    ],
-   "explorer": "trig-equation-visualizer"
+   "explorer": "trig-equation-visualizer",
+   "section": "4.4"
   },
   {
-   "id": "T5.second-degree",
-   "outcome": "T5",
+   "id": "T4.basic-graphs",
+   "outcome": "T4",
    "unit": "U4",
-   "title": "Second-degree equations by factoring",
+   "title": "Graphs of sin, cos, tan: period, intercepts, tan asymptotes, domain, range",
    "prerequisites": [
-    "T5.first-degree",
-    "P.factor-trinomial"
+    "T2.special-points"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Transformations of tangent and graphs of reciprocal functions are beyond scope."
+   ],
+   "misconceptions": [
+    "trig-tan-asymptote"
+   ],
+   "explorer": "sinusoid-lab",
+   "section": "5.1"
+  },
+  {
+   "id": "T4.parameters",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Amplitude, period 2π/|b|, phase shift, midline, max/min from y = a sin[b(x − c)] + d",
+   "prerequisites": [
+    "T4.basic-graphs",
+    "RF4.combined"
    ],
    "standard": "acceptable",
    "examEmphasis": 3,
    "weakSpot": false,
-   "scopeLimits": [
-    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
-    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
-   ],
+   "scopeLimits": [],
    "misconceptions": [
-    "trig-divide-by-trig",
-    "trig-missing-solutions"
+    "trig-period-b",
+    "trig-amplitude-range",
+    "trig-midline-avg",
+    "tr-h-sign"
    ],
-   "explorer": "trig-equation-visualizer"
+   "explorer": "sinusoid-lab",
+   "section": "5.2"
+  },
+  {
+   "id": "T4.factor-b",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Parameters when b must be factored: sin(bx − c)",
+   "prerequisites": [
+    "T4.parameters",
+    "RF4.factor-b"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-phase-not-factored"
+   ],
+   "explorer": "sinusoid-lab",
+   "section": "5.2"
+  },
+  {
+   "id": "T4.sketch",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Sketch sinusoids with scaled axes and key features",
+   "prerequisites": [
+    "T4.parameters"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "wr-sketch-features",
+    "trig-period-b"
+   ],
+   "explorer": "sinusoid-lab",
+   "section": "5.2"
+  },
+  {
+   "id": "T4.equation-from-graph",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Determine all four parameters from a graph or data",
+   "prerequisites": [
+    "T4.parameters"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-amplitude-range",
+    "trig-midline-avg",
+    "trig-period-b"
+   ],
+   "explorer": "sinusoid-lab",
+   "section": "5.4"
+  },
+  {
+   "id": "T4.model",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Sinusoidal models (Ferris wheel, tides, daylight)",
+   "prerequisites": [
+    "T4.equation-from-graph",
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-midline-avg",
+    "trig-deg-rad-mode",
+    "wr-units-missing"
+   ],
+   "explorer": "sinusoid-lab",
+   "section": "5.4"
   },
   {
    "id": "T5.graphical",
@@ -2559,7 +2248,8 @@
     "calc-window",
     "trig-domain-ignore"
    ],
-   "explorer": "trig-equation-visualizer"
+   "explorer": "trig-equation-visualizer",
+   "section": "5.4"
   },
   {
    "id": "T6.identity-vs-equation",
@@ -2577,7 +2267,8 @@
     "trig-verify-is-proof",
     "wr-directing-word"
    ],
-   "explorer": "identity-workspace"
+   "explorer": "identity-workspace",
+   "section": "6.1"
   },
   {
    "id": "T6.npv",
@@ -2596,7 +2287,8 @@
     "trig-npv-miss",
     "trig-general-period"
    ],
-   "explorer": "identity-workspace"
+   "explorer": "identity-workspace",
+   "section": "6.1"
   },
   {
    "id": "T6.simplify",
@@ -2616,25 +2308,8 @@
     "trig-reciprocal-inverse",
     "cancel-terms"
    ],
-   "explorer": "identity-workspace"
-  },
-  {
-   "id": "T6.prove-basic",
-   "outcome": "T6",
-   "unit": "U4",
-   "title": "Prove simple identities",
-   "prerequisites": [
-    "T6.simplify"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [],
-   "misconceptions": [
-    "trig-prove-cross-sides",
-    "trig-pyth-sign"
-   ],
-   "explorer": "identity-workspace"
+   "explorer": "identity-workspace",
+   "section": "6.1"
   },
   {
    "id": "T6.exact-sum-double",
@@ -2655,7 +2330,27 @@
     "trig-sum-distribute",
     "trig-sin2-sin-squared"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "6.2"
+  },
+  {
+   "id": "T6.prove-basic",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Prove simple identities",
+   "prerequisites": [
+    "T6.simplify"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-prove-cross-sides",
+    "trig-pyth-sign"
+   ],
+   "explorer": "identity-workspace",
+   "section": "6.3"
   },
   {
    "id": "T6.prove-advanced",
@@ -2677,7 +2372,31 @@
     "trig-sin2-sin-squared",
     "trig-prove-cross-sides"
    ],
-   "explorer": "identity-workspace"
+   "explorer": "identity-workspace",
+   "section": "6.3"
+  },
+  {
+   "id": "T5.second-degree",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "Second-degree equations by factoring",
+   "prerequisites": [
+    "T5.first-degree",
+    "P.factor-trinomial"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
+    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
+   ],
+   "misconceptions": [
+    "trig-divide-by-trig",
+    "trig-missing-solutions"
+   ],
+   "explorer": "trig-equation-visualizer",
+   "section": "6.4"
   },
   {
    "id": "T5.identity-sub",
@@ -2701,69 +2420,303 @@
     "trig-divide-by-trig",
     "trig-sin2-sin-squared"
    ],
-   "explorer": "trig-equation-visualizer"
+   "explorer": "trig-equation-visualizer",
+   "section": "6.4"
   },
   {
-   "id": "RF13.sqrt-transform",
-   "outcome": "RF13",
-   "unit": "U5",
-   "title": "Transformations of y = √x; equation from graph",
+   "id": "RF9.exp-graph",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Graph and characteristics of y = bˣ (growth vs decay)",
    "prerequisites": [
-    "RF4.combined"
+    "P.exp-laws",
+    "P.domain-range"
    ],
    "standard": "acceptable",
    "examEmphasis": 2,
    "weakSpot": false,
    "scopeLimits": [
-    "Square roots only; one radical."
+    "b > 0, b ≠ 1."
    ],
    "misconceptions": [
-    "tr-h-sign",
-    "tr-b-not-reciprocal"
+    "exp-base-range",
+    "exp-asymptote"
    ],
-   "explorer": "radical-lab"
+   "explorer": "exp-log-lab",
+   "section": "7.1"
   },
   {
-   "id": "RF13.sqrt-of-f",
-   "outcome": "RF13",
-   "unit": "U5",
-   "title": "y = √f(x) from y = f(x): domain, range, invariant points at y = 0 and y = 1",
+   "id": "RF9.exp-transform",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Transformations of exponential functions",
    "prerequisites": [
-    "RF13.sqrt-transform",
-    "P.quad-vertex"
-   ],
-   "standard": "acceptable",
-   "examEmphasis": 3,
-   "weakSpot": false,
-   "scopeLimits": [
-    "f(x) linear, quadratic, or piecewise."
-   ],
-   "misconceptions": [
-    "rad-invariant-wrong",
-    "rad-sqrt-domain",
-    "rad-sqrt-values"
-   ],
-   "explorer": "radical-lab"
-  },
-  {
-   "id": "RF13.solve",
-   "outcome": "RF13",
-   "unit": "U5",
-   "title": "Solve radical equations graphically and algebraically; zeros vs x-intercepts",
-   "prerequisites": [
-    "RF13.sqrt-of-f",
-    "P.rad-eq",
-    "CALC.intersect-zero"
+    "RF9.exp-graph",
+    "RF4.combined"
    ],
    "standard": "acceptable",
    "examEmphasis": 2,
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "extraneous-keep",
-    "extraneous-reject-valid"
+    "exp-asymptote",
+    "tr-h-sign"
    ],
-   "explorer": "radical-lab"
+   "explorer": "exp-log-lab",
+   "section": "7.2"
+  },
+  {
+   "id": "RF10.exp-common-base",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve exponential equations with a common base",
+   "prerequisites": [
+    "P.exp-laws",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "exp-common-base-coeff",
+    "exp-rational-root"
+   ],
+   "explorer": null,
+   "section": "7.3"
+  },
+  {
+   "id": "RF7.log-def",
+   "outcome": "RF7",
+   "unit": "U3",
+   "title": "Logarithm as the inverse of an exponential; convert between forms",
+   "prerequisites": [
+    "RF9.exp-graph",
+    "RF5.reflect-yx"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope."
+   ],
+   "misconceptions": [
+    "log-def-swap"
+   ],
+   "explorer": "exp-log-lab",
+   "section": "8.1"
+  },
+  {
+   "id": "RF7.log-eval",
+   "outcome": "RF7",
+   "unit": "U3",
+   "title": "Exact values of logarithms without technology; estimate with benchmarks",
+   "prerequisites": [
+    "RF7.log-def",
+    "P.exp-laws"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope."
+   ],
+   "misconceptions": [
+    "log-def-swap",
+    "log-negative-arg"
+   ],
+   "explorer": null,
+   "section": "8.1"
+  },
+  {
+   "id": "RF9.log-graph",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Graphs of logarithmic functions and their inverses",
+   "prerequisites": [
+    "RF7.log-def",
+    "RF9.exp-transform"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope.",
+    "b > 1."
+   ],
+   "misconceptions": [
+    "exp-asymptote",
+    "log-negative-arg"
+   ],
+   "explorer": "exp-log-lab",
+   "section": "8.2"
+  },
+  {
+   "id": "RF8.expand",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Expand logarithms with product, quotient, power laws",
+   "prerequisites": [
+    "RF7.log-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "log-product-sum",
+    "log-quotient-divide",
+    "log-power-wrong-place"
+   ],
+   "explorer": "log-law-simplifier",
+   "section": "8.3"
+  },
+  {
+   "id": "RF8.condense",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Combine several logs into a single logarithm",
+   "prerequisites": [
+    "RF8.expand"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "log-condense-coefficient",
+    "log-quotient-divide",
+    "log-product-sum"
+   ],
+   "explorer": "log-law-simplifier",
+   "section": "8.3"
+  },
+  {
+   "id": "RF8.change-base",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Change of base",
+   "prerequisites": [
+    "RF7.log-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Taught as a strategy for evaluating logarithms."
+   ],
+   "misconceptions": [
+    "log-change-base-flip"
+   ],
+   "explorer": null,
+   "section": "8.3"
+  },
+  {
+   "id": "RF10.exp-logs",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve exponential equations by taking logs (incl. binomial exponents, coefficients)",
+   "prerequisites": [
+    "RF10.exp-common-base",
+    "RF8.expand"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Acceptable: monomial exponents. Excellence: non-monomial exponents or numerical coefficients."
+   ],
+   "misconceptions": [
+    "exp-take-log-exponent",
+    "exp-common-base-coeff"
+   ],
+   "explorer": null,
+   "section": "8.4"
+  },
+  {
+   "id": "RF10.log-eq",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve logarithmic equations (same base) and reject extraneous roots",
+   "prerequisites": [
+    "RF8.condense",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Logarithmic equations restricted to the same base.",
+    "Recognizing extraneous solutions is Standard of Excellence."
+   ],
+   "misconceptions": [
+    "extraneous-keep",
+    "log-negative-arg",
+    "log-product-sum"
+   ],
+   "explorer": null,
+   "section": "8.4"
+  },
+  {
+   "id": "RF10.growth-decay",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Growth and decay (half-life, doubling, percent change)",
+   "prerequisites": [
+    "RF10.exp-logs"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "The formula is given on the formula sheet; other formulas are given in the question."
+   ],
+   "misconceptions": [
+    "growth-p-period"
+   ],
+   "explorer": null,
+   "section": "8.4"
+  },
+  {
+   "id": "RF10.compound-interest",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Compound interest",
+   "prerequisites": [
+    "RF10.growth-decay"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Know compounding terms: annually, semi-annually, quarterly, monthly, weekly, daily."
+   ],
+   "misconceptions": [
+    "interest-compound-period",
+    "growth-p-period"
+   ],
+   "explorer": null,
+   "section": "8.4"
+  },
+  {
+   "id": "RF10.log-scales",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Logarithmic scales: pH, decibels, earthquake magnitude (comparisons)",
+   "prerequisites": [
+    "RF10.exp-logs"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Formulas for logarithmic scales are always given."
+   ],
+   "misconceptions": [
+    "logscale-difference-ratio"
+   ],
+   "explorer": null,
+   "section": "8.4"
   },
   {
    "id": "RF14.va-vs-hole",
@@ -2785,7 +2738,8 @@
     "rat-hole-as-va",
     "rat-va-as-hole"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.1"
   },
   {
    "id": "RF14.ha-intercepts",
@@ -2808,7 +2762,8 @@
     "rat-xint-from-denominator",
     "rat-xint-at-hole"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.1"
   },
   {
    "id": "RF14.domain-range",
@@ -2832,7 +2787,8 @@
     "rat-range-hole",
     "dr-bracket-type"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.2"
   },
   {
    "id": "RF14.hole-y",
@@ -2854,7 +2810,8 @@
     "rat-range-hole",
     "cancel-terms"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.2"
   },
   {
    "id": "RF14.sketch",
@@ -2877,7 +2834,8 @@
     "rat-hole-as-va",
     "wr-sketch-features"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.2"
   },
   {
    "id": "RF14.equation-from-graph",
@@ -2899,7 +2857,8 @@
     "rat-va-as-hole",
     "rat-ha-degree"
    ],
-   "explorer": "rational-lab"
+   "explorer": "rational-lab",
+   "section": "9.2"
   },
   {
    "id": "RF14.solve",
@@ -2923,7 +2882,146 @@
     "extraneous-keep",
     "rat-xint-at-hole"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "9.3"
+  },
+  {
+   "id": "RF1.ops-eval",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Evaluate f+g, f−g, f·g, f/g at a point (equations, tables, graphs)",
+   "prerequisites": [
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "fn-notation-mult",
+    "ops-graph-add-x"
+   ],
+   "explorer": "function-ops-lab",
+   "section": "10.1"
+  },
+  {
+   "id": "RF1.ops-graph",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Sketch sums, differences and products from graphs",
+   "prerequisites": [
+    "RF1.ops-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-graph-add-x",
+    "ops-product-vs-sum",
+    "ops-quotient-order"
+   ],
+   "explorer": "function-ops-lab",
+   "section": "10.1"
+  },
+  {
+   "id": "RF1.ops-equation",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Equations of f+g, f−g, f·g, f/g with domains",
+   "prerequisites": [
+    "RF1.ops-eval",
+    "P.rat-expr",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-domain-intersection",
+    "ops-quotient-zero"
+   ],
+   "explorer": "function-ops-lab",
+   "section": "10.2"
+  },
+  {
+   "id": "RF1.compose-eval",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Evaluate compositions f(g(a)) from equations and graphs",
+   "prerequisites": [
+    "RF1.ops-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-multiply"
+   ],
+   "explorer": "function-ops-lab",
+   "section": "10.3"
+  },
+  {
+   "id": "RF1.compose-equation",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Equation and domain of a composition f(g(x))",
+   "prerequisites": [
+    "RF1.compose-eval",
+    "RF1.ops-equation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-domain"
+   ],
+   "explorer": "function-ops-lab",
+   "section": "10.3"
+  },
+  {
+   "id": "RF1.decompose",
+   "outcome": "RF1",
+   "unit": "OPS",
+   "title": "Write a function as a combination/composition (incl. three functions or two compositions)",
+   "prerequisites": [
+    "RF1.compose-equation"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-multiply",
+    "ops-quotient-order",
+    "ops-product-vs-sum"
+   ],
+   "explorer": null,
+   "section": "10.3"
   },
   {
    "id": "PCBT1.fcp",
@@ -2941,7 +3039,8 @@
     "fcp-add-multiply",
     "fcp-constraint-last"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.1"
   },
   {
    "id": "PCBT1.factorial",
@@ -2958,7 +3057,8 @@
    "misconceptions": [
     "fact-simplify"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.1"
   },
   {
    "id": "PCBT2.npr",
@@ -2976,7 +3076,8 @@
     "perm-vs-comb",
     "fact-simplify"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.1"
   },
   {
    "id": "PCBT2.constraints",
@@ -2997,7 +3098,8 @@
     "perm-apart-subtract",
     "fcp-constraint-last"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.1"
   },
   {
    "id": "PCBT2.repeated",
@@ -3014,7 +3116,8 @@
    "misconceptions": [
     "perm-repeat-divide"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.1"
   },
   {
    "id": "PCBT2.cases",
@@ -3034,7 +3137,8 @@
     "fcp-add-multiply",
     "perm-together-internal"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.1"
   },
   {
    "id": "PCBT2.solve-n",
@@ -3055,7 +3159,8 @@
     "perm-solve-n-negative",
     "fact-simplify"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.1"
   },
   {
    "id": "PCBT3.ncr",
@@ -3072,7 +3177,8 @@
    "misconceptions": [
     "perm-vs-comb"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.2"
   },
   {
    "id": "PCBT3.at-least",
@@ -3090,7 +3196,8 @@
     "comb-at-least-overcount",
     "perm-case-overlap"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.2"
   },
   {
    "id": "PCBT3.mixed",
@@ -3109,7 +3216,8 @@
     "perm-vs-comb",
     "fcp-add-multiply"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.2"
   },
   {
    "id": "PCBT3.solve-n",
@@ -3127,7 +3235,8 @@
    "misconceptions": [
     "perm-solve-n-negative"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.2"
   },
   {
    "id": "PCBT4.pascal",
@@ -3145,7 +3254,8 @@
     "binom-pascal-row",
     "binom-term-count"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.3"
   },
   {
    "id": "PCBT4.expand",
@@ -3166,7 +3276,8 @@
     "binom-coefficient-power",
     "binom-sign-alternate"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.3"
   },
   {
    "id": "PCBT4.general-term",
@@ -3185,7 +3296,8 @@
     "binom-coefficient-power",
     "binom-sign-alternate"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.3"
   },
   {
    "id": "PCBT4.nonlinear-term",
@@ -3204,7 +3316,8 @@
     "binom-coefficient-power",
     "binom-sign-alternate"
    ],
-   "explorer": "counting-lab"
+   "explorer": "counting-lab",
+   "section": "11.3"
   },
   {
    "id": "PCBT4.find-unknown",
@@ -3221,7 +3334,8 @@
    "misconceptions": [
     "binom-term-index"
    ],
-   "explorer": null
+   "explorer": null,
+   "section": "11.3"
   },
   {
    "id": "CALC.mode-window",

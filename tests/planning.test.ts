@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { NODES, UNITS } from '../src/content';
+import { DEFAULT_SETTINGS, migrateUnitOrder } from '../src/db/db';
 import { generatorById } from '../src/engine/generators';
 import { addDays, buildPlan, daysBetween, studyDates, type PlanInput } from '../src/engine/planner';
 import { buildSession, SESSION_LENGTHS, type SessionContext } from '../src/engine/session';
@@ -167,5 +168,13 @@ describe('diagnostic', () => {
     expect(Object.keys(s.results)).toHaveLength(15);
     expect(asked).toBe(2 * Object.values(s.results).filter((r) => r.level === 'weak').length);
     expect(asked).toBeLessThan(2 * 15);
+  });
+});
+
+describe('unit order migration', () => {
+  it('replaces the old default and slots new units into a custom order', () => {
+    expect(migrateUnitOrder(['U1', 'U2', 'U3', 'U4', 'U5', 'U6'])).toEqual(DEFAULT_SETTINGS.unitOrder);
+    expect(migrateUnitOrder(['U4', 'U1', 'U2', 'U3', 'U5', 'U6'])).toEqual(['U4', 'U1', 'OPS', 'U2', 'U3', 'RAD', 'U5', 'U6']);
+    expect(migrateUnitOrder(DEFAULT_SETTINGS.unitOrder)).toEqual(DEFAULT_SETTINGS.unitOrder);
   });
 });

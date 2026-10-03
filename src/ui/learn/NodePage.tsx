@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { hasContent, lessonFor, NODE, unitTitle } from '../../content';
+import { hasContent, lessonFor, NODE, sectionOf, unitTitle } from '../../content';
 import type { ExplorePreset, Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
@@ -16,6 +16,9 @@ import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
 import { ExpLogLab } from '../explorers/ExpLogLab';
 import { LogLawLab } from '../explorers/LogLawLab';
+import { CountingLab } from '../explorers/CountingLab';
+import { RadicalLab } from '../explorers/RadicalLab';
+import { RationalLab } from '../explorers/RationalLab';
 import { IdentityWorkspace } from '../explorers/IdentityWorkspace';
 import { SinusoidLab } from '../explorers/SinusoidLab';
 import { TrigEquationLab } from '../explorers/TrigEquationLab';
@@ -69,6 +72,7 @@ export function NodePage({ nodeId }: { nodeId: string }) {
         </a>
         <h1 className={h1}>{node.title}</h1>
         <p className={`text-sm ${muted}`}>
+          {sectionOf(node) ? `Workbook ${sectionOf(node)} · ` : ''}
           {node.outcome} · {node.standard === 'excellence' ? 'Standard of Excellence' : 'Acceptable standard'}
           {node.weakSpot ? ' · Exam weak spot' : ''}
         </p>
@@ -208,6 +212,12 @@ function Explorer({ preset, locked }: { preset: ExplorePreset; locked: boolean }
       return <TrigEquationLab preset={preset} locked={locked} />;
     case 'identity':
       return <IdentityWorkspace preset={preset} locked={locked} />;
+    case 'radical':
+      return <RadicalLab preset={preset} locked={locked} />;
+    case 'rational':
+      return <RationalLab preset={preset} locked={locked} />;
+    case 'counting':
+      return <CountingLab preset={preset} locked={locked} />;
   }
 }
 
