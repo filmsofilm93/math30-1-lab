@@ -19,7 +19,7 @@ const fmt = (x: number, d = 2) => String(+x.toFixed(d));
 const clean = (x: number) => Math.abs(Math.abs((x * 100) % 1) - 0.5) > 0.06;
 
 /** Real roots of f on [lo, hi] by sign change and bisection. */
-export function rootsOn(f: (x: number) => number, lo: number, hi: number, step = 0.001): number[] {
+export function rootsOn(f: (x: number) => number, lo: number, hi: number, step = 0.01): number[] {
   const out: number[] = [];
   let a = lo;
   let fa = f(a);
@@ -472,11 +472,11 @@ const tableSign: Generator = {
     const c = rng.int(-6, 6);
     const d = rng.nz(-9, 9);
     const f = (x: number) => x ** 3 + b * x * x + c * x + d;
-    const zs = rootsOn(f, -10, 10).filter((z) => !Number.isInteger(z));
-    if (zs.length !== 1) throw new Reject();
-    const z = zs[0];
+    const all = rootsOn(f, -10, 10);
+    if (all.length !== 1) throw new Reject();
+    const z = all[0];
     const lo = Math.floor(z);
-    if (!(f(lo) * f(lo + 1) < 0) || rootsOn(f, -10, 10).length !== 1) throw new Reject();
+    if (!(f(lo) * f(lo + 1) < 0)) throw new Reject();
     const eq = polyTex([1, b, c, d]);
     return {
       cognitive: 'conceptual',
