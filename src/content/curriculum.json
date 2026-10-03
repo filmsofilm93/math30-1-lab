@@ -336,6 +336,166 @@
    "description": "Measures the reference angle from the y-axis."
   },
   {
+   "id": "exp-power-add",
+   "description": "Adds exponents for a power of a power ((a^m)^n = a^(m+n))."
+  },
+  {
+   "id": "exp-coef-power",
+   "description": "Applies an exponent to the variable but not the coefficient ((2x)^3 = 2x^3)."
+  },
+  {
+   "id": "exp-neg-reciprocal",
+   "description": "Ignores a negative exponent or takes the reciprocal of only part of the expression."
+  },
+  {
+   "id": "exp-mult-base",
+   "description": "Multiplies the base by the exponent (8^(2/3) = 16/3)."
+  },
+  {
+   "id": "exp-rational-partial",
+   "description": "Takes the root but not the power of a rational exponent (or the power but not the root)."
+  },
+  {
+   "id": "rad-simplify-partial",
+   "description": "Leaves a perfect-square factor under the root or extracts a factor that is not a perfect square."
+  },
+  {
+   "id": "rad-like-terms",
+   "description": "Combines radicals that are not like terms, or adds coefficients incorrectly."
+  },
+  {
+   "id": "fac-gcf-lost",
+   "description": "Drops the common factor (or a sign) when factoring it out."
+  },
+  {
+   "id": "fac-dos-square",
+   "description": "Writes a difference of squares as a perfect square (a − b)²."
+  },
+  {
+   "id": "fac-trinomial-leading",
+   "description": "Ignores the leading coefficient when factoring ax² + bx + c."
+  },
+  {
+   "id": "quad-zero-sign",
+   "description": "Takes the roots of (x − r)(x − s) = 0 as −r and −s."
+  },
+  {
+   "id": "quad-disc-count",
+   "description": "Misreads the discriminant (negative means two roots, or zero means none)."
+  },
+  {
+   "id": "quad-sqrt-pm",
+   "description": "Takes only the positive square root when solving x² = k."
+  },
+  {
+   "id": "quad-complete-square",
+   "description": "Adds b instead of (b/2)² when completing the square, or forgets to factor out a first."
+  },
+  {
+   "id": "quad-max-min",
+   "description": "Calls the vertex a minimum when a < 0, or a maximum when a > 0."
+  },
+  {
+   "id": "quad-vertex-swap",
+   "description": "Swaps the coordinates of the vertex, or reads k as the x-coordinate."
+  },
+  {
+   "id": "fn-solve-vs-eval",
+   "description": "Confuses f(a) (evaluate at a) with f(x) = a (solve for x)."
+  },
+  {
+   "id": "fn-sub-sign",
+   "description": "Drops brackets when substituting a negative value ((−3)² taken as −9)."
+  },
+  {
+   "id": "fn-table-misread",
+   "description": "Reads the value from the wrong row or column of a table."
+  },
+  {
+   "id": "dr-graph-endpoint",
+   "description": "Ignores whether an endpoint on a graph is open or closed."
+  },
+  {
+   "id": "dr-restriction",
+   "description": "Misses a restriction from a square root or a denominator."
+  },
+  {
+   "id": "lin-slope-inverse",
+   "description": "Computes slope as run over rise (Δx/Δy)."
+  },
+  {
+   "id": "lin-intercept-sign",
+   "description": "Reads the intercept or the point in an equation with the wrong sign."
+  },
+  {
+   "id": "lin-perp-negative",
+   "description": "Uses the negative slope, not the negative reciprocal, for a perpendicular line."
+  },
+  {
+   "id": "abs-value-neg",
+   "description": "Treats |a − b| as |a| − |b|, or lets an absolute value be negative."
+  },
+  {
+   "id": "abs-piecewise-boundary",
+   "description": "Splits y = |f(x)| at the wrong x-value instead of the zero of f."
+  },
+  {
+   "id": "rat-add-denominators",
+   "description": "Adds fractions by adding numerators and adding denominators."
+  },
+  {
+   "id": "rat-divide-flip",
+   "description": "Flips the wrong fraction when dividing, or forgets to flip."
+  },
+  {
+   "id": "npv-numerator",
+   "description": "Takes zeros of the numerator as non-permissible values."
+  },
+  {
+   "id": "rat-subtract-sign",
+   "description": "Subtracts only the first term of the second numerator (the minus sign is not distributed)."
+  },
+  {
+   "id": "rat-eq-lcd",
+   "description": "Multiplies only some terms by the lowest common denominator."
+  },
+  {
+   "id": "rad-eq-isolate",
+   "description": "Squares both sides before isolating the radical."
+  },
+  {
+   "id": "sys-one-solution",
+   "description": "Reports only one intersection point, or only the x-values."
+  },
+  {
+   "id": "sys-subst-error",
+   "description": "Makes a sign or distribution error when setting the expressions equal."
+  },
+  {
+   "id": "ref-angle-180",
+   "description": "Uses θ − 180° in quadrant II or 180° − θ in quadrant III."
+  },
+  {
+   "id": "trig-exact-swap",
+   "description": "Swaps sine and cosine exact values (sin 30° = √3/2)."
+  },
+  {
+   "id": "trig-ratio-swap",
+   "description": "Uses x/r for sine or y/r for cosine, or x/y for tangent."
+  },
+  {
+   "id": "law-wrong-law",
+   "description": "Uses the sine law when the cosine law is needed, or the reverse."
+  },
+  {
+   "id": "law-cos-sign",
+   "description": "Uses + 2bc cos A in the cosine law, or multiplies the whole of b² + c² − 2bc by cos A."
+  },
+  {
+   "id": "law-sine-pairing",
+   "description": "Pairs a side with an angle that is not opposite it."
+  },
+  {
    "id": "tr-h-sign",
    "description": "Moves the graph in the wrong horizontal direction (sign of h)."
   },
@@ -786,7 +946,12 @@
    "misconceptions": [
     "exp-add-bases",
     "exp-neg-sign",
-    "exp-rational-root"
+    "exp-rational-root",
+    "exp-power-add",
+    "exp-coef-power",
+    "exp-neg-reciprocal",
+    "exp-mult-base",
+    "exp-rational-partial"
    ],
    "explorer": null
   },
@@ -804,7 +969,9 @@
    "scopeLimits": [],
    "misconceptions": [
     "rad-add-radicands",
-    "rad-conjugate-sign"
+    "rad-conjugate-sign",
+    "rad-simplify-partial",
+    "rad-like-terms"
    ],
    "explorer": null
   },
@@ -820,7 +987,9 @@
    "scopeLimits": [],
    "misconceptions": [
     "fac-incomplete",
-    "fac-sum-squares"
+    "fac-sum-squares",
+    "fac-gcf-lost",
+    "fac-dos-square"
    ],
    "explorer": null
   },
@@ -838,7 +1007,8 @@
    "scopeLimits": [],
    "misconceptions": [
     "fac-sign-error",
-    "fac-incomplete"
+    "fac-incomplete",
+    "fac-trinomial-leading"
    ],
    "explorer": null
   },
@@ -857,7 +1027,10 @@
    "scopeLimits": [],
    "misconceptions": [
     "quad-formula-sign",
-    "fac-sign-error"
+    "fac-sign-error",
+    "quad-zero-sign",
+    "quad-disc-count",
+    "quad-sqrt-pm"
    ],
    "explorer": null
   },
@@ -874,7 +1047,12 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "quad-vertex-sign-h"
+    "quad-vertex-sign-h",
+    "quad-complete-square",
+    "quad-max-min",
+    "quad-vertex-swap",
+    "dr-swap",
+    "dr-bracket-type"
    ],
    "explorer": null
   },
@@ -889,7 +1067,10 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "fn-notation-mult"
+    "fn-notation-mult",
+    "fn-solve-vs-eval",
+    "fn-sub-sign",
+    "fn-table-misread"
    ],
    "explorer": null
   },
@@ -907,7 +1088,9 @@
    "scopeLimits": [],
    "misconceptions": [
     "dr-bracket-type",
-    "dr-swap"
+    "dr-swap",
+    "dr-graph-endpoint",
+    "dr-restriction"
    ],
    "explorer": null
   },
@@ -924,7 +1107,10 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "tr-k-sign"
+    "tr-k-sign",
+    "lin-slope-inverse",
+    "lin-intercept-sign",
+    "lin-perp-negative"
    ],
    "explorer": null
   },
@@ -942,7 +1128,9 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "abs-negate-all"
+    "abs-negate-all",
+    "abs-value-neg",
+    "abs-piecewise-boundary"
    ],
    "explorer": null
   },
@@ -960,7 +1148,12 @@
    "scopeLimits": [],
    "misconceptions": [
     "npv-after-simplify",
-    "cancel-terms"
+    "cancel-terms",
+    "rat-add-denominators",
+    "rat-divide-flip",
+    "npv-numerator",
+    "fac-sign-error",
+    "rat-subtract-sign"
    ],
    "explorer": null
   },
@@ -979,7 +1172,9 @@
    "scopeLimits": [],
    "misconceptions": [
     "extraneous-keep",
-    "npv-after-simplify"
+    "npv-after-simplify",
+    "extraneous-reject-valid",
+    "rat-eq-lcd"
    ],
    "explorer": null
   },
@@ -999,7 +1194,8 @@
    "misconceptions": [
     "extraneous-keep",
     "square-binomial",
-    "extraneous-reject-valid"
+    "extraneous-reject-valid",
+    "rad-eq-isolate"
    ],
    "explorer": null
   },
@@ -1017,7 +1213,10 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "calc-guess-bounds"
+    "calc-guess-bounds",
+    "sys-one-solution",
+    "sys-subst-error",
+    "quad-disc-count"
    ],
    "explorer": null
   },
@@ -1033,7 +1232,10 @@
    "scopeLimits": [],
    "misconceptions": [
     "ref-angle-measure-y",
-    "trig-cast-sign"
+    "trig-cast-sign",
+    "ref-angle-180",
+    "trig-exact-swap",
+    "trig-ratio-swap"
    ],
    "explorer": null
   },
@@ -1052,7 +1254,10 @@
     "Not directly assessed on the Math 30-1 diploma; kept as an optional review node."
    ],
    "misconceptions": [
-    "trig-deg-rad-mode"
+    "trig-deg-rad-mode",
+    "law-wrong-law",
+    "law-cos-sign",
+    "law-sine-pairing"
    ],
    "explorer": null
   },

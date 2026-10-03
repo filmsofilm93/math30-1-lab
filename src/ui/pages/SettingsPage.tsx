@@ -1,25 +1,19 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useRef, useState } from 'react';
-import { NODE, unitTitle } from '../../content';
+import { NODE } from '../../content';
+import { PlanSettings } from '../components/PlanSettings';
+import { saveSettings, useSettings } from '../data';
 import { db, DEFAULT_SETTINGS, exportAll, importAll, type Report, type Settings } from '../../db/db';
 import { btnGhost, card, h1, h2, muted } from '../styles';
 
 export function SettingsPage() {
-  const settings = useLiveQuery(() => db.settings.get('main')) ?? DEFAULT_SETTINGS;
+  const settings = useSettings() ?? { ...DEFAULT_SETTINGS, stored: false };
   const reports = useLiveQuery(() => db.reports.orderBy('at').reverse().toArray(), [], [] as Report[]);
   const [msg, setMsg] = useState('');
   const [confirmReset, setConfirmReset] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const save = (patch: Partial<Settings>) => db.settings.put({ ...settings, ...patch, id: 'main' });
-
-  function move(i: number, d: -1 | 1) {
-    const order = settings.unitOrder.slice();
-    const j = i + d;
-    if (j < 0 || j >= order.length) return;
-    [order[i], order[j]] = [order[j], order[i]];
-    save({ unitOrder: order });
-  }
+  const save = (patch: Partial<Settings>) => saveSettings(settings, patch);
 
   async function doExport() {
     const blob = new Blob([await exportAll()], { type: 'application/json' });
@@ -41,7 +35,7 @@ export function SettingsPage() {
   }
 
   async function doReset() {
-    await db.transaction('rw', db.attempts, db.nodes, db.settings, db.reports, () => Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear()]));
+    await db.transaction('rw', [db.attempts, db.nodes, db.settings, db.reports, db.diagnostic, db.days], () => Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear(), db.diagnostic.clear(), db.days.clear()]));
     setConfirmReset(false);
     setMsg('All progress erased.');
   }
@@ -57,14 +51,6 @@ export function SettingsPage() {
       )}
 
       <section className={row}>
-        <label className="flex items-center justify-between gap-3">
-          <span className="font-bold">Diploma exam date</span>
-          <input type="date" value={settings.examDate} onChange={(e) => e.target.value && save({ examDate: e.target.value })} className="rounded-lg border border-line bg-paper px-2 py-1 dark:border-line-d dark:bg-paper-d" />
-        </label>
-        <p className={`text-sm ${muted}`}>Review intervals are capped so nothing is scheduled after this date.</p>
-      </section>
-
-      <section className={row}>
         <span className="font-bold">Theme</span>
         <div className="flex gap-2">
           {(['system', 'light', 'dark'] as const).map((t) => (
@@ -75,23 +61,10 @@ export function SettingsPage() {
         </div>
       </section>
 
-      <section className={row}>
-        <span className="font-bold">Unit order</span>
-        <p className={`text-sm ${muted}`}>Match the order your course teaches. The home page follows it.</p>
-        <ol className="flex flex-col divide-y divide-line dark:divide-line-d">
-          {settings.unitOrder.map((u, i) => (
-            <li key={u} className="flex items-center gap-2 py-1.5">
-              <span className="min-w-0 flex-1">{unitTitle(u)}</span>
-              <button className={btnGhost} aria-label={`Move ${unitTitle(u)} up`} disabled={i === 0} onClick={() => move(i, -1)}>
-                ↑
-              </button>
-              <button className={btnGhost} aria-label={`Move ${unitTitle(u)} down`} disabled={i === settings.unitOrder.length - 1} onClick={() => move(i, 1)}>
-                ↓
-              </button>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <PlanSettings settings={settings} />
+      <a className={`${btnGhost} self-start`} href="#/diagnostic">
+        Retake the prerequisite check
+      </a>
 
       <section className={row}>
         <span className="font-bold">Backup</span>
@@ -155,7 +128,7 @@ export function SettingsPage() {
         )}
       </section>
 
-      <p className={`text-xs ${muted}`}>Keyboard: Alt+1–4 switch sections · 1–4 pick a choice · S/U/G submit as sure/unsure/guess · H hint · Enter or N next.</p>
+      <p className={`text-xs ${muted}`}>Keyboard: Alt+1–5 switch sections · 1–4 pick a choice · S/U/G submit as sure/unsure/guess · H hint · Enter or N next.</p>
     </div>
   );
 }

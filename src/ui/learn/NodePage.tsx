@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { lessonFor, NODE, unitTitle } from '../../content';
+import { hasContent, lessonFor, NODE, unitTitle } from '../../content';
 import type { Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
@@ -30,16 +30,16 @@ export function NodePage({ nodeId }: { nodeId: string }) {
     setRepair(false);
   }, [nodeId]);
   useEffect(() => {
-    if (stage === null && state !== undefined) setStageLocal(Math.min(state?.stage ?? 0, 3));
-  }, [state, stage]);
+    if (stage === null && state !== undefined) setStageLocal(Math.max(Math.min(state?.stage ?? 0, 3), lesson?.explore ? 0 : 1));
+  }, [state, stage, lesson]);
 
   if (!node) return <p>Unknown skill.</p>;
   if (!lesson)
     return (
       <div className="flex flex-col gap-3">
         <h1 className={h1}>{node.title}</h1>
-        <p className={muted}>This skill's lessons arrive in a later milestone. Unit 1 (transformations and function operations) is ready now.</p>
-        <a className={btnGhost} href="#/">
+        <p className={muted}>This skill's lessons arrive in a later milestone. Unit 1 and the prerequisite skills are ready now.</p>
+        <a className={btnGhost} href="#/skills">
           Back to skills
         </a>
       </div>
@@ -51,12 +51,13 @@ export function NodePage({ nodeId }: { nodeId: string }) {
     window.scrollTo({ top: 0 });
   };
   const mastery = masteryStatus(attempts ?? []);
-  const s = stage ?? 0;
+  const s = stage ?? (lesson.explore ? 0 : 1);
+  const stages = STAGES.map((label, i) => ({ label, i })).filter((x) => x.i > 0 || lesson.explore);
 
   return (
     <div className="flex flex-col gap-4">
       <header className="flex flex-col gap-1">
-        <a href="#/" className={`text-sm ${muted} hover:underline`}>
+        <a href="#/skills" className={`text-sm ${muted} hover:underline`}>
           ← {unitTitle(node.unit)}
         </a>
         <h1 className={h1}>{node.title}</h1>
@@ -70,15 +71,15 @@ export function NodePage({ nodeId }: { nodeId: string }) {
 
       {repair && <RepairBanner nodeId={nodeId} onClose={() => setRepair(false)} />}
 
-      <nav className="grid grid-cols-4 gap-1 rounded-xl bg-line/40 p-1 dark:bg-line-d/40" aria-label="Lesson stages">
-        {STAGES.map((label, i) => (
+      <nav className={`grid ${stages.length === 4 ? 'grid-cols-4' : 'grid-cols-3'} gap-1 rounded-xl bg-line/40 p-1 dark:bg-line-d/40`} aria-label="Lesson stages">
+        {stages.map(({ label, i }) => (
           <button key={label} onClick={() => go(i)} aria-current={s === i ? 'step' : undefined} className={`min-h-10 rounded-lg px-1 text-sm font-bold ${s === i ? 'bg-card shadow-sm dark:bg-card-d' : muted}`}>
             {label}
           </button>
         ))}
       </nav>
 
-      {s === 0 && <ExploreStage lesson={lesson} onNext={() => go(1)} />}
+      {s === 0 && lesson.explore && <ExploreStage lesson={lesson} onNext={() => go(1)} />}
       {s === 1 && <ExplainStage lesson={lesson} onNext={() => go(2)} />}
       {s === 2 && <FadedStage nodeId={nodeId} onNext={() => go(3)} />}
       {s === 3 && <PracticeStage nodeId={nodeId} onRepair={() => setRepair(true)} />}
@@ -105,24 +106,50 @@ function MasteryBar({ status, mastered }: { status: ReturnType<typeof masterySta
   );
 }
 
+/** Ranks prerequisites: diagnostic weak first, then shaky, then by recent accuracy (lowest first). */
 function RepairBanner({ nodeId, onClose }: { nodeId: string; onClose: () => void }) {
   const node = NODE.get(nodeId)!;
-  const prereqs = node.prerequisites.map((p) => NODE.get(p)!).filter(Boolean);
-  const mastered = useLiveQuery(() => db.nodes.where('nodeId').anyOf(node.prerequisites).toArray(), [nodeId]);
-  const weak = prereqs.filter((p) => !mastered?.find((m) => m.nodeId === p.id && m.mastered));
+  const info = useLiveQuery(async () => {
+    const [states, diag, attempts] = await Promise.all([db.nodes.where('nodeId').anyOf(node.prerequisites).toArray(), db.diagnostic.where('nodeId').anyOf(node.prerequisites).toArray(), db.attempts.where('nodeId').anyOf(node.prerequisites).toArray()]);
+    return node.prerequisites
+      .map((id) => {
+        const recent = attempts.filter((a) => a.nodeId === id && !a.assisted && a.mode !== 'faded').slice(-10);
+        const acc = recent.length ? recent.filter((a) => a.correct).length / recent.length : null;
+        const d = diag.find((x) => x.nodeId === id)?.result;
+        const score = (d === 'weak' || d === 'inferred-weak' ? 0 : d === 'shaky' ? 1 : 2) + (acc ?? 0.6);
+        return { id, mastered: !!states.find((s) => s.nodeId === id)?.mastered, acc, d, score };
+      })
+      .sort((a, b) => a.score - b.score);
+  }, [nodeId]);
+  const list = (info ?? []).filter((p) => !p.mastered);
+  const shown = list.length ? list : (info ?? []);
   return (
     <div className="rounded-xl border border-warn bg-warn-soft p-4 dark:border-warn-d dark:bg-warn-soft-d">
       <p className="font-bold text-warn dark:text-warn-d">Two misses in a row. A prerequisite may be the real problem.</p>
-      <p className="mt-1">This skill builds on:</p>
+      <p className="mt-1">{shown.length > 1 ? 'Most likely first:' : 'This skill builds on:'}</p>
       <ul className="mt-1 flex flex-col gap-1">
-        {(weak.length ? weak : prereqs).map((p) => (
-          <li key={p.id}>
-            <a className="font-bold text-accent hover:underline dark:text-accent-d" href={`#/node/${p.id}`}>
-              {p.title}
-            </a>
-            {p.unit === 'PRE' && <span className={`text-sm ${muted}`}> (10-minute repair lessons arrive in the next update)</span>}
-          </li>
-        ))}
+        {shown.map((p) => {
+          const n = NODE.get(p.id)!;
+          return (
+            <li key={p.id}>
+              <a className="font-bold text-accent hover:underline dark:text-accent-d" href={`#/node/${p.id}`}>
+                {n.title}
+              </a>
+              <span className={`text-sm ${muted}`}>
+                {p.d && p.d !== 'strong' ? ` · check: ${p.d === 'shaky' ? 'shaky' : 'weak'}` : ''}
+                {p.acc !== null ? ` · recent ${Math.round(p.acc * 100)}%` : ''}
+              </span>
+              {n.unit === 'PRE' && hasContent(p.id) && (
+                <>
+                  {' · '}
+                  <a className="text-sm font-bold text-accent hover:underline dark:text-accent-d" href={`#/repair/${p.id}?from=${nodeId}`}>
+                    10-minute repair
+                  </a>
+                </>
+              )}
+            </li>
+          );
+        })}
       </ul>
       <button className={`mt-2 text-sm font-bold ${muted} hover:underline`} onClick={onClose}>
         Keep practising this skill
@@ -133,7 +160,7 @@ function RepairBanner({ nodeId, onClose }: { nodeId: string; onClose: () => void
 
 function PredictBox({ lesson, onDone }: { lesson: Lesson; onDone: (choice: number) => void }) {
   const [pick, setPick] = useState<number | null>(null);
-  const p = lesson.explore.predict;
+  const p = lesson.explore!.predict;
   return (
     <div className={`${card} flex flex-col gap-3 p-4`}>
       <p className={`text-sm font-bold uppercase tracking-wide ${muted}`}>Predict first</p>
@@ -157,8 +184,8 @@ function PredictBox({ lesson, onDone }: { lesson: Lesson; onDone: (choice: numbe
 function ExploreStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }) {
   const [pick, setPick] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
-  const p = lesson.explore.predict;
-  const preset = lesson.explore.preset;
+  const p = lesson.explore!.predict;
+  const preset = lesson.explore!.preset;
   return (
     <div className="flex flex-col gap-4">
       {pick === null ? (
@@ -193,7 +220,7 @@ function ExploreStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }
   );
 }
 
-function WorkedExample({ item, n }: { item: Item; n: number }) {
+export function WorkedExample({ item, n }: { item: Item; n: number }) {
   const [shown, setShown] = useState(1);
   const total = item.solution.length;
   const correct = item.choices?.find((c) => c.correct);

@@ -1,11 +1,19 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useState } from 'react';
 import { db, DEFAULT_SETTINGS } from '../db/db';
+import { addStudySeconds } from '../db/db';
+import { useSettings } from './data';
 import { NodePage } from './learn/NodePage';
+import { RepairPage } from './learn/RepairPage';
 import { ErrorsPage } from './pages/ErrorsPage';
-import { HomePage } from './pages/HomePage';
 import { ReviewPage } from './pages/ReviewPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { SkillsPage } from './pages/SkillsPage';
+import { DiagnosticPage } from './plan/DiagnosticPage';
+import { PlanPage } from './plan/PlanPage';
+import { ProgressPage } from './plan/ProgressPage';
+import { SetupPage } from './plan/SetupPage';
+import { TodayPage } from './plan/TodayPage';
 import { muted } from './styles';
 
 function useHash() {
@@ -31,23 +39,47 @@ function useTheme() {
 }
 
 const NAV = [
-  { href: '#/', label: 'Skills', key: '1' },
-  { href: '#/review', label: 'Review', key: '2' },
-  { href: '#/errors', label: 'Weak spots', key: '3' },
-  { href: '#/settings', label: 'Settings', key: '4', short: '⚙' },
+  { href: '#/', label: 'Today', key: '1' },
+  { href: '#/skills', label: 'Skills', key: '2' },
+  { href: '#/review', label: 'Review', key: '3' },
+  { href: '#/progress', label: 'Progress', key: '4' },
+  { href: '#/settings', label: 'Settings', key: '5', short: '⚙' },
 ];
+
+const BEAT = 15;
+const IDLE_MS = 90_000;
+
+/** Counts active study time: every 15 s while the tab is visible and you interacted in the last 90 s. */
+function useStudyClock() {
+  useEffect(() => {
+    let last = Date.now();
+    const touch = () => (last = Date.now());
+    const events = ['pointerdown', 'keydown', 'input', 'scroll'] as const;
+    events.forEach((e) => window.addEventListener(e, touch, { passive: true }));
+    const id = window.setInterval(() => {
+      if (document.visibilityState === 'visible' && Date.now() - last < IDLE_MS) addStudySeconds(BEAT);
+    }, BEAT * 1000);
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, touch));
+      window.clearInterval(id);
+    };
+  }, []);
+}
 
 export function App() {
   useTheme();
+  useStudyClock();
   const hash = useHash();
   const path = hash.replace(/^#/, '');
+  const settings = useSettings();
+  const needsSetup = settings !== undefined && !settings.setupDone;
   const due = useLiveQuery(() => db.nodes.filter((n) => !!n.card && n.card.due <= Date.now()).count(), [], 0);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [path]);
 
-  // Alt+1..4 switches sections on desktop.
+  // Alt+1..5 switches sections on desktop.
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
       if (!e.altKey) return;
@@ -61,14 +93,25 @@ export function App() {
     return () => window.removeEventListener('keydown', on);
   }, []);
 
+  const [route, query] = path.split('?');
+  const params = new URLSearchParams(query);
   let page;
-  if (path.startsWith('/node/')) page = <NodePage nodeId={decodeURIComponent(path.slice(6))} />;
-  else if (path.startsWith('/review')) page = <ReviewPage />;
-  else if (path.startsWith('/errors')) page = <ErrorsPage />;
-  else if (path.startsWith('/settings')) page = <SettingsPage />;
-  else page = <HomePage />;
+  if (route.startsWith('/node/')) page = <NodePage nodeId={decodeURIComponent(route.slice(6))} />;
+  else if (route.startsWith('/repair/')) page = <RepairPage key={route} nodeId={decodeURIComponent(route.slice(8))} from={params.get('from') ?? undefined} />;
+  else if (route.startsWith('/skills')) page = <SkillsPage />;
+  else if (route.startsWith('/review')) page = <ReviewPage />;
+  else if (route.startsWith('/errors')) page = <ErrorsPage />;
+  else if (route.startsWith('/progress')) page = <ProgressPage />;
+  else if (route.startsWith('/settings')) page = <SettingsPage />;
+  else if (route.startsWith('/setup')) page = <SetupPage />;
+  else if (route.startsWith('/diagnostic')) page = <DiagnosticPage />;
+  else if (route.startsWith('/plan')) page = <PlanPage />;
+  else if (settings === undefined) page = null;
+  else if (needsSetup) page = <SetupPage />;
+  else page = <TodayPage />;
 
-  const active = (href: string) => (href === '#/' ? path === '/' || path === '' || path.startsWith('/node') : hash.startsWith(href));
+  const active = (href: string) =>
+    href === '#/' ? route === '/' || route === '' || route.startsWith('/plan') : href === '#/skills' ? route.startsWith('/skills') || route.startsWith('/node') || route.startsWith('/repair') : href === '#/progress' ? route.startsWith('/progress') || route.startsWith('/errors') : hash.startsWith(href);
 
   return (
     <div className="mx-auto flex min-h-dvh max-w-3xl flex-col">

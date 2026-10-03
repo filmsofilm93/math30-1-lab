@@ -26,6 +26,46 @@ M = {
  "dr-swap": "Swaps domain and range.",
  "abs-negate-all": "Reflects the whole graph instead of only the part below the x-axis.",
  "ref-angle-measure-y": "Measures the reference angle from the y-axis.",
+ "exp-power-add": "Adds exponents for a power of a power ((a^m)^n = a^(m+n)).",
+ "exp-coef-power": "Applies an exponent to the variable but not the coefficient ((2x)^3 = 2x^3).",
+ "exp-neg-reciprocal": "Ignores a negative exponent or takes the reciprocal of only part of the expression.",
+ "exp-mult-base": "Multiplies the base by the exponent (8^(2/3) = 16/3).",
+ "exp-rational-partial": "Takes the root but not the power of a rational exponent (or the power but not the root).",
+ "rad-simplify-partial": "Leaves a perfect-square factor under the root or extracts a factor that is not a perfect square.",
+ "rad-like-terms": "Combines radicals that are not like terms, or adds coefficients incorrectly.",
+ "fac-gcf-lost": "Drops the common factor (or a sign) when factoring it out.",
+ "fac-dos-square": "Writes a difference of squares as a perfect square (a − b)².",
+ "fac-trinomial-leading": "Ignores the leading coefficient when factoring ax² + bx + c.",
+ "quad-zero-sign": "Takes the roots of (x − r)(x − s) = 0 as −r and −s.",
+ "quad-disc-count": "Misreads the discriminant (negative means two roots, or zero means none).",
+ "quad-sqrt-pm": "Takes only the positive square root when solving x² = k.",
+ "quad-complete-square": "Adds b instead of (b/2)² when completing the square, or forgets to factor out a first.",
+ "quad-max-min": "Calls the vertex a minimum when a < 0, or a maximum when a > 0.",
+ "quad-vertex-swap": "Swaps the coordinates of the vertex, or reads k as the x-coordinate.",
+ "fn-solve-vs-eval": "Confuses f(a) (evaluate at a) with f(x) = a (solve for x).",
+ "fn-sub-sign": "Drops brackets when substituting a negative value ((−3)² taken as −9).",
+ "fn-table-misread": "Reads the value from the wrong row or column of a table.",
+ "dr-graph-endpoint": "Ignores whether an endpoint on a graph is open or closed.",
+ "dr-restriction": "Misses a restriction from a square root or a denominator.",
+ "lin-slope-inverse": "Computes slope as run over rise (Δx/Δy).",
+ "lin-intercept-sign": "Reads the intercept or the point in an equation with the wrong sign.",
+ "lin-perp-negative": "Uses the negative slope, not the negative reciprocal, for a perpendicular line.",
+ "abs-value-neg": "Treats |a − b| as |a| − |b|, or lets an absolute value be negative.",
+ "abs-piecewise-boundary": "Splits y = |f(x)| at the wrong x-value instead of the zero of f.",
+ "rat-add-denominators": "Adds fractions by adding numerators and adding denominators.",
+ "rat-divide-flip": "Flips the wrong fraction when dividing, or forgets to flip.",
+ "npv-numerator": "Takes zeros of the numerator as non-permissible values.",
+ "rat-subtract-sign": "Subtracts only the first term of the second numerator (the minus sign is not distributed).",
+ "rat-eq-lcd": "Multiplies only some terms by the lowest common denominator.",
+ "rad-eq-isolate": "Squares both sides before isolating the radical.",
+ "sys-one-solution": "Reports only one intersection point, or only the x-values.",
+ "sys-subst-error": "Makes a sign or distribution error when setting the expressions equal.",
+ "ref-angle-180": "Uses θ − 180° in quadrant II or 180° − θ in quadrant III.",
+ "trig-exact-swap": "Swaps sine and cosine exact values (sin 30° = √3/2).",
+ "trig-ratio-swap": "Uses x/r for sine or y/r for cosine, or x/y for tangent.",
+ "law-wrong-law": "Uses the sine law when the cosine law is needed, or the reverse.",
+ "law-cos-sign": "Uses + 2bc cos A in the cosine law, or multiplies the whole of b² + c² − 2bc by cos A.",
+ "law-sine-pairing": "Pairs a side with an angle that is not opposite it.",
 
  # transformations
  "tr-h-sign": "Moves the graph in the wrong horizontal direction (sign of h).",
@@ -161,22 +201,22 @@ def node(id, outcome, title, prereqs, mis, emph=2, std="acceptable", weak=False,
 # emphasis: 1 = occasional, 2 = regular, 3 = appears on nearly every exam (inferred, see meta)
 
 UNIT = "PRE"
-node("P.exp-laws", "M20-1/10C", "Exponent laws (integer and rational exponents)", [], ["exp-add-bases","exp-neg-sign","exp-rational-root"], 3)
-node("P.radicals", "M20-1", "Simplify and operate on radicals; rationalize denominators", ["P.exp-laws"], ["rad-add-radicands","rad-conjugate-sign"], 2)
-node("P.factor-basic", "M10C", "Factoring: GCF, difference of squares, grouping", [], ["fac-incomplete","fac-sum-squares"], 3)
-node("P.factor-trinomial", "M10C/20-1", "Factoring trinomials ax² + bx + c (and quadratic form)", ["P.factor-basic"], ["fac-sign-error","fac-incomplete"], 3)
-node("P.quad-solve", "M20-1", "Solving quadratics: factoring, formula, discriminant", ["P.factor-trinomial","P.radicals"], ["quad-formula-sign","fac-sign-error"], 3)
-node("P.quad-vertex", "M20-1", "Quadratic functions in vertex form; completing the square", ["P.quad-solve"], ["quad-vertex-sign-h"], 2)
-node("P.func-notation", "M10C", "Function notation; evaluating from equations, tables, graphs", [], ["fn-notation-mult"], 3)
-node("P.domain-range", "M10C", "Domain and range in interval and set-builder notation", ["P.func-notation"], ["dr-bracket-type","dr-swap"], 3)
-node("P.linear", "M10C", "Linear functions: slope, forms of a line", ["P.func-notation"], ["tr-k-sign"], 1)
-node("P.abs", "M20-1", "Absolute value and y = |f(x)|", ["P.linear","P.domain-range"], ["abs-negate-all"], 1)
-node("P.rat-expr", "M20-1", "Rational expressions: simplify, operate, non-permissible values", ["P.factor-trinomial"], ["npv-after-simplify","cancel-terms"], 3)
-node("P.rat-eq", "M20-1", "Rational equations with restrictions; extraneous roots", ["P.rat-expr","P.quad-solve"], ["extraneous-keep","npv-after-simplify"], 2)
-node("P.rad-eq", "M20-1", "Radical equations; extraneous roots", ["P.radicals","P.quad-solve"], ["extraneous-keep","square-binomial","extraneous-reject-valid"], 2)
-node("P.systems", "M20-1", "Solving systems graphically (intersection points)", ["P.linear","P.quad-vertex"], ["calc-guess-bounds"], 1)
-node("P.ref-angle", "M20-1", "Angles in standard position (degrees), reference angles, ratios of any angle", [], ["ref-angle-measure-y","trig-cast-sign"], 2)
-node("P.sine-cos-law", "M20-1", "Sine and cosine laws", ["P.ref-angle"], ["trig-deg-rad-mode"], 1,
+node("P.exp-laws", "M20-1/10C", "Exponent laws (integer and rational exponents)", [], ["exp-add-bases","exp-neg-sign","exp-rational-root","exp-power-add","exp-coef-power","exp-neg-reciprocal","exp-mult-base","exp-rational-partial"], 3)
+node("P.radicals", "M20-1", "Simplify and operate on radicals; rationalize denominators", ["P.exp-laws"], ["rad-add-radicands","rad-conjugate-sign","rad-simplify-partial","rad-like-terms"], 2)
+node("P.factor-basic", "M10C", "Factoring: GCF, difference of squares, grouping", [], ["fac-incomplete","fac-sum-squares","fac-gcf-lost","fac-dos-square"], 3)
+node("P.factor-trinomial", "M10C/20-1", "Factoring trinomials ax² + bx + c (and quadratic form)", ["P.factor-basic"], ["fac-sign-error","fac-incomplete","fac-trinomial-leading"], 3)
+node("P.quad-solve", "M20-1", "Solving quadratics: factoring, formula, discriminant", ["P.factor-trinomial","P.radicals"], ["quad-formula-sign","fac-sign-error","quad-zero-sign","quad-disc-count","quad-sqrt-pm"], 3)
+node("P.quad-vertex", "M20-1", "Quadratic functions in vertex form; completing the square", ["P.quad-solve"], ["quad-vertex-sign-h","quad-complete-square","quad-max-min","quad-vertex-swap","dr-swap","dr-bracket-type"], 2)
+node("P.func-notation", "M10C", "Function notation; evaluating from equations, tables, graphs", [], ["fn-notation-mult","fn-solve-vs-eval","fn-sub-sign","fn-table-misread"], 3)
+node("P.domain-range", "M10C", "Domain and range in interval and set-builder notation", ["P.func-notation"], ["dr-bracket-type","dr-swap","dr-graph-endpoint","dr-restriction"], 3)
+node("P.linear", "M10C", "Linear functions: slope, forms of a line", ["P.func-notation"], ["tr-k-sign","lin-slope-inverse","lin-intercept-sign","lin-perp-negative"], 1)
+node("P.abs", "M20-1", "Absolute value and y = |f(x)|", ["P.linear","P.domain-range"], ["abs-negate-all","abs-value-neg","abs-piecewise-boundary"], 1)
+node("P.rat-expr", "M20-1", "Rational expressions: simplify, operate, non-permissible values", ["P.factor-trinomial"], ["npv-after-simplify","cancel-terms","rat-add-denominators","rat-divide-flip","npv-numerator","fac-sign-error","rat-subtract-sign"], 3)
+node("P.rat-eq", "M20-1", "Rational equations with restrictions; extraneous roots", ["P.rat-expr","P.quad-solve"], ["extraneous-keep","npv-after-simplify","extraneous-reject-valid","rat-eq-lcd"], 2)
+node("P.rad-eq", "M20-1", "Radical equations; extraneous roots", ["P.radicals","P.quad-solve"], ["extraneous-keep","square-binomial","extraneous-reject-valid","rad-eq-isolate"], 2)
+node("P.systems", "M20-1", "Solving systems graphically (intersection points)", ["P.linear","P.quad-vertex"], ["calc-guess-bounds","sys-one-solution","sys-subst-error","quad-disc-count"], 1)
+node("P.ref-angle", "M20-1", "Angles in standard position (degrees), reference angles, ratios of any angle", [], ["ref-angle-measure-y","trig-cast-sign","ref-angle-180","trig-exact-swap","trig-ratio-swap"], 2)
+node("P.sine-cos-law", "M20-1", "Sine and cosine laws", ["P.ref-angle"], ["trig-deg-rad-mode","law-wrong-law","law-cos-sign","law-sine-pairing"], 1,
      scope=["Not directly assessed on the Math 30-1 diploma; kept as an optional review node."])
 
 UNIT = "U1"

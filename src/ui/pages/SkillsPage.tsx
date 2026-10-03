@@ -7,7 +7,7 @@ import { btnPrimary, card, h1, muted } from '../styles';
 const DAY = 86_400_000;
 const UNIT_MILESTONE: Record<string, string> = { U2: 'M3', U3: 'M3', U4: 'M4', U5: 'M5', U6: 'M5', PRE: 'M2', EXAM: 'M6' };
 
-export function HomePage() {
+export function SkillsPage() {
   const settings = useLiveQuery(() => db.settings.get('main')) ?? DEFAULT_SETTINGS;
   const states = useLiveQuery(() => db.nodes.toArray(), [], [] as NodeState[]);
   const attempts = useLiveQuery(() => db.attempts.toArray(), [], []);
@@ -15,6 +15,7 @@ export function HomePage() {
   const days = Math.ceil((new Date(settings.examDate + 'T09:00:00').getTime() - Date.now()) / DAY);
   const due = states.filter((s) => s.card && s.card.due <= Date.now()).length;
   const order = [...settings.unitOrder, 'PRE', 'EXAM'];
+  // Units 2-6 arrive in later milestones; the prerequisite layer is available now.
   const units = order.map((id) => UNITS.find((u) => u.id === id)!).filter(Boolean);
 
   const ready = NODES.filter((n) => hasContent(n.id));
@@ -24,11 +25,9 @@ export function HomePage() {
   return (
     <div className="flex flex-col gap-6">
       <section className="flex flex-col gap-3">
-        <h1 className={h1}>
-          {days > 0 ? `${days} days to the diploma` : 'Diploma day has passed'}
-        </h1>
+        <h1 className={h1}>Skills</h1>
         <p className={muted}>
-          {new Date(settings.examDate + 'T12:00:00').toLocaleDateString('en-CA', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })} · {masteredCount} of {NODES.length - nodesInUnit('EXAM').length} skills mastered
+          {masteredCount} of {NODES.length - nodesInUnit('EXAM').length} skills mastered · {days > 0 ? `${days} days to the diploma` : 'diploma day has passed'}
         </p>
         <div className="flex flex-wrap gap-2">
           {due > 0 && (

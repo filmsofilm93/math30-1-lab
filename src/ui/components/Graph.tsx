@@ -42,7 +42,7 @@ export function Graph({ spec, height = 260 }: { spec: GraphSpec; height?: number
         )}
         {spec.points?.map((p, i) => (
           <g key={`p${i}`}>
-            <Point x={p.x} y={p.y} color={p.kind === 'invariant' ? 'var(--mafs-green)' : Theme.foreground} svgCircleProps={p.kind === 'open' ? { fill: 'var(--color-card)', strokeWidth: 2 } : undefined} />
+            <Point x={p.x} y={p.y} color={p.kind === 'invariant' ? 'var(--mafs-green)' : Theme.foreground} svgCircleProps={p.kind === 'open' ? { fill: 'var(--open-point-fill)', strokeWidth: 2 } : undefined} />
             {p.label && (
               <Text x={p.x} y={p.y} attach="ne" size={13}>
                 {p.label}

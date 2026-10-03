@@ -101,8 +101,9 @@ const CONF: { c: Confidence; label: string; key: string }[] = [
 /**
  * One question: stem, answer area, hints, confidence, feedback and worked solution.
  * `shownSteps` > 0 shows the first steps of the solution (faded practice).
+ * `test` (diagnostic): no hints, no feedback, an "I don't know" option; the parent moves on in onDone.
  */
-export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Next question' }: { item: Item; shownSteps?: number; onDone: (r: ItemResult) => void; onNext: () => void; nextLabel?: string }) {
+export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Next question', test = false }: { item: Item; shownSteps?: number; onDone: (r: ItemResult) => void; onNext: () => void; nextLabel?: string; test?: boolean }) {
   const [choice, setChoice] = useState<number | null>(null);
   const [values, setValues] = useState<string[]>(() => (item.fields ?? []).map(() => ''));
   const [hints, setHints] = useState(0);
@@ -126,11 +127,12 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
 
   const done = result !== null;
 
-  function submit(confidence: Confidence) {
+  function submit(confidence: Confidence, dontKnow = false) {
     if (done) return;
     let correct: boolean;
     let misconception: string | undefined;
-    if (item.format === 'mc') {
+    if (dontKnow) correct = false;
+    else if (item.format === 'mc') {
       if (choice === null) return setProblem('Choose an option first.');
       const ch = item.choices![choice];
       correct = ch.correct;
@@ -161,7 +163,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
       const k = e.key.toLowerCase();
       if (!done && item.format === 'mc' && ['1', '2', '3', '4'].includes(k)) setChoice(Number(k) - 1);
       else if (!done && CONF.some((c) => c.key === k)) submit(CONF.find((c) => c.key === k)!.c);
-      else if (!done && k === 'h') setHints((h) => Math.min(3, h + 1));
+      else if (!done && !test && k === 'h') setHints((h) => Math.min(3, h + 1));
       else if (done && (k === 'enter' || k === 'n')) onNext();
       else return;
       e.preventDefault();
@@ -230,7 +232,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
                     <Tex src={f.prefix} />
                   </span>
                 )}
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 overflow-x-clip py-0.5">
                   <MathField
                     label={f.label ?? f.prefix ?? `Answer ${i + 1}`}
                     value={values[i]}
@@ -275,7 +277,12 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
               ))}
             </div>
           </div>
-          {hints < 3 && (
+          {test && (
+            <button className="self-start text-sm font-bold text-accent hover:underline dark:text-accent-d" onClick={() => submit('guess', true)}>
+              I don't know this yet
+            </button>
+          )}
+          {!test && hints < 3 && (
             <button className="self-start text-sm font-bold text-accent hover:underline dark:text-accent-d" onClick={() => setHints(hints + 1)}>
               {hints === 0 ? 'Show a hint' : 'Another hint'} ({3 - hints} left)
             </button>
@@ -283,7 +290,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
         </div>
       )}
 
-      {done && result && (
+      {done && result && !test && (
         <div className="flex flex-col gap-4">
           <div className={`rounded-xl px-4 py-3 ${result.correct ? 'bg-good-soft text-good dark:bg-good-soft-d dark:text-good-d' : 'bg-bad-soft text-bad dark:bg-bad-soft-d dark:text-bad-d'}`}>
             <p className="font-bold">{result.correct ? (result.confidence === 'guess' ? 'Correct, but you guessed. This comes back sooner.' : 'Correct.') : 'Not this time.'}</p>

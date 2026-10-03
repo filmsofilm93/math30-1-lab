@@ -1,7 +1,7 @@
 import Dexie, { type EntityTable } from 'dexie';
 
 export type Confidence = 'sure' | 'unsure' | 'guess';
-export type Mode = 'faded' | 'practice' | 'review' | 'retrieval';
+export type Mode = 'faded' | 'practice' | 'review' | 'retrieval' | 'diagnostic' | 'repair';
 
 export interface Attempt {
   id?: number;
@@ -53,6 +53,30 @@ export interface Settings {
   examDate: string;
   theme: 'system' | 'light' | 'dark';
   unitOrder: string[];
+  /** Planned study hours per week. */
+  weeklyHours?: number;
+  /** Days of the week you can study, 0 = Sunday. */
+  studyDays?: number[];
+  /** Unit you are on now; earlier units in the order count as catch-up. */
+  currentUnit?: string;
+  setupDone?: boolean;
+}
+
+/** Diagnostic outcome for one prerequisite skill. */
+export type DiagResult = 'strong' | 'shaky' | 'weak' | 'inferred-weak';
+
+export interface DiagnosticRow {
+  nodeId: string;
+  result: DiagResult;
+  correct: number;
+  asked: number;
+  at: number;
+}
+
+/** Active study time per local day. */
+export interface DayRow {
+  day: string;
+  seconds: number;
 }
 
 export interface Report {
@@ -68,6 +92,8 @@ export const db = new Dexie('math30-1-lab') as Dexie & {
   nodes: EntityTable<NodeState, 'nodeId'>;
   settings: EntityTable<Settings, 'id'>;
   reports: EntityTable<Report, 'id'>;
+  diagnostic: EntityTable<DiagnosticRow, 'nodeId'>;
+  days: EntityTable<DayRow, 'day'>;
 };
 
 db.version(1).stores({
@@ -77,11 +103,19 @@ db.version(1).stores({
   reports: '++id, at',
 });
 
+db.version(2).stores({
+  diagnostic: 'nodeId',
+  days: 'day',
+});
+
 export const DEFAULT_SETTINGS: Settings = {
   id: 'main',
   examDate: '2027-01-20',
   theme: 'system',
   unitOrder: ['U1', 'U2', 'U3', 'U4', 'U5', 'U6'],
+  weeklyHours: 6,
+  studyDays: [1, 2, 3, 4, 6],
+  currentUnit: 'U1',
 };
 
 export async function getSettings(): Promise<Settings> {
@@ -95,18 +129,29 @@ export function localDay(t = Date.now()): string {
 
 /** Everything, as JSON, for export/backup. */
 export async function exportAll(): Promise<string> {
-  const [attempts, nodes, settings, reports] = await Promise.all([db.attempts.toArray(), db.nodes.toArray(), db.settings.toArray(), db.reports.toArray()]);
-  return JSON.stringify({ app: 'math30-1-lab', version: 1, exportedAt: new Date().toISOString(), attempts, nodes, settings, reports });
+  const [attempts, nodes, settings, reports, diagnostic, days] = await Promise.all([db.attempts.toArray(), db.nodes.toArray(), db.settings.toArray(), db.reports.toArray(), db.diagnostic.toArray(), db.days.toArray()]);
+  return JSON.stringify({ app: 'math30-1-lab', version: 2, exportedAt: new Date().toISOString(), attempts, nodes, settings, reports, diagnostic, days });
 }
 
 export async function importAll(json: string): Promise<void> {
   const data = JSON.parse(json);
   if (data.app !== 'math30-1-lab') throw new Error('This file is not a Math 30-1 Lab backup.');
-  await db.transaction('rw', db.attempts, db.nodes, db.settings, db.reports, async () => {
-    await Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear()]);
+  await db.transaction('rw', [db.attempts, db.nodes, db.settings, db.reports, db.diagnostic, db.days], async () => {
+    await Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear(), db.diagnostic.clear(), db.days.clear()]);
     await db.attempts.bulkAdd(data.attempts ?? []);
     await db.nodes.bulkPut(data.nodes ?? []);
     await db.settings.bulkPut(data.settings ?? []);
     await db.reports.bulkAdd(data.reports ?? []);
+    await db.diagnostic.bulkPut(data.diagnostic ?? []);
+    await db.days.bulkPut(data.days ?? []);
+  });
+}
+
+/** Add active seconds to today's total. */
+export async function addStudySeconds(seconds: number, t = Date.now()) {
+  const day = localDay(t);
+  await db.transaction('rw', db.days, async () => {
+    const row = await db.days.get(day);
+    await db.days.put({ day, seconds: (row?.seconds ?? 0) + seconds });
   });
 }

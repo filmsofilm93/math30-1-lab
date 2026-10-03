@@ -2,29 +2,15 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useState } from 'react';
 import { hasContent, NODE, nodesInUnit, UNITS } from '../../content';
 import { db, type Mode, type NodeState } from '../../db/db';
-import { recordAttempt } from '../../db/progress';
-import { itemFor } from '../../engine/practice';
-import type { Item, Tier } from '../../engine/types';
-import { ItemView, type ItemResult } from '../components/ItemView';
+import type { Tier } from '../../engine/types';
+import { SessionRunner, shuffle, type QueueEntry } from '../components/SessionRunner';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 
 interface Session {
   title: string;
-  queue: { nodeId: string; mode: Mode; tier: Tier }[];
-  index: number;
-  item: Item | null;
-  right: number;
+  queue: QueueEntry[];
   /** Hide the skill name so you must pick the method yourself. */
   blind: boolean;
-}
-
-function shuffle<T>(a: T[]): T[] {
-  const b = a.slice();
-  for (let i = b.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [b[i], b[j]] = [b[j], b[i]];
-  }
-  return b;
 }
 
 export function ReviewPage() {
@@ -39,7 +25,7 @@ export function ReviewPage() {
 
   function start(title: string, queue: Session['queue'], blind: boolean) {
     if (!queue.length) return;
-    setSession({ title, queue, index: 0, item: itemFor(queue[0].nodeId, queue[0].tier), right: 0, blind });
+    setSession({ title, queue, blind });
   }
 
   function startDaily() {
@@ -56,49 +42,7 @@ export function ReviewPage() {
     start(`Mixed practice: ${UNITS.find((u) => u.id === unitId)?.title}`, q, true);
   }
 
-  if (session) {
-    const cur = session.queue[session.index];
-    const finished = session.index >= session.queue.length;
-    if (finished || !session.item)
-      return (
-        <div className="flex flex-col gap-4">
-          <h1 className={h1}>Done</h1>
-          <p>
-            {session.right} of {session.queue.length} correct.
-          </p>
-          <button className={btnPrimary} onClick={() => setSession(null)}>
-            Back to review
-          </button>
-        </div>
-      );
-    async function onDone(r: ItemResult) {
-      const it = session!.item!;
-      await recordAttempt({ nodeId: cur.nodeId, itemId: it.id, generatorId: it.generatorId, seed: it.seed, tier: it.tier, correct: r.correct, assisted: r.assisted, hints: r.hints, confidence: r.confidence, misconception: r.misconception, ms: r.ms, mode: cur.mode });
-      setSession((s) => s && { ...s, right: s.right + (r.correct ? 1 : 0) });
-    }
-    function next() {
-      setSession((s) => {
-        if (!s) return s;
-        const i = s.index + 1;
-        return { ...s, index: i, item: i < s.queue.length ? itemFor(s.queue[i].nodeId, s.queue[i].tier) : null };
-      });
-    }
-    return (
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-2">
-          <h1 className={h2}>{session.title}</h1>
-          <span className={`text-sm tabular-nums ${muted}`}>
-            {session.index + 1} / {session.queue.length}
-          </span>
-        </div>
-        <p className={`text-xs ${muted}`}>{cur.mode === 'retrieval' ? 'Warm-up: recall without notes.' : session.blind ? 'Mixed: decide which method fits.' : NODE.get(cur.nodeId)?.title}</p>
-        <ItemView key={session.item.id} item={session.item} onDone={onDone} onNext={next} nextLabel={session.index + 1 === session.queue.length ? 'Finish' : 'Next'} />
-        <button className={`self-start text-sm ${muted} hover:underline`} onClick={() => setSession(null)}>
-          End session
-        </button>
-      </div>
-    );
-  }
+  if (session) return <SessionRunner title={session.title} queue={session.queue} blind={session.blind} onExit={() => setSession(null)} doneLabel="Back to review" />;
 
   const unitsWithContent = UNITS.filter((u) => nodesInUnit(u.id).some((n) => hasContent(n.id)));
 
