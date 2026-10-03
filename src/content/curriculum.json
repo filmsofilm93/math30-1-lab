@@ -1,0 +1,3156 @@
+{
+ "schemaVersion": 1,
+ "meta": {
+  "title": "Math 30-1 Lab curriculum map",
+  "generated": "2026-10-03",
+  "sources": [
+   {
+    "name": "Information Bulletin, Mathematics 30-1, 2025-2026",
+    "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math-30-1-info-bulletin.pdf",
+    "note": "2026-2027 edition not yet found; blueprint unchanged across recent years."
+   },
+   {
+    "name": "Assessment Standards and Exemplars, Mathematics 30-1 (2023)",
+    "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-1-assessment-standards-exemplars.pdf"
+   },
+   {
+    "name": "Written-Response Information, Mathematics 30-1 (2018-2019)",
+    "url": "https://education.alberta.ca/media/3704398/10-math30-1-written-response-info-2018-19_20171206.pdf"
+   },
+   {
+    "name": "Diploma Exam Schedule 2026-2027",
+    "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-diploma-exam-schedule.pdf"
+   },
+   {
+    "name": "Mathematics 10-12 Program of Studies",
+    "url": "https://open.alberta.ca/publications/9780778564393"
+   },
+   {
+    "name": "Mathematics 30-1 Practice Test 2022 (format reference only)",
+    "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-mathematics-30-1-practice-test.pdf"
+   }
+  ],
+  "exam": {
+   "date": "2027-01-20",
+   "time": "09:00-12:00",
+   "note": "From the 2026-2027 schedule; confirm in the setup wizard.",
+   "machineScored": {
+    "mc": 24,
+    "nr": 8,
+    "weight": 0.75
+   },
+   "writtenResponse": {
+    "questions": 3,
+    "parts": [
+     2,
+     3
+    ],
+    "halfMarks": true,
+    "weight": 0.25
+   },
+   "minutes": 180,
+   "maxMinutes": 360,
+   "finalMarkWeight": 0.3,
+   "topicWeights": {
+    "RF": [
+     0.53,
+     0.58
+    ],
+    "T": [
+     0.27,
+     0.33
+    ],
+    "PCBT": [
+     0.14,
+     0.18
+    ]
+   },
+   "cognitiveMix": {
+    "conceptual": 0.34,
+    "problemSolving": 0.36,
+    "procedural": 0.3
+   }
+  },
+  "estimates": {
+   "unitShare": "Unit shares are my estimate split from the official strand ranges, not official numbers. Used only by the planner.",
+   "examEmphasis": "1 = occasional, 2 = regular, 3 = nearly every exam. Inferred from the blueprint, the standards document and released-item patterns; not official."
+  },
+  "notation": {
+   "integers": "n ∈ I (Z also accepted)",
+   "domainRange": "interval and set-builder notation",
+   "naturalNumbers": "N",
+   "wholeNumbers": "W"
+  }
+ },
+ "units": [
+  {
+   "id": "PRE",
+   "title": "Prerequisite layer (Math 10C / 20-1)",
+   "defaultOrder": 0,
+   "estimatedExamShare": null
+  },
+  {
+   "id": "U1",
+   "title": "Transformations and function operations",
+   "defaultOrder": 1,
+   "estimatedExamShare": 0.19
+  },
+  {
+   "id": "U2",
+   "title": "Polynomial functions",
+   "defaultOrder": 2,
+   "estimatedExamShare": 0.09
+  },
+  {
+   "id": "U3",
+   "title": "Exponential and logarithmic functions",
+   "defaultOrder": 3,
+   "estimatedExamShare": 0.16
+  },
+  {
+   "id": "U4",
+   "title": "Trigonometry",
+   "defaultOrder": 4,
+   "estimatedExamShare": 0.3
+  },
+  {
+   "id": "U5",
+   "title": "Radical and rational functions",
+   "defaultOrder": 5,
+   "estimatedExamShare": 0.1
+  },
+  {
+   "id": "U6",
+   "title": "Permutations, combinations, and binomial theorem",
+   "defaultOrder": 6,
+   "estimatedExamShare": 0.16
+  },
+  {
+   "id": "EXAM",
+   "title": "Exam skills (calculator, NR, written response)",
+   "defaultOrder": 7,
+   "estimatedExamShare": null
+  }
+ ],
+ "outcomes": [
+  {
+   "code": "RF1",
+   "strand": "RF",
+   "statement": "Operations on, and compositions of, functions."
+  },
+  {
+   "code": "RF2",
+   "strand": "RF",
+   "statement": "Effects of horizontal and vertical translations on graphs and equations."
+  },
+  {
+   "code": "RF3",
+   "strand": "RF",
+   "statement": "Effects of horizontal and vertical stretches on graphs and equations."
+  },
+  {
+   "code": "RF4",
+   "strand": "RF",
+   "statement": "Apply translations and stretches to graphs and equations."
+  },
+  {
+   "code": "RF5",
+   "strand": "RF",
+   "statement": "Effects of reflections in the x-axis, y-axis and the line y = x."
+  },
+  {
+   "code": "RF6",
+   "strand": "RF",
+   "statement": "Inverses of relations."
+  },
+  {
+   "code": "RF7",
+   "strand": "RF",
+   "statement": "Logarithms."
+  },
+  {
+   "code": "RF8",
+   "strand": "RF",
+   "statement": "Product, quotient and power laws of logarithms."
+  },
+  {
+   "code": "RF9",
+   "strand": "RF",
+   "statement": "Graph and analyze exponential and logarithmic functions."
+  },
+  {
+   "code": "RF10",
+   "strand": "RF",
+   "statement": "Solve problems involving exponential and logarithmic equations."
+  },
+  {
+   "code": "RF11",
+   "strand": "RF",
+   "statement": "Factor polynomials of degree > 2 (degree ≤ 5, integral coefficients)."
+  },
+  {
+   "code": "RF12",
+   "strand": "RF",
+   "statement": "Graph and analyze polynomial functions (degree ≤ 5)."
+  },
+  {
+   "code": "RF13",
+   "strand": "RF",
+   "statement": "Graph and analyze radical functions (one radical)."
+  },
+  {
+   "code": "RF14",
+   "strand": "RF",
+   "statement": "Graph and analyze rational functions (monomial, binomial, trinomial numerators/denominators)."
+  },
+  {
+   "code": "T1",
+   "strand": "T",
+   "statement": "Angles in standard position in degrees and radians."
+  },
+  {
+   "code": "T2",
+   "strand": "T",
+   "statement": "Develop and apply the equation of the unit circle."
+  },
+  {
+   "code": "T3",
+   "strand": "T",
+   "statement": "Solve problems using the six trigonometric ratios (degrees and radians)."
+  },
+  {
+   "code": "T4",
+   "strand": "T",
+   "statement": "Graph and analyze sine, cosine and tangent to solve problems."
+  },
+  {
+   "code": "T5",
+   "strand": "T",
+   "statement": "Solve first- and second-degree trigonometric equations algebraically and graphically."
+  },
+  {
+   "code": "T6",
+   "strand": "T",
+   "statement": "Prove trigonometric identities (reciprocal, quotient, Pythagorean, sum/difference, double-angle)."
+  },
+  {
+   "code": "PCBT1",
+   "strand": "PCBT",
+   "statement": "Apply the fundamental counting principle."
+  },
+  {
+   "code": "PCBT2",
+   "strand": "PCBT",
+   "statement": "Permutations of n elements taken r at a time."
+  },
+  {
+   "code": "PCBT3",
+   "strand": "PCBT",
+   "statement": "Combinations of n different elements taken r at a time."
+  },
+  {
+   "code": "PCBT4",
+   "strand": "PCBT",
+   "statement": "Expand powers of a binomial, including the binomial theorem (natural-number exponents)."
+  }
+ ],
+ "misconceptions": [
+  {
+   "id": "exp-add-bases",
+   "description": "Multiplies powers by multiplying exponents or adds bases (a^m·a^n = a^(mn))."
+  },
+  {
+   "id": "exp-neg-sign",
+   "description": "Treats a negative exponent as a negative number (a^-n = -a^n)."
+  },
+  {
+   "id": "exp-rational-root",
+   "description": "Swaps numerator and denominator of a rational exponent (a^(m/n) read as m-th root of a^n)."
+  },
+  {
+   "id": "rad-add-radicands",
+   "description": "Adds radicands: √a + √b = √(a+b)."
+  },
+  {
+   "id": "rad-conjugate-sign",
+   "description": "Multiplies by the wrong conjugate or forgets to multiply the numerator."
+  },
+  {
+   "id": "fac-incomplete",
+   "description": "Stops factoring early (common factor left, or a difference of squares left unfactored)."
+  },
+  {
+   "id": "fac-sum-squares",
+   "description": "Factors a sum of squares as (a+b)(a−b) or (a+b)²."
+  },
+  {
+   "id": "fac-sign-error",
+   "description": "Sign error in binomial factors of a trinomial."
+  },
+  {
+   "id": "quad-formula-sign",
+   "description": "Uses −b incorrectly or divides only part of the numerator by 2a."
+  },
+  {
+   "id": "quad-vertex-sign-h",
+   "description": "Reads the vertex of y = a(x − h)² + k as (−h, k)."
+  },
+  {
+   "id": "npv-after-simplify",
+   "description": "Finds non-permissible values only after cancelling, losing restrictions."
+  },
+  {
+   "id": "cancel-terms",
+   "description": "Cancels terms rather than factors ((x+3)/3 = x)."
+  },
+  {
+   "id": "extraneous-keep",
+   "description": "Keeps a root that fails the original equation (or a non-permissible value)."
+  },
+  {
+   "id": "extraneous-reject-valid",
+   "description": "Rejects a valid root, often a negative one, as extraneous."
+  },
+  {
+   "id": "square-binomial",
+   "description": "Squares a binomial as a² + b² (forgets the middle term)."
+  },
+  {
+   "id": "fn-notation-mult",
+   "description": "Reads f(x) as f times x, or f(a+b) as f(a)+f(b)."
+  },
+  {
+   "id": "dr-bracket-type",
+   "description": "Uses a square bracket at an excluded endpoint or at infinity, or swaps set/interval notation."
+  },
+  {
+   "id": "dr-swap",
+   "description": "Swaps domain and range."
+  },
+  {
+   "id": "abs-negate-all",
+   "description": "Reflects the whole graph instead of only the part below the x-axis."
+  },
+  {
+   "id": "ref-angle-measure-y",
+   "description": "Measures the reference angle from the y-axis."
+  },
+  {
+   "id": "tr-h-sign",
+   "description": "Moves the graph in the wrong horizontal direction (sign of h)."
+  },
+  {
+   "id": "tr-k-sign",
+   "description": "Moves the graph in the wrong vertical direction."
+  },
+  {
+   "id": "tr-b-not-reciprocal",
+   "description": "Horizontal stretch by b instead of 1/b (mapping x → bx)."
+  },
+  {
+   "id": "tr-a-horizontal",
+   "description": "Applies a to x-coordinates or b to y-coordinates."
+  },
+  {
+   "id": "tr-order-translate-first",
+   "description": "Translates before stretching/reflecting when mapping points (x/b + h computed as (x+h)/b)."
+  },
+  {
+   "id": "tr-b-not-factored",
+   "description": "Reads h from f(bx − c) as c instead of c/b."
+  },
+  {
+   "id": "tr-reflect-axis-swap",
+   "description": "Confuses reflection in the x-axis (y → −y) with the y-axis (x → −x)."
+  },
+  {
+   "id": "tr-invariant-only-reflection",
+   "description": "Believes invariant points only exist for reflections, or misses those on the line of stretch."
+  },
+  {
+   "id": "tr-invariant-wrong-axis",
+   "description": "Looks for invariant points on the wrong axis (y-intercepts for a vertical stretch)."
+  },
+  {
+   "id": "tr-mapping-notation-form",
+   "description": "Writes mapping notation with the wrong form or order."
+  },
+  {
+   "id": "inv-reciprocal",
+   "description": "Treats f⁻¹(x) as 1/f(x)."
+  },
+  {
+   "id": "inv-not-function-ok",
+   "description": "Writes y = f⁻¹(x) for an inverse that is not a function."
+  },
+  {
+   "id": "inv-restrict-wrong",
+   "description": "Restricts the domain on the wrong side of the vertex, or restricts the range instead."
+  },
+  {
+   "id": "inv-swap-incomplete",
+   "description": "Swaps x and y but solves incorrectly (e.g. takes only the positive root without restriction)."
+  },
+  {
+   "id": "inv-yx-combined",
+   "description": "Combines a reflection in y = x with other transformations in the wrong order."
+  },
+  {
+   "id": "ops-compose-order",
+   "description": "Computes g(f(x)) instead of f(g(x))."
+  },
+  {
+   "id": "ops-compose-multiply",
+   "description": "Multiplies f(x)·g(x) instead of composing."
+  },
+  {
+   "id": "ops-domain-intersection",
+   "description": "Uses only one function's domain for f+g, f·g, etc."
+  },
+  {
+   "id": "ops-quotient-zero",
+   "description": "Forgets to exclude zeros of the divisor from the domain of a quotient."
+  },
+  {
+   "id": "ops-compose-domain",
+   "description": "Finds the domain of f(g(x)) from the simplified formula only, ignoring the domain of g."
+  },
+  {
+   "id": "ops-graph-add-x",
+   "description": "Adds x-coordinates instead of y-coordinates when combining graphs."
+  },
+  {
+   "id": "ops-product-vs-sum",
+   "description": "Combines the outputs with the wrong operation (adds instead of multiplies, or the reverse)."
+  },
+  {
+   "id": "ops-quotient-order",
+   "description": "Divides or subtracts in the wrong order (g/f instead of f/g, g − f instead of f − g)."
+  },
+  {
+   "id": "poly-synthetic-sign",
+   "description": "Uses +a instead of −a (or vice versa) as the synthetic divisor."
+  },
+  {
+   "id": "poly-missing-term",
+   "description": "Omits a zero placeholder for a missing power."
+  },
+  {
+   "id": "poly-remainder-sign",
+   "description": "Evaluates P(−a) for division by (x − a)."
+  },
+  {
+   "id": "poly-izt-leading",
+   "description": "Tests factors of the leading coefficient instead of the constant term."
+  },
+  {
+   "id": "poly-mult-behaviour",
+   "description": "Mixes up crossing vs touching: thinks even multiplicity crosses."
+  },
+  {
+   "id": "poly-end-behaviour",
+   "description": "Determines end behaviour from the constant term or first factor, not from the degree and leading coefficient."
+  },
+  {
+   "id": "poly-yint",
+   "description": "Takes the y-intercept as the product of zeros without the leading coefficient or signs."
+  },
+  {
+   "id": "poly-zero-sign",
+   "description": "Writes the factor of zero x = a as (x + a)."
+  },
+  {
+   "id": "poly-max-local",
+   "description": "Reports a local maximum as the absolute maximum."
+  },
+  {
+   "id": "poly-degree-count",
+   "description": "Counts the number of factors rather than summing multiplicities to get the degree."
+  },
+  {
+   "id": "log-product-sum",
+   "description": "Writes log(A + B) = log A + log B."
+  },
+  {
+   "id": "log-quotient-divide",
+   "description": "Writes log A / log B = log(A/B) or log(A − B)."
+  },
+  {
+   "id": "log-power-wrong-place",
+   "description": "Applies the power law to a coefficient or to part of the argument ((log x)² = 2 log x)."
+  },
+  {
+   "id": "log-condense-coefficient",
+   "description": "Condenses before moving coefficients into exponents."
+  },
+  {
+   "id": "log-def-swap",
+   "description": "Converts log_b(x) = y to x^y = b or y^b = x."
+  },
+  {
+   "id": "log-negative-arg",
+   "description": "Accepts log of a negative number or zero."
+  },
+  {
+   "id": "log-change-base-flip",
+   "description": "Inverts the change-of-base ratio."
+  },
+  {
+   "id": "exp-asymptote",
+   "description": "Puts the horizontal asymptote at y = 0 after a vertical translation, or the vertical asymptote of a log at x = 0 after a horizontal translation."
+  },
+  {
+   "id": "exp-base-range",
+   "description": "Believes b < 1 gives growth."
+  },
+  {
+   "id": "exp-common-base-coeff",
+   "description": "Multiplies the coefficient into the base (2·3^x = 6^x)."
+  },
+  {
+   "id": "exp-take-log-exponent",
+   "description": "Forgets to bring the whole exponent (binomial) down in brackets."
+  },
+  {
+   "id": "growth-p-period",
+   "description": "Swaps t and p, or uses the rate instead of the factor b (1.05 vs 0.05)."
+  },
+  {
+   "id": "interest-compound-period",
+   "description": "Uses an annual rate without dividing by the number of compounding periods."
+  },
+  {
+   "id": "logscale-difference-ratio",
+   "description": "Subtracts intensities instead of finding a ratio (or vice versa) on log scales."
+  },
+  {
+   "id": "trig-deg-rad-mode",
+   "description": "Uses degree values in a radian context (or calculator in wrong mode)."
+  },
+  {
+   "id": "trig-rad-convert-inverse",
+   "description": "Multiplies by 180/π when converting degrees to radians."
+  },
+  {
+   "id": "trig-coterminal-180",
+   "description": "Adds 180° instead of 360° for coterminal angles."
+  },
+  {
+   "id": "trig-general-period",
+   "description": "Writes a general solution with the wrong period (2πn for a tangent, or πn where 2πn needed)."
+  },
+  {
+   "id": "trig-arc-degrees",
+   "description": "Uses degrees in a = rθ."
+  },
+  {
+   "id": "trig-unit-xy-swap",
+   "description": "Swaps cos and sin coordinates (P(θ) = (sin θ, cos θ))."
+  },
+  {
+   "id": "trig-cast-sign",
+   "description": "Wrong sign from CAST for the quadrant."
+  },
+  {
+   "id": "trig-ref-angle-value",
+   "description": "Gives the reference angle instead of the angle in the required quadrant."
+  },
+  {
+   "id": "trig-reciprocal-inverse",
+   "description": "Treats csc θ as sin⁻¹θ."
+  },
+  {
+   "id": "trig-special-value",
+   "description": "Mixes up √3/2 and 1/2 for π/6 and π/3."
+  },
+  {
+   "id": "trig-period-b",
+   "description": "Uses period = b or b/2π instead of 2π/|b|."
+  },
+  {
+   "id": "trig-phase-not-factored",
+   "description": "Reads phase shift from sin(bx − c) as c rather than c/b."
+  },
+  {
+   "id": "trig-amplitude-range",
+   "description": "Takes amplitude as max − min (not half)."
+  },
+  {
+   "id": "trig-midline-avg",
+   "description": "Uses the max (or the average of non-extrema) as the midline."
+  },
+  {
+   "id": "trig-tan-asymptote",
+   "description": "Places tan asymptotes at multiples of π instead of π/2 + πn."
+  },
+  {
+   "id": "trig-missing-solutions",
+   "description": "Finds one solution only and misses the second quadrant solution."
+  },
+  {
+   "id": "trig-domain-ignore",
+   "description": "Lists solutions outside the given domain or misses them at the boundary."
+  },
+  {
+   "id": "trig-divide-by-trig",
+   "description": "Divides both sides by a trig factor, losing solutions."
+  },
+  {
+   "id": "trig-sin2-sin-squared",
+   "description": "Confuses sin 2x with 2 sin x or sin²x."
+  },
+  {
+   "id": "trig-identity-sub-wrong",
+   "description": "Picks the wrong cos 2x form, leaving mixed functions."
+  },
+  {
+   "id": "trig-prove-cross-sides",
+   "description": "Moves terms across the equal sign while proving (treats an identity as an equation)."
+  },
+  {
+   "id": "trig-verify-is-proof",
+   "description": "Thinks checking one value proves an identity."
+  },
+  {
+   "id": "trig-npv-miss",
+   "description": "Misses non-permissible values from a denominator or from tan/sec/csc/cot."
+  },
+  {
+   "id": "trig-sum-distribute",
+   "description": "Writes sin(A + B) = sin A + sin B."
+  },
+  {
+   "id": "trig-conjugate-misuse",
+   "description": "Multiplies only the denominator by the conjugate."
+  },
+  {
+   "id": "trig-pyth-sign",
+   "description": "Writes 1 − tan²θ = sec²θ or similar sign errors."
+  },
+  {
+   "id": "trig-argument-missing",
+   "description": "Writes 'sin' without its argument."
+  },
+  {
+   "id": "rad-invariant-wrong",
+   "description": "Uses invariant points other than y = 0 and y = 1 for y = √f(x)."
+  },
+  {
+   "id": "rad-sqrt-domain",
+   "description": "Keeps the regions where f(x) < 0 in the domain of √f(x)."
+  },
+  {
+   "id": "rad-sqrt-values",
+   "description": "Believes √f(x) < f(x) everywhere (forgets 0 < f(x) < 1)."
+  },
+  {
+   "id": "rat-hole-as-va",
+   "description": "Draws a vertical asymptote where a factor cancels (point of discontinuity)."
+  },
+  {
+   "id": "rat-va-as-hole",
+   "description": "Calls a non-cancelling zero of the denominator a hole."
+  },
+  {
+   "id": "rat-ha-degree",
+   "description": "Finds the horizontal asymptote from constant terms instead of leading coefficients/degree."
+  },
+  {
+   "id": "rat-range-hole",
+   "description": "Forgets to exclude the y-value of the hole from the range."
+  },
+  {
+   "id": "rat-domain-hole",
+   "description": "Forgets to exclude the x-value of the hole from the domain."
+  },
+  {
+   "id": "rat-xint-from-denominator",
+   "description": "Reads x-intercepts from the denominator."
+  },
+  {
+   "id": "rat-xint-at-hole",
+   "description": "Lists the cancelled factor's zero as an x-intercept."
+  },
+  {
+   "id": "fcp-add-multiply",
+   "description": "Adds where 'and' requires multiplication, or multiplies 'or' cases."
+  },
+  {
+   "id": "fcp-constraint-last",
+   "description": "Fills the constrained slot last instead of first."
+  },
+  {
+   "id": "fact-simplify",
+   "description": "Simplifies n!/(n−2)! as n or n/2 or similar."
+  },
+  {
+   "id": "perm-vs-comb",
+   "description": "Uses permutations when order does not matter (or vice versa)."
+  },
+  {
+   "id": "perm-together-internal",
+   "description": "Forgets to multiply by internal arrangements of a block."
+  },
+  {
+   "id": "perm-apart-subtract",
+   "description": "Computes 'apart' directly with errors instead of total − together."
+  },
+  {
+   "id": "perm-repeat-divide",
+   "description": "Forgets to divide by factorials of identical items."
+  },
+  {
+   "id": "perm-case-overlap",
+   "description": "Double-counts overlapping cases."
+  },
+  {
+   "id": "perm-solve-n-negative",
+   "description": "Keeps a negative or non-integer n, or n < r."
+  },
+  {
+   "id": "comb-at-least-overcount",
+   "description": "Computes 'at least one' by fixing one item then choosing freely (overcounts)."
+  },
+  {
+   "id": "binom-term-index",
+   "description": "Uses k for the k-th term instead of k − 1 (t_k vs t_(k+1))."
+  },
+  {
+   "id": "binom-coefficient-power",
+   "description": "Forgets to raise the coefficient (or sign) of a term to its power."
+  },
+  {
+   "id": "binom-nonlinear-exponent",
+   "description": "Mis-tracks exponents when terms are non-linear (x² or 1/x)."
+  },
+  {
+   "id": "binom-pascal-row",
+   "description": "Uses row n+1 or n−1 of Pascal's triangle."
+  },
+  {
+   "id": "binom-term-count",
+   "description": "Thinks (x + y)^n has n terms."
+  },
+  {
+   "id": "binom-sign-alternate",
+   "description": "Drops the alternating sign for (x − y)^n."
+  },
+  {
+   "id": "wr-expression-for-equation",
+   "description": "Writes an expression when an equation is required."
+  },
+  {
+   "id": "wr-units-missing",
+   "description": "Omits units in a final answer."
+  },
+  {
+   "id": "wr-brackets",
+   "description": "Omits necessary brackets (e.g. −3² vs (−3)², log x + 2 vs log(x + 2))."
+  },
+  {
+   "id": "wr-sketch-features",
+   "description": "Sketch missing scaled axes or key features (intercepts, asymptotes, endpoints, max/min)."
+  },
+  {
+   "id": "wr-directing-word",
+   "description": "Answers a different directing word (e.g. verifies when asked to prove, decimal when exact asked)."
+  },
+  {
+   "id": "calc-window",
+   "description": "Window omits a key feature, or wrong window format."
+  },
+  {
+   "id": "calc-mode",
+   "description": "Calculator in the wrong angle mode."
+  },
+  {
+   "id": "calc-guess-bounds",
+   "description": "Sets left/right bounds that do not bracket the zero/intersection."
+  },
+  {
+   "id": "nr-rounding",
+   "description": "Rounds intermediate values or rounds to the wrong place."
+  }
+ ],
+ "nodes": [
+  {
+   "id": "P.exp-laws",
+   "outcome": "M20-1/10C",
+   "unit": "PRE",
+   "title": "Exponent laws (integer and rational exponents)",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "exp-add-bases",
+    "exp-neg-sign",
+    "exp-rational-root"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.radicals",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Simplify and operate on radicals; rationalize denominators",
+   "prerequisites": [
+    "P.exp-laws"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "rad-add-radicands",
+    "rad-conjugate-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.factor-basic",
+   "outcome": "M10C",
+   "unit": "PRE",
+   "title": "Factoring: GCF, difference of squares, grouping",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "fac-incomplete",
+    "fac-sum-squares"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.factor-trinomial",
+   "outcome": "M10C/20-1",
+   "unit": "PRE",
+   "title": "Factoring trinomials ax² + bx + c (and quadratic form)",
+   "prerequisites": [
+    "P.factor-basic"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "fac-sign-error",
+    "fac-incomplete"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.quad-solve",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Solving quadratics: factoring, formula, discriminant",
+   "prerequisites": [
+    "P.factor-trinomial",
+    "P.radicals"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "quad-formula-sign",
+    "fac-sign-error"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.quad-vertex",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Quadratic functions in vertex form; completing the square",
+   "prerequisites": [
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "quad-vertex-sign-h"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.func-notation",
+   "outcome": "M10C",
+   "unit": "PRE",
+   "title": "Function notation; evaluating from equations, tables, graphs",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "fn-notation-mult"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.domain-range",
+   "outcome": "M10C",
+   "unit": "PRE",
+   "title": "Domain and range in interval and set-builder notation",
+   "prerequisites": [
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "dr-bracket-type",
+    "dr-swap"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.linear",
+   "outcome": "M10C",
+   "unit": "PRE",
+   "title": "Linear functions: slope, forms of a line",
+   "prerequisites": [
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "tr-k-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.abs",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Absolute value and y = |f(x)|",
+   "prerequisites": [
+    "P.linear",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "abs-negate-all"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.rat-expr",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Rational expressions: simplify, operate, non-permissible values",
+   "prerequisites": [
+    "P.factor-trinomial"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "npv-after-simplify",
+    "cancel-terms"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.rat-eq",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Rational equations with restrictions; extraneous roots",
+   "prerequisites": [
+    "P.rat-expr",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "extraneous-keep",
+    "npv-after-simplify"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.rad-eq",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Radical equations; extraneous roots",
+   "prerequisites": [
+    "P.radicals",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "extraneous-keep",
+    "square-binomial",
+    "extraneous-reject-valid"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.systems",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Solving systems graphically (intersection points)",
+   "prerequisites": [
+    "P.linear",
+    "P.quad-vertex"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-guess-bounds"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.ref-angle",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Angles in standard position (degrees), reference angles, ratios of any angle",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "ref-angle-measure-y",
+    "trig-cast-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "P.sine-cos-law",
+   "outcome": "M20-1",
+   "unit": "PRE",
+   "title": "Sine and cosine laws",
+   "prerequisites": [
+    "P.ref-angle"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Not directly assessed on the Math 30-1 diploma; kept as an optional review node."
+   ],
+   "misconceptions": [
+    "trig-deg-rad-mode"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF2.translate",
+   "outcome": "RF2",
+   "unit": "U1",
+   "title": "Translations y − k = f(x − h); effect on points, domain, range",
+   "prerequisites": [
+    "P.func-notation",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Stretches/reflections about lines parallel to the axes are beyond scope.",
+    "Base functions: x, x², x³, √x, 1/x, |x|, b^x, log x, sin x, cos x."
+   ],
+   "misconceptions": [
+    "tr-h-sign",
+    "tr-k-sign"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF3.stretch-v",
+   "outcome": "RF3",
+   "unit": "U1",
+   "title": "Vertical stretch by |a| (and reflection in x-axis)",
+   "prerequisites": [
+    "RF2.translate"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Stretches/reflections about lines parallel to the axes are beyond scope.",
+    "Base functions: x, x², x³, √x, 1/x, |x|, b^x, log x, sin x, cos x."
+   ],
+   "misconceptions": [
+    "tr-a-horizontal",
+    "tr-reflect-axis-swap"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF3.stretch-h",
+   "outcome": "RF3",
+   "unit": "U1",
+   "title": "Horizontal stretch by 1/|b| (and reflection in y-axis)",
+   "prerequisites": [
+    "RF3.stretch-v"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Stretches/reflections about lines parallel to the axes are beyond scope.",
+    "Base functions: x, x², x³, √x, 1/x, |x|, b^x, log x, sin x, cos x."
+   ],
+   "misconceptions": [
+    "tr-b-not-reciprocal",
+    "tr-a-horizontal"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF5.reflect-axes",
+   "outcome": "RF5",
+   "unit": "U1",
+   "title": "Reflections in the x-axis and y-axis",
+   "prerequisites": [
+    "RF3.stretch-h"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Reflections about lines parallel to an axis are beyond scope."
+   ],
+   "misconceptions": [
+    "tr-reflect-axis-swap"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF3.invariant",
+   "outcome": "RF3/RF5",
+   "unit": "U1",
+   "title": "Invariant points under stretches and reflections",
+   "prerequisites": [
+    "RF5.reflect-axes"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "tr-invariant-only-reflection",
+    "tr-invariant-wrong-axis"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF4.combined",
+   "outcome": "RF4",
+   "unit": "U1",
+   "title": "Combined transformations y = af(b(x − h)) + k and mapping (x, y) → (x/b + h, ay + k)",
+   "prerequisites": [
+    "RF3.invariant",
+    "RF2.translate"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "tr-order-translate-first",
+    "tr-b-not-reciprocal",
+    "tr-h-sign",
+    "tr-mapping-notation-form"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF4.factor-b",
+   "outcome": "RF4",
+   "unit": "U1",
+   "title": "Transformations where b must be factored out: y = f(bx − c)",
+   "prerequisites": [
+    "RF4.combined",
+    "P.factor-basic"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "tr-b-not-factored"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF4.equation-from-graph",
+   "outcome": "RF4",
+   "unit": "U1",
+   "title": "Write the transformed equation from a graph or description",
+   "prerequisites": [
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "tr-h-sign",
+    "tr-b-not-reciprocal"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF4.domain-range-image",
+   "outcome": "RF4",
+   "unit": "U1",
+   "title": "Domain, range, intercepts and key points of a transformed function",
+   "prerequisites": [
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "dr-bracket-type",
+    "tr-a-horizontal"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF5.reflect-yx",
+   "outcome": "RF5",
+   "unit": "U1",
+   "title": "Reflection in y = x (x = f(y)) graphically",
+   "prerequisites": [
+    "RF5.reflect-axes",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Reflections in y = x are not combined with any other transformation."
+   ],
+   "misconceptions": [
+    "inv-yx-combined",
+    "dr-swap"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF6.inverse-alg",
+   "outcome": "RF6",
+   "unit": "U1",
+   "title": "Find the inverse algebraically (linear, quadratic, exponential, logarithmic)",
+   "prerequisites": [
+    "RF5.reflect-yx",
+    "P.quad-vertex"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Algebraic inverses limited to linear, quadratic, exponential, logarithmic; graphical inverses may include polynomial, piecewise, radical, absolute value.",
+    "Use y = f⁻¹(x) only when the inverse is a function; otherwise x = f(y)."
+   ],
+   "misconceptions": [
+    "inv-reciprocal",
+    "inv-swap-incomplete"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF6.restrict",
+   "outcome": "RF6",
+   "unit": "U1",
+   "title": "Restrict the domain so the inverse is a function",
+   "prerequisites": [
+    "RF6.inverse-alg"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "inv-restrict-wrong",
+    "inv-not-function-ok"
+   ],
+   "explorer": "transformation-lab"
+  },
+  {
+   "id": "RF6.params",
+   "outcome": "RF6",
+   "unit": "U1",
+   "title": "Find unknown parameters from a point on the inverse",
+   "prerequisites": [
+    "RF6.inverse-alg"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "dr-swap",
+    "inv-reciprocal"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF1.ops-eval",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Evaluate f+g, f−g, f·g, f/g at a point (equations, tables, graphs)",
+   "prerequisites": [
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "fn-notation-mult",
+    "ops-graph-add-x"
+   ],
+   "explorer": "function-ops-lab"
+  },
+  {
+   "id": "RF1.ops-equation",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Equations of f+g, f−g, f·g, f/g with domains",
+   "prerequisites": [
+    "RF1.ops-eval",
+    "P.rat-expr",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-domain-intersection",
+    "ops-quotient-zero"
+   ],
+   "explorer": "function-ops-lab"
+  },
+  {
+   "id": "RF1.ops-graph",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Sketch sums, differences and products from graphs",
+   "prerequisites": [
+    "RF1.ops-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-graph-add-x",
+    "ops-product-vs-sum",
+    "ops-quotient-order"
+   ],
+   "explorer": "function-ops-lab"
+  },
+  {
+   "id": "RF1.compose-eval",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Evaluate compositions f(g(a)) from equations and graphs",
+   "prerequisites": [
+    "RF1.ops-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-multiply"
+   ],
+   "explorer": "function-ops-lab"
+  },
+  {
+   "id": "RF1.compose-equation",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Equation and domain of a composition f(g(x))",
+   "prerequisites": [
+    "RF1.compose-eval",
+    "RF1.ops-equation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-domain"
+   ],
+   "explorer": "function-ops-lab"
+  },
+  {
+   "id": "RF1.decompose",
+   "outcome": "RF1",
+   "unit": "U1",
+   "title": "Write a function as a combination/composition (incl. three functions or two compositions)",
+   "prerequisites": [
+    "RF1.compose-equation"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Original functions: linear, quadratic, cubic, radical (one linear radicand), rational (monomial/binomial), absolute value (first degree), exponential, logarithmic, piecewise.",
+    "Notation: (f∘g)(x) = f(g(x)); (f+g)(x), (f−g)(x), (f·g)(x), (f/g)(x)."
+   ],
+   "misconceptions": [
+    "ops-compose-order",
+    "ops-compose-multiply",
+    "ops-quotient-order",
+    "ops-product-vs-sum"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF11.long-division",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Polynomial long division",
+   "prerequisites": [
+    "P.factor-basic"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "poly-missing-term"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF11.synthetic",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Synthetic division",
+   "prerequisites": [
+    "RF11.long-division"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "poly-synthetic-sign",
+    "poly-missing-term"
+   ],
+   "explorer": "polynomial-lab"
+  },
+  {
+   "id": "RF11.remainder-thm",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Remainder theorem (incl. finding an unknown coefficient)",
+   "prerequisites": [
+    "RF11.synthetic",
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "poly-remainder-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF11.factor-thm",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Factor theorem: is (x − a) a factor?",
+   "prerequisites": [
+    "RF11.remainder-thm"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "poly-remainder-sign",
+    "poly-zero-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF11.integral-zero",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Integral zero theorem: candidate zeros",
+   "prerequisites": [
+    "RF11.factor-thm"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "poly-izt-leading"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF11.factor-full",
+   "outcome": "RF11",
+   "unit": "U2",
+   "title": "Factor polynomials of degree 3–5 completely",
+   "prerequisites": [
+    "RF11.integral-zero",
+    "P.factor-trinomial"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5, integral coefficients.",
+    "Rational zero theorem is beyond scope: at most two linear factors with leading coefficient ≠ 1."
+   ],
+   "misconceptions": [
+    "fac-incomplete",
+    "poly-synthetic-sign"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF12.characteristics",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Degree, leading coefficient, end behaviour, y-intercept",
+   "prerequisites": [
+    "P.func-notation"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Degree ≤ 5."
+   ],
+   "misconceptions": [
+    "poly-end-behaviour",
+    "poly-yint",
+    "poly-degree-count"
+   ],
+   "explorer": "polynomial-lab"
+  },
+  {
+   "id": "RF12.zeros-multiplicity",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Zeros, roots, x-intercepts, factors; multiplicity behaviour",
+   "prerequisites": [
+    "RF12.characteristics",
+    "RF11.factor-thm"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Identify when no real roots exist; computing non-real roots is beyond scope."
+   ],
+   "misconceptions": [
+    "poly-mult-behaviour",
+    "poly-zero-sign"
+   ],
+   "explorer": "polynomial-lab"
+  },
+  {
+   "id": "RF12.sketch",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Sketch and analyze from factored form",
+   "prerequisites": [
+    "RF12.zeros-multiplicity",
+    "RF11.factor-full"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "poly-mult-behaviour",
+    "poly-end-behaviour",
+    "poly-yint"
+   ],
+   "explorer": "polynomial-lab"
+  },
+  {
+   "id": "RF12.equation-from-graph",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Equation in factored form from a graph or characteristics",
+   "prerequisites": [
+    "RF12.sketch"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "poly-zero-sign",
+    "poly-yint",
+    "poly-mult-behaviour"
+   ],
+   "explorer": "polynomial-lab"
+  },
+  {
+   "id": "RF12.analyze-calc",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Absolute max/min, domain and range with the graphing calculator",
+   "prerequisites": [
+    "RF12.sketch",
+    "CALC.max-min"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Maximum/minimum point means absolute maximum/minimum."
+   ],
+   "misconceptions": [
+    "poly-max-local",
+    "dr-bracket-type"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF12.model",
+   "outcome": "RF12",
+   "unit": "U2",
+   "title": "Polynomial models (volume, area, number contexts)",
+   "prerequisites": [
+    "RF12.analyze-calc"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "poly-max-local",
+    "wr-units-missing"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF9.exp-graph",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Graph and characteristics of y = b^x (growth vs decay)",
+   "prerequisites": [
+    "P.exp-laws",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "b > 0, b ≠ 1."
+   ],
+   "misconceptions": [
+    "exp-base-range",
+    "exp-asymptote"
+   ],
+   "explorer": "exp-log-lab"
+  },
+  {
+   "id": "RF9.exp-transform",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Transformations of y = a·b^(x − c) + d",
+   "prerequisites": [
+    "RF9.exp-graph",
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "exp-asymptote",
+    "tr-h-sign"
+   ],
+   "explorer": "exp-log-lab"
+  },
+  {
+   "id": "RF7.log-def",
+   "outcome": "RF7",
+   "unit": "U3",
+   "title": "Logarithm as the inverse of an exponential; convert between forms",
+   "prerequisites": [
+    "RF9.exp-graph",
+    "RF5.reflect-yx"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope."
+   ],
+   "misconceptions": [
+    "log-def-swap"
+   ],
+   "explorer": "exp-log-lab"
+  },
+  {
+   "id": "RF7.log-eval",
+   "outcome": "RF7",
+   "unit": "U3",
+   "title": "Exact values of logarithms without technology; estimate with benchmarks",
+   "prerequisites": [
+    "RF7.log-def",
+    "P.exp-laws"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope."
+   ],
+   "misconceptions": [
+    "log-def-swap",
+    "log-negative-arg"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF9.log-graph",
+   "outcome": "RF9",
+   "unit": "U3",
+   "title": "Graph y = a·log_b(x − c) + d; relationship to the exponential",
+   "prerequisites": [
+    "RF7.log-def",
+    "RF9.exp-transform"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Natural logarithms and base e are beyond scope.",
+    "b > 1."
+   ],
+   "misconceptions": [
+    "exp-asymptote",
+    "log-negative-arg"
+   ],
+   "explorer": "exp-log-lab"
+  },
+  {
+   "id": "RF8.expand",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Expand logarithms with product, quotient, power laws",
+   "prerequisites": [
+    "RF7.log-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "log-product-sum",
+    "log-quotient-divide",
+    "log-power-wrong-place"
+   ],
+   "explorer": "log-law-simplifier"
+  },
+  {
+   "id": "RF8.condense",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Combine several logs into a single logarithm",
+   "prerequisites": [
+    "RF8.expand"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "log-condense-coefficient",
+    "log-quotient-divide",
+    "log-product-sum"
+   ],
+   "explorer": "log-law-simplifier"
+  },
+  {
+   "id": "RF8.change-base",
+   "outcome": "RF8",
+   "unit": "U3",
+   "title": "Change of base",
+   "prerequisites": [
+    "RF7.log-eval"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Taught as a strategy for evaluating logarithms."
+   ],
+   "misconceptions": [
+    "log-change-base-flip"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.exp-common-base",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve exponential equations with a common base",
+   "prerequisites": [
+    "P.exp-laws",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "exp-common-base-coeff",
+    "exp-rational-root"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.exp-logs",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve exponential equations by taking logs (incl. binomial exponents, coefficients)",
+   "prerequisites": [
+    "RF10.exp-common-base",
+    "RF8.expand"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Acceptable: monomial exponents. Excellence: non-monomial exponents or numerical coefficients."
+   ],
+   "misconceptions": [
+    "exp-take-log-exponent",
+    "exp-common-base-coeff"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.log-eq",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Solve logarithmic equations (same base) and reject extraneous roots",
+   "prerequisites": [
+    "RF8.condense",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Logarithmic equations restricted to the same base.",
+    "Recognizing extraneous solutions is Standard of Excellence."
+   ],
+   "misconceptions": [
+    "extraneous-keep",
+    "log-negative-arg",
+    "log-product-sum"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.growth-decay",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Growth and decay y = a·b^(t/p) (half-life, doubling)",
+   "prerequisites": [
+    "RF10.exp-logs"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "The formula is given on the formula sheet; other formulas are given in the question."
+   ],
+   "misconceptions": [
+    "growth-p-period"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.compound-interest",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Compound interest as y = a·b^(t/p)",
+   "prerequisites": [
+    "RF10.growth-decay"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Know compounding terms: annually, semi-annually, quarterly, monthly, weekly, daily."
+   ],
+   "misconceptions": [
+    "interest-compound-period",
+    "growth-p-period"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "RF10.log-scales",
+   "outcome": "RF10",
+   "unit": "U3",
+   "title": "Logarithmic scales: pH, decibels, earthquake magnitude (comparisons)",
+   "prerequisites": [
+    "RF10.exp-logs"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Formulas for logarithmic scales are always given."
+   ],
+   "misconceptions": [
+    "logscale-difference-ratio"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "T1.radians",
+   "outcome": "T1",
+   "unit": "U4",
+   "title": "Radian measure θ = a/r; convert degrees ↔ radians",
+   "prerequisites": [
+    "P.ref-angle"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-rad-convert-inverse"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T1.coterminal",
+   "outcome": "T1",
+   "unit": "U4",
+   "title": "Coterminal angles and general form θ ± 360°n, θ ± 2πn, n ∈ I",
+   "prerequisites": [
+    "T1.radians"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-coterminal-180",
+    "trig-domain-ignore"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T1.reference",
+   "outcome": "T1",
+   "unit": "U4",
+   "title": "Reference angles in degrees and radians",
+   "prerequisites": [
+    "T1.radians"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "ref-angle-measure-y"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T1.arc-length",
+   "outcome": "T1",
+   "unit": "U4",
+   "title": "Arc length a = rθ (multi-step problems)",
+   "prerequisites": [
+    "T1.radians"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-arc-degrees",
+    "wr-units-missing"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T2.unit-circle-eq",
+   "outcome": "T2",
+   "unit": "U4",
+   "title": "Unit circle x² + y² = 1: missing coordinates, P(θ) = (cos θ, sin θ)",
+   "prerequisites": [
+    "T1.reference",
+    "P.radicals"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-unit-xy-swap",
+    "trig-cast-sign"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T2.special-points",
+   "outcome": "T2",
+   "unit": "U4",
+   "title": "Exact coordinates at multiples of π/6 and π/4",
+   "prerequisites": [
+    "T2.unit-circle-eq"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-special-value",
+    "trig-unit-xy-swap"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T3.exact-ratios",
+   "outcome": "T3",
+   "unit": "U4",
+   "title": "Exact values of all six ratios at special angles",
+   "prerequisites": [
+    "T2.special-points"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-reciprocal-inverse",
+    "trig-special-value",
+    "trig-cast-sign"
+   ],
+   "explorer": "unit-circle"
+  },
+  {
+   "id": "T3.ratio-from-point",
+   "outcome": "T3",
+   "unit": "U4",
+   "title": "Ratios from a point on the terminal arm or from one ratio + quadrant",
+   "prerequisites": [
+    "T3.exact-ratios",
+    "P.radicals"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-cast-sign",
+    "trig-unit-xy-swap"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "T3.angle-from-ratio",
+   "outcome": "T3",
+   "unit": "U4",
+   "title": "Angles from a ratio (exact and approximate), CAST",
+   "prerequisites": [
+    "T3.exact-ratios"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Domains 0° ≤ θ < 360° or 0 ≤ θ < 2π."
+   ],
+   "misconceptions": [
+    "trig-ref-angle-value",
+    "trig-missing-solutions",
+    "trig-deg-rad-mode"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "T4.basic-graphs",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Graphs of sin, cos, tan: period, intercepts, tan asymptotes, domain, range",
+   "prerequisites": [
+    "T2.special-points"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Transformations of tangent and graphs of reciprocal functions are beyond scope."
+   ],
+   "misconceptions": [
+    "trig-tan-asymptote"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T4.parameters",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Amplitude, period 2π/|b|, phase shift, midline, max/min from y = a sin[b(x − c)] + d",
+   "prerequisites": [
+    "T4.basic-graphs",
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-period-b",
+    "trig-amplitude-range",
+    "trig-midline-avg",
+    "tr-h-sign"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T4.factor-b",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Parameters when b must be factored: sin(bx − c)",
+   "prerequisites": [
+    "T4.parameters",
+    "RF4.factor-b"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-phase-not-factored"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T4.sketch",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Sketch sinusoids with scaled axes and key features",
+   "prerequisites": [
+    "T4.parameters"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "wr-sketch-features",
+    "trig-period-b"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T4.equation-from-graph",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Determine all four parameters from a graph or data",
+   "prerequisites": [
+    "T4.parameters"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-amplitude-range",
+    "trig-midline-avg",
+    "trig-period-b"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T4.model",
+   "outcome": "T4",
+   "unit": "U4",
+   "title": "Sinusoidal models (Ferris wheel, tides, daylight)",
+   "prerequisites": [
+    "T4.equation-from-graph",
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-midline-avg",
+    "trig-deg-rad-mode",
+    "wr-units-missing"
+   ],
+   "explorer": "sinusoid-lab"
+  },
+  {
+   "id": "T5.first-degree",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "First-degree trig equations over a domain (degrees and radians)",
+   "prerequisites": [
+    "T3.angle-from-ratio"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
+    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
+   ],
+   "misconceptions": [
+    "trig-missing-solutions",
+    "trig-domain-ignore",
+    "trig-deg-rad-mode"
+   ],
+   "explorer": "trig-equation-visualizer"
+  },
+  {
+   "id": "T5.general",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "General solutions with n ∈ I",
+   "prerequisites": [
+    "T5.first-degree",
+    "T1.coterminal"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
+    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
+   ],
+   "misconceptions": [
+    "trig-general-period"
+   ],
+   "explorer": "trig-equation-visualizer"
+  },
+  {
+   "id": "T5.second-degree",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "Second-degree equations by factoring",
+   "prerequisites": [
+    "T5.first-degree",
+    "P.factor-trinomial"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
+    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
+   ],
+   "misconceptions": [
+    "trig-divide-by-trig",
+    "trig-missing-solutions"
+   ],
+   "explorer": "trig-equation-visualizer"
+  },
+  {
+   "id": "T5.graphical",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "Solve trig equations graphically on the calculator",
+   "prerequisites": [
+    "T5.first-degree",
+    "CALC.intersect-zero",
+    "CALC.mode"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-mode",
+    "calc-window",
+    "trig-domain-ignore"
+   ],
+   "explorer": "trig-equation-visualizer"
+  },
+  {
+   "id": "T6.identity-vs-equation",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Identity vs equation; verify (numeric/graphical) vs prove",
+   "prerequisites": [
+    "T3.exact-ratios"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-verify-is-proof",
+    "wr-directing-word"
+   ],
+   "explorer": "identity-workspace"
+  },
+  {
+   "id": "T6.npv",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Non-permissible values of trig expressions",
+   "prerequisites": [
+    "T6.identity-vs-equation",
+    "T4.basic-graphs"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-npv-miss",
+    "trig-general-period"
+   ],
+   "explorer": "identity-workspace"
+  },
+  {
+   "id": "T6.simplify",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Simplify with reciprocal, quotient, Pythagorean identities",
+   "prerequisites": [
+    "T6.identity-vs-equation",
+    "P.rat-expr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-pyth-sign",
+    "trig-reciprocal-inverse",
+    "cancel-terms"
+   ],
+   "explorer": "identity-workspace"
+  },
+  {
+   "id": "T6.prove-basic",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Prove simple identities",
+   "prerequisites": [
+    "T6.simplify"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "trig-prove-cross-sides",
+    "trig-pyth-sign"
+   ],
+   "explorer": "identity-workspace"
+  },
+  {
+   "id": "T6.exact-sum-double",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Exact values with sum/difference and double-angle identities",
+   "prerequisites": [
+    "T6.simplify",
+    "T3.ratio-from-point"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Tangent sum/difference/double-angle exact values are Standard of Excellence."
+   ],
+   "misconceptions": [
+    "trig-sum-distribute",
+    "trig-sin2-sin-squared"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "T6.prove-advanced",
+   "outcome": "T6",
+   "unit": "U4",
+   "title": "Prove identities with double angles, conjugates, rational operations",
+   "prerequisites": [
+    "T6.prove-basic",
+    "T6.exact-sum-double"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Sum/difference and double-angle identities restricted to sine, cosine, tangent."
+   ],
+   "misconceptions": [
+    "trig-conjugate-misuse",
+    "trig-sin2-sin-squared",
+    "trig-prove-cross-sides"
+   ],
+   "explorer": "identity-workspace"
+  },
+  {
+   "id": "T5.identity-sub",
+   "outcome": "T5",
+   "unit": "U4",
+   "title": "Equations needing an identity substitution (double-angle, Pythagorean, sum/difference)",
+   "prerequisites": [
+    "T5.second-degree",
+    "T6.simplify",
+    "T6.exact-sum-double"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Identity substitutions limited to reciprocal, quotient, Pythagorean, double-angle, sum/difference.",
+    "Double-angle equations solved algebraically only by substituting the identity; other multiple-angle equations beyond scope algebraically."
+   ],
+   "misconceptions": [
+    "trig-identity-sub-wrong",
+    "trig-divide-by-trig",
+    "trig-sin2-sin-squared"
+   ],
+   "explorer": "trig-equation-visualizer"
+  },
+  {
+   "id": "RF13.sqrt-transform",
+   "outcome": "RF13",
+   "unit": "U5",
+   "title": "Transformations of y = √x; equation from graph",
+   "prerequisites": [
+    "RF4.combined"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Square roots only; one radical."
+   ],
+   "misconceptions": [
+    "tr-h-sign",
+    "tr-b-not-reciprocal"
+   ],
+   "explorer": "radical-lab"
+  },
+  {
+   "id": "RF13.sqrt-of-f",
+   "outcome": "RF13",
+   "unit": "U5",
+   "title": "y = √f(x) from y = f(x): domain, range, invariant points at y = 0 and y = 1",
+   "prerequisites": [
+    "RF13.sqrt-transform",
+    "P.quad-vertex"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "f(x) linear, quadratic, or piecewise."
+   ],
+   "misconceptions": [
+    "rad-invariant-wrong",
+    "rad-sqrt-domain",
+    "rad-sqrt-values"
+   ],
+   "explorer": "radical-lab"
+  },
+  {
+   "id": "RF13.solve",
+   "outcome": "RF13",
+   "unit": "U5",
+   "title": "Solve radical equations graphically and algebraically; zeros vs x-intercepts",
+   "prerequisites": [
+    "RF13.sqrt-of-f",
+    "P.rad-eq",
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "extraneous-keep",
+    "extraneous-reject-valid"
+   ],
+   "explorer": "radical-lab"
+  },
+  {
+   "id": "RF14.va-vs-hole",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Vertical asymptotes vs points of discontinuity",
+   "prerequisites": [
+    "P.rat-expr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-hole-as-va",
+    "rat-va-as-hole"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.ha-intercepts",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Horizontal asymptote and intercepts",
+   "prerequisites": [
+    "RF14.va-vs-hole"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-ha-degree",
+    "rat-xint-from-denominator",
+    "rat-xint-at-hole"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.domain-range",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Domain and range, including a point of discontinuity",
+   "prerequisites": [
+    "RF14.ha-intercepts",
+    "P.domain-range"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-domain-hole",
+    "rat-range-hole",
+    "dr-bracket-type"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.hole-y",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "y-coordinate of a point of discontinuity",
+   "prerequisites": [
+    "RF14.va-vs-hole"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-range-hole",
+    "cancel-terms"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.sketch",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Sketch and analyze rational functions",
+   "prerequisites": [
+    "RF14.domain-range",
+    "RF14.hole-y"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-hole-as-va",
+    "wr-sketch-features"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.equation-from-graph",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Equation from graph/characteristics (incl. a hole)",
+   "prerequisites": [
+    "RF14.sketch"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "rat-va-as-hole",
+    "rat-ha-degree"
+   ],
+   "explorer": "rational-lab"
+  },
+  {
+   "id": "RF14.solve",
+   "outcome": "RF14",
+   "unit": "U5",
+   "title": "Solve rational equations graphically and algebraically",
+   "prerequisites": [
+    "RF14.ha-intercepts",
+    "P.rat-eq",
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Numerators/denominators: monomials, binomials, trinomials of degree ≤ 2.",
+    "No oblique asymptotes; y = 1/f(x) transformation not included.",
+    "Horizontal asymptotes limited to transformations of y = 1/x and y = 1/x²."
+   ],
+   "misconceptions": [
+    "extraneous-keep",
+    "rat-xint-at-hole"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT1.fcp",
+   "outcome": "PCBT1",
+   "unit": "U6",
+   "title": "Fundamental counting principle; slot diagrams; 'and' vs 'or'",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Tree diagrams and lists are acceptable methods."
+   ],
+   "misconceptions": [
+    "fcp-add-multiply",
+    "fcp-constraint-last"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT1.factorial",
+   "outcome": "PCBT1",
+   "unit": "U6",
+   "title": "Factorial notation and simplification",
+   "prerequisites": [
+    "PCBT1.fcp"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "fact-simplify"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT2.npr",
+   "outcome": "PCBT2",
+   "unit": "U6",
+   "title": "Permutations nPr",
+   "prerequisites": [
+    "PCBT1.factorial"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-vs-comb",
+    "fact-simplify"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT2.constraints",
+   "outcome": "PCBT2",
+   "unit": "U6",
+   "title": "Constraints: together, apart, ends, fixed positions",
+   "prerequisites": [
+    "PCBT2.npr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Circular and ring permutations are beyond scope."
+   ],
+   "misconceptions": [
+    "perm-together-internal",
+    "perm-apart-subtract",
+    "fcp-constraint-last"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT2.repeated",
+   "outcome": "PCBT2",
+   "unit": "U6",
+   "title": "Identical elements and single 2-D pathways",
+   "prerequisites": [
+    "PCBT2.npr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-repeat-divide"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT2.cases",
+   "outcome": "PCBT2",
+   "unit": "U6",
+   "title": "Three or more constraints or multiple cases",
+   "prerequisites": [
+    "PCBT2.constraints",
+    "PCBT2.repeated"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-case-overlap",
+    "fcp-add-multiply",
+    "perm-together-internal"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT2.solve-n",
+   "outcome": "PCBT2",
+   "unit": "U6",
+   "title": "Solve for n in nPr equations",
+   "prerequisites": [
+    "PCBT1.factorial",
+    "P.quad-solve"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "One occurrence of nPr with r ≤ 3 (Acceptable)."
+   ],
+   "misconceptions": [
+    "perm-solve-n-negative",
+    "fact-simplify"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT3.ncr",
+   "outcome": "PCBT3",
+   "unit": "U6",
+   "title": "Combinations nCr (both nCr and (n r) notation)",
+   "prerequisites": [
+    "PCBT2.npr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-vs-comb"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT3.at-least",
+   "outcome": "PCBT3",
+   "unit": "U6",
+   "title": "'At least' / 'at most' problems",
+   "prerequisites": [
+    "PCBT3.ncr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "comb-at-least-overcount",
+    "perm-case-overlap"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT3.mixed",
+   "outcome": "PCBT3",
+   "unit": "U6",
+   "title": "Problems mixing permutations and combinations",
+   "prerequisites": [
+    "PCBT3.at-least",
+    "PCBT2.constraints"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-vs-comb",
+    "fcp-add-multiply"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT3.solve-n",
+   "outcome": "PCBT3",
+   "unit": "U6",
+   "title": "Solve for n in nCr equations",
+   "prerequisites": [
+    "PCBT3.ncr",
+    "PCBT2.solve-n"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "perm-solve-n-negative"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "PCBT4.pascal",
+   "outcome": "PCBT4",
+   "unit": "U6",
+   "title": "Pascal's triangle and patterns in expansions",
+   "prerequisites": [
+    "PCBT3.ncr"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "binom-pascal-row",
+    "binom-term-count"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT4.expand",
+   "outcome": "PCBT4",
+   "unit": "U6",
+   "title": "Expand (x + y)^n",
+   "prerequisites": [
+    "PCBT4.pascal",
+    "P.exp-laws"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [
+    "Exponents are natural numbers."
+   ],
+   "misconceptions": [
+    "binom-coefficient-power",
+    "binom-sign-alternate"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT4.general-term",
+   "outcome": "PCBT4",
+   "unit": "U6",
+   "title": "Specific term with t(k+1) = nCk·x^(n−k)·y^k",
+   "prerequisites": [
+    "PCBT4.expand"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "binom-term-index",
+    "binom-coefficient-power",
+    "binom-sign-alternate"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT4.nonlinear-term",
+   "outcome": "PCBT4",
+   "unit": "U6",
+   "title": "Specific/constant terms with non-linear terms, e.g. (2x² − 1/x)^n",
+   "prerequisites": [
+    "PCBT4.general-term"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "binom-nonlinear-exponent",
+    "binom-coefficient-power",
+    "binom-sign-alternate"
+   ],
+   "explorer": "counting-lab"
+  },
+  {
+   "id": "PCBT4.find-unknown",
+   "outcome": "PCBT4",
+   "unit": "U6",
+   "title": "Find x, y or n given a term",
+   "prerequisites": [
+    "PCBT4.nonlinear-term"
+   ],
+   "standard": "excellence",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "binom-term-index"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "CALC.mode-window",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "TI-84 Plus: angle mode check and window [xmin, xmax, xscl] × [ymin, ymax, yscl]",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-window",
+    "calc-mode"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "CALC.mode",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "TI-84 Plus: radian vs degree mode before every trig question",
+   "prerequisites": [
+    "CALC.mode-window"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-mode",
+    "trig-deg-rad-mode"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "CALC.intersect-zero",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "TI-84 Plus: 2nd CALC intersect and zero",
+   "prerequisites": [
+    "CALC.mode-window"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-guess-bounds",
+    "calc-window"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "CALC.max-min",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "TI-84 Plus: 2nd CALC maximum and minimum",
+   "prerequisites": [
+    "CALC.intersect-zero"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 2,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-guess-bounds",
+    "poly-max-local"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "CALC.table",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "TI-84 Plus: table setup",
+   "prerequisites": [
+    "CALC.mode-window"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 1,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "calc-window"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "EXAM.nr-recording",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "Numerical-response recording rules (rounding, leading zero, digit codes)",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "nr-rounding"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "EXAM.directing-words",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "Directing words (determine, explain, justify, prove, sketch, verify…)",
+   "prerequisites": [],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": false,
+   "scopeLimits": [],
+   "misconceptions": [
+    "wr-directing-word"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "EXAM.wr-hygiene",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "Written-response hygiene: equations vs expressions, units, brackets, angle arguments",
+   "prerequisites": [
+    "EXAM.directing-words"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "wr-expression-for-equation",
+    "wr-units-missing",
+    "wr-brackets",
+    "trig-argument-missing"
+   ],
+   "explorer": null
+  },
+  {
+   "id": "EXAM.sketch-standard",
+   "outcome": null,
+   "unit": "EXAM",
+   "title": "Sketches with scaled axes and all key features",
+   "prerequisites": [
+    "EXAM.wr-hygiene"
+   ],
+   "standard": "acceptable",
+   "examEmphasis": 3,
+   "weakSpot": true,
+   "scopeLimits": [],
+   "misconceptions": [
+    "wr-sketch-features"
+   ],
+   "explorer": null
+  }
+ ]
+}
