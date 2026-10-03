@@ -30,7 +30,12 @@ export type CompiledFn = { fn: (vars: Record<string, number>) => number; free: s
 
 /** Compile LaTeX to a real-valued function. Non-real results become NaN. Returns null if it can't parse. */
 export function compileTex(tex: string): CompiledFn | null {
-  const t = tidy(tex);
+  // Square brackets group like parentheses in expressions, as in y = a sin[b(x − c)] + d; \sqrt[n] keeps its index.
+  const t = tidy(tex)
+    .replace(/(\\sqrt)\[([^\]]*)\]/g, '$1{{$2}}')
+    .replace(/\[/g, '(')
+    .replace(/\]/g, ')')
+    .replace(/(\\sqrt)\{\{([^}]*)\}\}/g, '$1[$2]');
   if (!t) return null;
   try {
     const expr = ce().parse(t);

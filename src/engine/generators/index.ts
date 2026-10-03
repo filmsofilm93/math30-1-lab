@@ -12,8 +12,12 @@ import { divisionGenerators } from './u2/division';
 import { graphGenerators } from './u2/graphs';
 import { expLogGraphGenerators } from './u3/graphs';
 import { expLogEquationGenerators } from './u3/equations';
+import { angleGenerators } from './u4/angles';
+import { graphGenerators as trigGraphGenerators } from './u4/graphs';
+import { trigEquationGenerators } from './u4/equations';
+import { identityGenerators } from './u4/identities';
 
-export const GENERATORS: Generator[] = [...basicsGenerators, ...combinedGenerators, ...inverseGenerators, ...opsGenerators, ...preAlgebraGenerators, ...preQuadGenerators, ...preFunctionGenerators, ...preEquationGenerators, ...preTrigGenerators, ...divisionGenerators, ...graphGenerators, ...expLogGraphGenerators, ...expLogEquationGenerators];
+export const GENERATORS: Generator[] = [...basicsGenerators, ...combinedGenerators, ...inverseGenerators, ...opsGenerators, ...preAlgebraGenerators, ...preQuadGenerators, ...preFunctionGenerators, ...preEquationGenerators, ...preTrigGenerators, ...divisionGenerators, ...graphGenerators, ...expLogGraphGenerators, ...expLogEquationGenerators, ...angleGenerators, ...trigGraphGenerators, ...trigEquationGenerators, ...identityGenerators];
 
 export const generatorsFor = (nodeId: string) => GENERATORS.filter((g) => g.nodeId === nodeId);
 export const generatorById = (id: string) => GENERATORS.find((g) => g.id === id);

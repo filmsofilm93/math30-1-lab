@@ -77,6 +77,11 @@ function checkExpr(spec: Extract<AnswerSpec, { kind: 'expr' }>, input: string): 
   if (want.length === 1) {
     if (!same(user[0], want[0])) return { ok: false, reason: 'wrong' };
     if (spec.form === 'factored' && !isFullyFactored(t, spec.variable)) return { ok: false, reason: 'form', note: 'Equivalent, but not fully factored.' };
+    if (spec.form === 'simplified') {
+      const count = (s: string, re: RegExp) => (s.match(re) ?? []).length;
+      const trig = /\\(sin|cos|tan|csc|sec|cot)/g;
+      if (count(t, trig) > count(spec.tex, trig) || count(t, /\\frac/g) > count(spec.tex, /\\frac/g)) return { ok: false, reason: 'form', note: 'Equivalent, but simplify further.' };
+    }
     if (spec.form === 'single-log' && (t.match(/\\log/g) ?? []).length !== 1) return { ok: false, reason: 'form', note: 'Equivalent, but not written as a single logarithm.' };
     return { ok: true };
   }
@@ -143,6 +148,42 @@ export function parsePoints(input: string): [number, number][] | null {
   return out;
 }
 
+/** Every value of root + period·n inside [-w, w]. */
+function expandGeneral(roots: number[], period: number, w: number): number[] {
+  const out: number[] = [];
+  for (const r of roots) for (let n = Math.floor((-w - r) / period); n <= Math.ceil((w - r) / period); n++) {
+    const v = r + period * n;
+    if (v >= -w - 1e-9 && v <= w + 1e-9) out.push(v);
+  }
+  return out;
+}
+
+function checkGeneral(spec: Extract<AnswerSpec, { kind: 'general' }>, input: string): Verdict {
+  let t = tidy(input).replace(/,?\s*n\s*\\in\s*(\\mathbb\{[IZ]\}|I|\\Z)|,?\\text\{[^}]*\}/g, '');
+  if (spec.deg) t = stripDegrees(t);
+  t = t.replace(/(^|,)\s*(\\theta|x)\s*=/g, '$1').replace(/\\pi(?=[nk])/g, '\\pi ');
+  const parts = splitList(t);
+  if (!parts.length) return { ok: false, reason: 'unreadable' };
+  const P = spec.period;
+  const w = 3 * Math.max(P, spec.deg ? 360 : 2 * Math.PI);
+  const got: number[] = [];
+  for (const p of parts) {
+    const c = compileTex(p);
+    if (!c) return { ok: false, reason: 'unreadable' };
+    const vars = c.free.filter((v) => v !== 'n' && v !== 'k');
+    if (vars.length) return { ok: false, reason: 'unreadable' };
+    const nv = c.free[0] ?? 'n';
+    if (!c.free.length) return { ok: false, reason: 'wrong', note: 'A general solution needs a term with n, where n ∈ I.' };
+    const a = c.fn({ [nv]: 0 });
+    const step = c.fn({ [nv]: 1 }) - a;
+    if (!Number.isFinite(a) || !Number.isFinite(step) || Math.abs(step) < 1e-9) return { ok: false, reason: 'unreadable' };
+    got.push(...expandGeneral([a], Math.abs(step), w));
+  }
+  const want = expandGeneral(spec.roots, P, w);
+  const inner = (xs: number[]) => xs.filter((x) => Math.abs(x) <= w - Math.max(P, spec.deg ? 360 : 2 * Math.PI));
+  return sameNumberSet(inner(got), inner(want)) ? { ok: true } : { ok: false, reason: 'wrong' };
+}
+
 export function checkField(spec: AnswerSpec, input: string): Verdict {
   if (!tidy(input)) return { ok: false, reason: 'unreadable' };
   switch (spec.kind) {
@@ -150,10 +191,17 @@ export function checkField(spec: AnswerSpec, input: string): Verdict {
       return checkNumber(spec, input);
     case 'expr':
       return checkExpr(spec, input);
+    case 'general':
+      return checkGeneral(spec, input);
     case 'set': {
-      const v = parseNumberList(input);
+      const v = parseNumberList(spec.deg ? stripDegrees(input) : input);
       if (!v) return { ok: false, reason: 'unreadable' };
       if (spec.exact && hasDecimal(input)) return { ok: false, reason: 'exact' };
+      if (spec.round) {
+        const want = spec.values.map((x) => roundTo(x, spec.round!));
+        if (sameNumberSet(v, want)) return { ok: true };
+        return v.length === want.length && v.every((x) => want.some((y) => Math.abs(x - y) <= 0.06)) ? { ok: false, reason: 'rounding' } : { ok: false, reason: 'wrong' };
+      }
       return sameNumberSet(v, spec.values) ? { ok: true } : { ok: false, reason: 'wrong' };
     }
     case 'points': {
