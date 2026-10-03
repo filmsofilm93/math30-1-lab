@@ -1,6 +1,8 @@
 import curriculum from './curriculum.json';
 import { U1_LESSONS } from './lessons/u1';
 import { PRE_LESSONS } from './lessons/pre';
+import { U2_LESSONS } from './lessons/u2';
+import { U3_LESSONS } from './lessons/u3';
 import type { Lesson } from './lessons/types';
 
 export type SkillNode = (typeof curriculum.nodes)[number];
@@ -12,7 +14,7 @@ export const NODE = new Map(NODES.map((n) => [n.id, n]));
 export const MISCONCEPTION = new Map(curriculum.misconceptions.map((m) => [m.id, m.description]));
 export const EXAM = curriculum.meta.exam;
 
-const LESSONS = new Map<string, Lesson>([...PRE_LESSONS, ...U1_LESSONS].map((l) => [l.nodeId, l]));
+const LESSONS = new Map<string, Lesson>([...PRE_LESSONS, ...U1_LESSONS, ...U2_LESSONS, ...U3_LESSONS].map((l) => [l.nodeId, l]));
 export const lessonFor = (nodeId: string) => LESSONS.get(nodeId);
 export const hasContent = (nodeId: string) => LESSONS.has(nodeId);
 

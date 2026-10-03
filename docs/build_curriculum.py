@@ -103,6 +103,11 @@ M = {
  "poly-zero-sign": "Writes the factor of zero x = a as (x + a).",
  "poly-max-local": "Reports a local maximum as the absolute maximum.",
  "poly-degree-count": "Counts the number of factors rather than summing multiplicities to get the degree.",
+ "poly-division-remainder": "Mishandles the remainder or quotient in the division statement (drops the divisor under R, or reads dividend coefficients as the quotient).",
+ "poly-remainder-constant": "Takes the constant term (or the sum of the coefficients) as the remainder.",
+ "poly-izt-incomplete": "Lists only some divisors of the constant term (misses negatives, ±1 or the constant itself).",
+ "poly-model-cut": "Subtracts the cut-out square once instead of twice from each dimension.",
+ "poly-sketch-check": "Accepts a sketch without checking end behaviour, every zero's behaviour and the y-intercept.",
 
  # exp/log
  "log-product-sum": "Writes log(A + B) = log A + log B.",
@@ -267,11 +272,11 @@ node("RF12.model", "RF12", "Polynomial models (volume, area, number contexts)", 
 
 UNIT = "U3"
 LOG_SCOPE = ["Natural logarithms and base e are beyond scope."]
-node("RF9.exp-graph", "RF9", "Graph and characteristics of y = b^x (growth vs decay)", ["P.exp-laws","P.domain-range"], ["exp-base-range","exp-asymptote"], 2, scope=["b > 0, b ≠ 1."], explorer="exp-log-lab")
-node("RF9.exp-transform", "RF9", "Transformations of y = a·b^(x − c) + d", ["RF9.exp-graph","RF4.combined"], ["exp-asymptote","tr-h-sign"], 2, explorer="exp-log-lab")
+node("RF9.exp-graph", "RF9", "Graph and characteristics of y = bˣ (growth vs decay)", ["P.exp-laws","P.domain-range"], ["exp-base-range","exp-asymptote"], 2, scope=["b > 0, b ≠ 1."], explorer="exp-log-lab")
+node("RF9.exp-transform", "RF9", "Transformations of exponential functions", ["RF9.exp-graph","RF4.combined"], ["exp-asymptote","tr-h-sign"], 2, explorer="exp-log-lab")
 node("RF7.log-def", "RF7", "Logarithm as the inverse of an exponential; convert between forms", ["RF9.exp-graph","RF5.reflect-yx"], ["log-def-swap"], 3, scope=LOG_SCOPE, explorer="exp-log-lab")
 node("RF7.log-eval", "RF7", "Exact values of logarithms without technology; estimate with benchmarks", ["RF7.log-def","P.exp-laws"], ["log-def-swap","log-negative-arg"], 3, scope=LOG_SCOPE)
-node("RF9.log-graph", "RF9", "Graph y = a·log_b(x − c) + d; relationship to the exponential", ["RF7.log-def","RF9.exp-transform"], ["exp-asymptote","log-negative-arg"], 2, scope=LOG_SCOPE+["b > 1."], explorer="exp-log-lab")
+node("RF9.log-graph", "RF9", "Graphs of logarithmic functions and their inverses", ["RF7.log-def","RF9.exp-transform"], ["exp-asymptote","log-negative-arg"], 2, scope=LOG_SCOPE+["b > 1."], explorer="exp-log-lab")
 node("RF8.expand", "RF8", "Expand logarithms with product, quotient, power laws", ["RF7.log-eval"], ["log-product-sum","log-quotient-divide","log-power-wrong-place"], 3, explorer="log-law-simplifier")
 node("RF8.condense", "RF8", "Combine several logs into a single logarithm", ["RF8.expand"], ["log-condense-coefficient","log-quotient-divide","log-product-sum"], 3, weak=True, explorer="log-law-simplifier")
 node("RF8.change-base", "RF8", "Change of base", ["RF7.log-eval"], ["log-change-base-flip"], 2, scope=["Taught as a strategy for evaluating logarithms."])
@@ -280,9 +285,9 @@ node("RF10.exp-logs", "RF10", "Solve exponential equations by taking logs (incl.
      scope=["Acceptable: monomial exponents. Excellence: non-monomial exponents or numerical coefficients."])
 node("RF10.log-eq", "RF10", "Solve logarithmic equations (same base) and reject extraneous roots", ["RF8.condense","P.quad-solve"], ["extraneous-keep","log-negative-arg","log-product-sum"], 3, weak=True,
      scope=["Logarithmic equations restricted to the same base.", "Recognizing extraneous solutions is Standard of Excellence."])
-node("RF10.growth-decay", "RF10", "Growth and decay y = a·b^(t/p) (half-life, doubling)", ["RF10.exp-logs"], ["growth-p-period"], 3,
+node("RF10.growth-decay", "RF10", "Growth and decay (half-life, doubling, percent change)", ["RF10.exp-logs"], ["growth-p-period"], 3,
      scope=["The formula is given on the formula sheet; other formulas are given in the question."])
-node("RF10.compound-interest", "RF10", "Compound interest as y = a·b^(t/p)", ["RF10.growth-decay"], ["interest-compound-period","growth-p-period"], 2,
+node("RF10.compound-interest", "RF10", "Compound interest", ["RF10.growth-decay"], ["interest-compound-period","growth-p-period"], 2,
      scope=["Know compounding terms: annually, semi-annually, quarterly, monthly, weekly, daily."])
 node("RF10.log-scales", "RF10", "Logarithmic scales: pH, decibels, earthquake magnitude (comparisons)", ["RF10.exp-logs"], ["logscale-difference-ratio"], 2,
      scope=["Formulas for logarithmic scales are always given."])
