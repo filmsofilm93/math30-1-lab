@@ -950,6 +950,10 @@
   {
    "id": "nr-rounding",
    "description": "Rounds intermediate values or rounds to the wrong place."
+  },
+  {
+   "id": "related-fn-sign",
+   "description": "Forms the related function with a sign error, or from one side only, when solving an equation graphically by its zeros."
   }
  ],
  "nodes": [

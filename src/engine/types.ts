@@ -17,13 +17,15 @@ export type AnswerSpec =
       fnMinus?: (v: number) => number;
       exact?: boolean;
       /** Also require the typed answer to be fully factored over the integers, or a single logarithm. */
-      form?: 'factored' | 'single-log' | 'simplified';
+      form?: 'factored' | 'single-log' | 'simplified' | 'expanded';
+      /** x-values where the typed function must also be undefined (holes and asymptotes the answer has to keep). */
+      undefinedAt?: number[];
     }
   | { kind: 'set'; values: number[]; tex: string; exact?: boolean; deg?: boolean; round?: Round } // finite solution set, order-free; [] = no solution; deg: values in degrees, ° optional
   /** General solution: every root + period·n, n ∈ I. Equivalent forms are accepted (compared as sets over several periods). */
   | { kind: 'general'; roots: number[]; period: number; tex: string; deg?: boolean }
   | { kind: 'points'; values: [number, number][]; tex: string } // set of ordered pairs (one point = list of one)
-  | { kind: 'interval'; value: RealSet; tex: string };
+  | { kind: 'interval'; value: RealSet; tex: string; v?: string }; // v: variable used in set-builder form (default x)
 
 export interface Field {
   label?: string; // plain text above the box

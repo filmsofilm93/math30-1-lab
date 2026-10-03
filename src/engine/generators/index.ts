@@ -16,8 +16,12 @@ import { angleGenerators } from './u4/angles';
 import { graphGenerators as trigGraphGenerators } from './u4/graphs';
 import { trigEquationGenerators } from './u4/equations';
 import { identityGenerators } from './u4/identities';
+import { radicalGenerators } from './u5/radical';
+import { rationalGenerators } from './u5/rational';
+import { countingGenerators } from './u6/counting';
+import { binomialGenerators } from './u6/binomial';
 
-export const GENERATORS: Generator[] = [...basicsGenerators, ...combinedGenerators, ...inverseGenerators, ...opsGenerators, ...preAlgebraGenerators, ...preQuadGenerators, ...preFunctionGenerators, ...preEquationGenerators, ...preTrigGenerators, ...divisionGenerators, ...graphGenerators, ...expLogGraphGenerators, ...expLogEquationGenerators, ...angleGenerators, ...trigGraphGenerators, ...trigEquationGenerators, ...identityGenerators];
+export const GENERATORS: Generator[] = [...basicsGenerators, ...combinedGenerators, ...inverseGenerators, ...opsGenerators, ...preAlgebraGenerators, ...preQuadGenerators, ...preFunctionGenerators, ...preEquationGenerators, ...preTrigGenerators, ...divisionGenerators, ...graphGenerators, ...expLogGraphGenerators, ...expLogEquationGenerators, ...angleGenerators, ...trigGraphGenerators, ...trigEquationGenerators, ...identityGenerators, ...radicalGenerators, ...rationalGenerators, ...countingGenerators, ...binomialGenerators];
 
 export const generatorsFor = (nodeId: string) => GENERATORS.filter((g) => g.nodeId === nodeId);
 export const generatorById = (id: string) => GENERATORS.find((g) => g.id === id);

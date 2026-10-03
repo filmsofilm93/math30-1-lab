@@ -76,12 +76,15 @@ function checkExpr(spec: Extract<AnswerSpec, { kind: 'expr' }>, input: string): 
   };
   if (want.length === 1) {
     if (!same(user[0], want[0])) return { ok: false, reason: 'wrong' };
+    const defined = (spec.undefinedAt ?? []).filter((v) => Number.isFinite(user[0](v)));
+    if (defined.length) return { ok: false, reason: 'form', note: `Equal elsewhere, but your function is defined at x = ${defined.join(', ')}. Keep the factor that makes it undefined there.` };
     if (spec.form === 'factored' && !isFullyFactored(t, spec.variable)) return { ok: false, reason: 'form', note: 'Equivalent, but not fully factored.' };
     if (spec.form === 'simplified') {
       const count = (s: string, re: RegExp) => (s.match(re) ?? []).length;
       const trig = /\\(sin|cos|tan|csc|sec|cot)/g;
-      if (count(t, trig) > count(spec.tex, trig) || count(t, /\\frac/g) > count(spec.tex, /\\frac/g)) return { ok: false, reason: 'form', note: 'Equivalent, but simplify further.' };
+      if (count(t, trig) > count(spec.tex, trig) || count(t, /\\frac/g) > count(spec.tex, /\\frac/g) || count(t, /!/g) > count(spec.tex, /!/g)) return { ok: false, reason: 'form', note: 'Equivalent, but simplify further.' };
     }
+    if (spec.form === 'expanded' && /\(|\\left|!/.test(t)) return { ok: false, reason: 'form', note: 'Equivalent, but write it expanded, with no brackets.' };
     if (spec.form === 'single-log' && (t.match(/\\log/g) ?? []).length !== 1) return { ok: false, reason: 'form', note: 'Equivalent, but not written as a single logarithm.' };
     return { ok: true };
   }
@@ -213,7 +216,7 @@ export function checkField(spec: AnswerSpec, input: string): Verdict {
       return ok ? { ok: true } : { ok: false, reason: 'wrong' };
     }
     case 'interval': {
-      const v = parseRealSet(input);
+      const v = parseRealSet(input, spec.v ?? 'x');
       if (!v) return { ok: false, reason: 'unreadable' };
       return setEqual(v, spec.value) ? { ok: true } : { ok: false, reason: 'wrong' };
     }
