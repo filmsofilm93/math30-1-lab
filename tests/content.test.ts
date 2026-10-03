@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { U1_LESSONS } from '../src/content/lessons/u1';
 import { PRE_LESSONS } from '../src/content/lessons/pre';
+import { U2_LESSONS } from '../src/content/lessons/u2';
+import { U3_LESSONS } from '../src/content/lessons/u3';
 import { nodesInUnit } from '../src/content';
 import { generatorById, generatorsFor } from '../src/engine/generators';
 import { makeItem } from '../src/engine/framework';
@@ -11,6 +13,8 @@ const words = (s: string) => s.replace(/\$[^$]*\$/g, ' M ').split(/\s+/).filter(
 describe.each([
   ['U1', U1_LESSONS],
   ['PRE', PRE_LESSONS],
+  ['U2', U2_LESSONS],
+  ['U3', U3_LESSONS],
 ] as [string, Lesson[]][])('%s content', (unit, lessons) => {
   it('every node has a lesson and at least 3 generators', () => {
     for (const n of nodesInUnit(unit)) {

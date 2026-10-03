@@ -139,7 +139,7 @@ function condenseParams(rng: R, tier: number) {
   const b = rng.pick([2, 3, 5, 10]);
   const c = rng.int(1, 5);
   const p = tier === 1 ? 1 : rng.int(2, 3);
-  const kk = tier === 3 ? rng.pick([2, 3, 5, 7]) : 0; // − log_b k
+  const kk = tier === 3 ? rng.pick([2, 3, 5, 7].filter((v) => v !== b)) : 0; // − log_b k
   const half = tier === 3;
   const L = logB(b);
   const terms = `${p === 1 ? '' : p}${L} x + ${half ? '\\frac{1}{2}' : ''}${L} (x + ${c})${kk ? ` - ${L} ${kk}` : ''}`;
@@ -1058,7 +1058,7 @@ const lsRatio: Generator = {
     const d = rng.nz(4, 25);
     const v = 10 ** (d / 10);
     const spec = roundedOk(v, 1);
-    return draft(`Sound level is ${m('\\beta = 10\\log\\frac{I}{I_0}')} decibels. How many times as intense is a ${b1 + d} dB sound as a ${b1} dB sound? Answer to the nearest tenth.`, spec, [
+    return draft(`Sound level is ${m('\\beta = 10\\log\\frac{I}{I_0}')} decibels. How many times as intense is a sound of ${b1 + d} dB as a sound of ${b1} dB? Answer to the nearest tenth.`, spec, [
       { tex: m(`${b1 + d} - ${b1} = 10\\log\\frac{I_2}{I_1} \\Rightarrow \\log\\frac{I_2}{I_1} = ${d / 10}`), why: 'Subtract the two equations: the difference of logs is the log of the ratio.' },
       { tex: m(`\\frac{I_2}{I_1} = 10^{${d / 10}} \\approx ${spec.tex}`) },
     ]);
