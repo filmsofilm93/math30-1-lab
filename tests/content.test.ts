@@ -6,6 +6,7 @@ import { U3_LESSONS } from '../src/content/lessons/u3';
 import { U4_LESSONS } from '../src/content/lessons/u4';
 import { U5_LESSONS } from '../src/content/lessons/u5';
 import { U6_LESSONS } from '../src/content/lessons/u6';
+import { EXAM_LESSONS } from '../src/content/lessons/exam';
 import { NODE, NODES, nodesInUnit, sectionOf, UNITS } from '../src/content';
 import { generatorById, generatorsFor } from '../src/engine/generators';
 import { makeItem } from '../src/engine/framework';
@@ -13,10 +14,10 @@ import type { Lesson } from '../src/content/lessons/types';
 
 const words = (s: string) => s.replace(/\$[^$]*\$/g, ' M ').split(/\s+/).filter(Boolean).length;
 
-const ALL_LESSONS = [...PRE_LESSONS, ...U1_LESSONS, ...U2_LESSONS, ...U3_LESSONS, ...U4_LESSONS, ...U5_LESSONS, ...U6_LESSONS];
+const ALL_LESSONS = [...PRE_LESSONS, ...U1_LESSONS, ...U2_LESSONS, ...U3_LESSONS, ...U4_LESSONS, ...U5_LESSONS, ...U6_LESSONS, ...EXAM_LESSONS];
 
 describe.each(
-  UNITS.filter((u) => u.id !== 'EXAM').map((u) => [u.id, ALL_LESSONS.filter((l) => NODE.get(l.nodeId)?.unit === u.id)]) as [string, Lesson[]][],
+  UNITS.map((u) => [u.id, ALL_LESSONS.filter((l) => NODE.get(l.nodeId)?.unit === u.id)]) as [string, Lesson[]][],
 )('%s content', (unit, lessons) => {
   it('every node has a lesson and at least 3 generators', () => {
     for (const n of nodesInUnit(unit)) {

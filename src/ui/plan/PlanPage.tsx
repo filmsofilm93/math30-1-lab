@@ -60,7 +60,7 @@ export function PlanPage() {
                 </div>
                 {b.kind === 'review' ? (
                   <p className="text-sm">
-                    Mock exams: {plan.mockDates.map(fmtDate).join(', ') || 'none fit'}. Between mocks: mixed questions from every unit, weighted to your weakest skills. Full mock exams arrive in M6.
+                    Mock exams: {plan.mockDates.map(fmtDate).join(', ') || 'none fit'}. Between mocks: mixed questions from every unit, weighted to your weakest skills. Start each mock from Exam.
                   </p>
                 ) : (
                   <p className="text-sm">

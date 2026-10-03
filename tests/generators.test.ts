@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import curriculum from '../src/content/curriculum.json';
 import { checkField } from '../src/engine/check';
 import { makeItem } from '../src/engine/framework';
+import { checkNR } from '../src/engine/nr';
 import { GENERATORS } from '../src/engine/generators';
 import type { Item, Tier } from '../src/engine/types';
 
@@ -35,6 +36,10 @@ describe.each(GENERATORS.map((g) => [g.id, g] as const))('%s', (_id, gen) => {
         expect(ch.filter((c) => c.correct).length).toBe(1);
         expect(new Set(ch.map((c) => c.tex)).size, `duplicate options seed ${seed}`).toBe(4);
         for (const c of ch.filter((c) => !c.correct)) expect(misIds.has(c.misconception!), `misconception ${c.misconception}`).toBe(true);
+      } else if (it.format === 'nr') {
+        expect(it.nr, `seed ${seed}: nr spec`).toBeTruthy();
+        expect(checkNR(it.nr!, it.nr!.record).ok, `seed ${seed}: record ${it.nr!.record} fails its own check`).toBe(true);
+        expect(it.nr!.record.length).toBeLessThanOrEqual(4);
       } else {
         expect(it.fields!.length).toBeGreaterThan(0);
         for (const f of it.fields!) {

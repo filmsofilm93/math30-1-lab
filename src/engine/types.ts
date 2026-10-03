@@ -60,6 +60,15 @@ export interface GraphSpec {
   ticks?: { x: number; xLabel: number; y?: number; yLabel?: number; xUnit?: 'deg' | 'pi' };
 }
 
+/**
+ * Numerical-response answer, recorded in four boxes from the left.
+ * value: a number rounded as the stem says; a negative answer has its sign printed before the boxes.
+ * code: digits that label choices, in any order or in the order asked.
+ */
+export type NRSpec =
+  | { kind: 'value'; value: number; round: Round; negative: boolean; record: string }
+  | { kind: 'code'; record: string; order: 'any' | 'correct' };
+
 export interface Step {
   tex: string; // rich text with $math$
   why?: string;
@@ -76,8 +85,10 @@ export interface Item {
   stem: string; // rich text with $math$
   graph?: GraphSpec;
   table?: { head: string[]; rows: string[][] }; // cells are rich text
-  format: 'mc' | 'input';
+  format: 'mc' | 'input' | 'nr';
   choices?: Choice[];
+  /** Numerical response: what to record in the answer boxes. */
+  nr?: NRSpec;
   fields?: Field[];
   hints: [string, string, string]; // nudge, method, next step
   solution: Step[];
