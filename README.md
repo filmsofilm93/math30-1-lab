@@ -14,3 +14,13 @@ npm run dev      # local server
 npm test         # checker + generator property tests (SEEDS=500 npm test for a deeper run)
 npm run build    # typecheck + production build
 ```
+
+Open the URL `npm run dev` prints (usually http://localhost:5173). To try it on a phone on the same Wi-Fi, run `npm run dev -- --host` and open the Network URL.
+
+## Deploy
+
+CI (`.github/workflows/ci.yml`) typechecks, runs the tests and builds every PR. Pushes to `main` also deploy to GitHub Pages once Pages is enabled with source "GitHub Actions" (repo Settings → Pages).
+
+## Data
+
+Progress is stored in IndexedDB in your browser only. Settings → Export JSON makes a backup; Import replaces everything with a backup.
