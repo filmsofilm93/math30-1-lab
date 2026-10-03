@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { hasContent, NODE, NODES, unitTitle } from '../../content';
 import { localDay, type Mode } from '../../db/db';
 import { blockOn } from '../../engine/planner';
 import { buildSession, SESSION_LENGTHS, type SessionBlock, type SessionMinutes } from '../../engine/session';
 import type { Tier } from '../../engine/types';
-import { SessionRunner, type QueueEntry } from '../components/SessionRunner';
+import type { QueueEntry } from '../components/SessionRunner';
 import { isWeak, nextInUnit, planFor, useLearner, useSettings } from '../data';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 import { fmtDate } from './PlanPage';
+
+const SessionRunner = lazy(() => import('../components/SessionRunner').then((m) => ({ default: m.SessionRunner })));
 
 const LS_LEN = 'm301.sessionLength';
 const LS_DAY = 'm301.today';
@@ -99,16 +101,18 @@ export function TodayPage() {
     const tier: Tier = b.kind === 'warm' ? 2 : 3;
     const queue: QueueEntry[] = b.nodeIds.map((nodeId) => ({ nodeId, mode, tier: b.kind === 'mixed' ? ((Math.random() < 0.5 ? 2 : 3) as Tier) : tier }));
     return (
-      <SessionRunner
-        title={LABEL[b.kind]}
-        queue={queue}
-        blind={b.kind !== 'review'}
-        doneLabel="Back to today"
-        onExit={(_r, n) => {
-          if (n >= queue.length) markDone(running);
-          setRunning(null);
-        }}
-      />
+      <Suspense fallback={null}>
+        <SessionRunner
+          title={LABEL[b.kind]}
+          queue={queue}
+          blind={b.kind !== 'review'}
+          doneLabel="Back to today"
+          onExit={(_r, n) => {
+            if (n >= queue.length) markDone(running);
+            setRunning(null);
+          }}
+        />
+      </Suspense>
     );
   }
 
@@ -129,6 +133,12 @@ export function TodayPage() {
       {!plan.fits && (
         <a href="#/plan" className="rounded-xl border border-warn bg-warn-soft px-4 py-3 text-sm dark:border-warn-d dark:bg-warn-soft-d">
           Your plan needs about {Math.round(plan.neededHours)} h but your weekly hours give about {Math.round(plan.availableHours)} h. See the options.
+        </a>
+      )}
+
+      {attempts.length >= 50 && (settings.lastExportAt ?? 0) < Date.now() - 14 * 86_400_000 && (
+        <a href="#/settings" className={`${card} px-4 py-3 text-sm`}>
+          Your progress is stored only in this browser. <span className="font-bold text-accent dark:text-accent-d">Export a backup</span> in Settings{settings.lastExportAt ? ' (last one over two weeks ago)' : ''}.
         </a>
       )}
 

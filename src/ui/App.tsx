@@ -1,22 +1,28 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { db, DEFAULT_SETTINGS } from '../db/db';
 import { addStudySeconds } from '../db/db';
 import { useSettings } from './data';
-import { NodePage } from './learn/NodePage';
-import { RepairPage } from './learn/RepairPage';
-import { ErrorsPage } from './pages/ErrorsPage';
-import { ReviewPage } from './pages/ReviewPage';
-import { SettingsPage } from './pages/SettingsPage';
-import { SkillsPage } from './pages/SkillsPage';
-import { ExamHub, FormulaPage, WordsPage, WrPracticePage } from './exam/ExamHub';
-import { MockPage } from './exam/MockPage';
-import { DiagnosticPage } from './plan/DiagnosticPage';
-import { PlanPage } from './plan/PlanPage';
-import { ProgressPage } from './plan/ProgressPage';
-import { SetupPage } from './plan/SetupPage';
 import { TodayPage } from './plan/TodayPage';
 import { muted } from './styles';
+
+// Pages load on first visit so the app opens fast; the service worker caches every chunk for offline use.
+const NodePage = lazy(() => import('./learn/NodePage').then((m) => ({ default: m.NodePage })));
+const RepairPage = lazy(() => import('./learn/RepairPage').then((m) => ({ default: m.RepairPage })));
+const ErrorsPage = lazy(() => import('./pages/ErrorsPage').then((m) => ({ default: m.ErrorsPage })));
+const ReviewPage = lazy(() => import('./pages/ReviewPage').then((m) => ({ default: m.ReviewPage })));
+const SettingsPage = lazy(() => import('./pages/SettingsPage').then((m) => ({ default: m.SettingsPage })));
+const SkillsPage = lazy(() => import('./pages/SkillsPage').then((m) => ({ default: m.SkillsPage })));
+const DiagnosticPage = lazy(() => import('./plan/DiagnosticPage').then((m) => ({ default: m.DiagnosticPage })));
+const PlanPage = lazy(() => import('./plan/PlanPage').then((m) => ({ default: m.PlanPage })));
+const ProgressPage = lazy(() => import('./plan/ProgressPage').then((m) => ({ default: m.ProgressPage })));
+const SetupPage = lazy(() => import('./plan/SetupPage').then((m) => ({ default: m.SetupPage })));
+const MockPage = lazy(() => import('./exam/MockPage').then((m) => ({ default: m.MockPage })));
+const exam = () => import('./exam/ExamHub');
+const ExamHub = lazy(() => exam().then((m) => ({ default: m.ExamHub })));
+const FormulaPage = lazy(() => exam().then((m) => ({ default: m.FormulaPage })));
+const WordsPage = lazy(() => exam().then((m) => ({ default: m.WordsPage })));
+const WrPracticePage = lazy(() => exam().then((m) => ({ default: m.WrPracticePage })));
 
 function useHash() {
   const [hash, setHash] = useState(() => window.location.hash || '#/');
@@ -147,7 +153,9 @@ export function App() {
           </nav>
         </div>
       </header>
-      <main className="flex-1 px-4 pt-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">{page}</main>
+      <main className="flex-1 px-4 pt-4 pb-[calc(2rem+env(safe-area-inset-bottom))]">
+        <Suspense fallback={<p className={`py-8 text-center ${muted}`}>Loading…</p>}>{page}</Suspense>
+      </main>
     </div>
   );
 }

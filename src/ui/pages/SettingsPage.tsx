@@ -22,6 +22,7 @@ export function SettingsPage() {
     a.download = `math30-1-lab-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
+    save({ lastExportAt: Date.now() });
     setMsg('Backup downloaded.');
   }
 
@@ -70,7 +71,10 @@ export function SettingsPage() {
 
       <section className={row}>
         <span className="font-bold">Backup</span>
-        <p className={`text-sm ${muted}`}>Progress lives only in this browser. Export a backup to move devices; importing replaces everything here.</p>
+        <p className={`text-sm ${muted}`}>
+          Progress lives only in this browser. Export a backup to move devices; importing replaces everything here.{' '}
+          {settings.lastExportAt ? `Last exported ${new Date(settings.lastExportAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}.` : 'Not exported yet.'}
+        </p>
         <div className="flex flex-wrap gap-2">
           <button className={btnGhost} onClick={doExport}>
             Export JSON

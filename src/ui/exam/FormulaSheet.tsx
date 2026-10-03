@@ -15,7 +15,7 @@ export function FormulaSheet() {
             <div key={j} className="flex flex-col gap-1.5">
               {g.heading && <h3 className="text-sm font-bold italic">{g.heading}</h3>}
               {g.lines.map((l, k) => (
-                <div key={k} className="overflow-x-auto py-0.5">
+                <div key={k} className="overflow-x-auto py-0.5" tabIndex={0}>
                   <Tex src={l} />
                 </div>
               ))}
