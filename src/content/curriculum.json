@@ -967,6 +967,26 @@
   {
    "id": "related-fn-sign",
    "description": "Forms the related function with a sign error, or from one side only, when solving an equation graphically by its zeros."
+  },
+  {
+   "id": "calc-table",
+   "description": "Misreads TBLSET (TblStart vs ΔTbl) or the sign change in a table."
+  },
+  {
+   "id": "calc-brackets",
+   "description": "Leaves out brackets when keying a fraction or argument (e.g. sin 2π/7 keyed as sin(2π)/7)."
+  },
+  {
+   "id": "nr-leading-zero",
+   "description": "Records a value between 0 and 1 without the 0 before the decimal point."
+  },
+  {
+   "id": "nr-code-order",
+   "description": "Records a correct-order code in a different order, or misses a digit of a code."
+  },
+  {
+   "id": "nr-negative",
+   "description": "Tries to record a negative sign, or drops a sign the question prints before the boxes."
   }
  ],
  "nodes": [
@@ -3367,7 +3387,8 @@
    "scopeLimits": [],
    "misconceptions": [
     "calc-mode",
-    "trig-deg-rad-mode"
+    "trig-deg-rad-mode",
+    "calc-brackets"
    ],
    "explorer": null
   },
@@ -3420,7 +3441,8 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "calc-window"
+    "calc-window",
+    "calc-table"
    ],
    "explorer": null
   },
@@ -3435,7 +3457,10 @@
    "weakSpot": false,
    "scopeLimits": [],
    "misconceptions": [
-    "nr-rounding"
+    "nr-rounding",
+    "nr-leading-zero",
+    "nr-code-order",
+    "nr-negative"
    ],
    "explorer": null
   },

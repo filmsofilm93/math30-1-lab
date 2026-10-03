@@ -7,6 +7,9 @@ import type { Item, Step } from '../../engine/types';
 import { btnGhost, btnPrimary, card, chip, muted } from '../styles';
 import { Graph } from './Graph';
 import { MathField } from './MathField';
+import { NRBoxes } from './NRBoxes';
+import { FormulaOverlay } from '../exam/FormulaSheet';
+import { checkNR, nrAnswerText, type NRVerdict } from '../../engine/nr';
 import { Rich, Tex } from './Rich';
 
 const MIS = new Map(curriculum.misconceptions.map((m) => [m.id, m.description]));
@@ -106,17 +109,22 @@ const CONF: { c: Confidence; label: string; key: string }[] = [
 export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Next question', test = false }: { item: Item; shownSteps?: number; onDone: (r: ItemResult) => void; onNext: () => void; nextLabel?: string; test?: boolean }) {
   const [choice, setChoice] = useState<number | null>(null);
   const [values, setValues] = useState<string[]>(() => (item.fields ?? []).map(() => ''));
+  const [nrValue, setNrValue] = useState('');
+  const [nrVerdict, setNrVerdict] = useState<NRVerdict | null>(null);
   const [hints, setHints] = useState(0);
   const [verdicts, setVerdicts] = useState<Verdict[] | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [result, setResult] = useState<ItemResult | null>(null);
   const [reported, setReported] = useState(false);
+  const [sheet, setSheet] = useState(false);
   const start = useRef(Date.now());
   const nextRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setChoice(null);
     setValues((item.fields ?? []).map(() => ''));
+    setNrValue('');
+    setNrVerdict(null);
     setHints(0);
     setVerdicts(null);
     setProblem(null);
@@ -137,6 +145,12 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
       const ch = item.choices![choice];
       correct = ch.correct;
       misconception = ch.misconception;
+    } else if (item.format === 'nr') {
+      if (!nrValue.trim()) return setProblem('Record an answer in the boxes first.');
+      const v = checkNR(item.nr!, nrValue);
+      setNrVerdict(v);
+      correct = v.ok;
+      if (!v.ok && v.note && /0 before|order|sign|Round/.test(v.note)) misconception = /0 before/.test(v.note) ? 'nr-leading-zero' : /order/.test(v.note) ? 'nr-code-order' : /sign/.test(v.note) ? 'nr-negative' : 'nr-rounding';
     } else {
       const vs = item.fields!.map((f, i) => checkField(f.answer, values[i]));
       const unreadable = vs.findIndex((v) => v.reason === 'unreadable');
@@ -221,6 +235,18 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
             );
           })}
         </div>
+      ) : item.format === 'nr' ? (
+        <div className="flex flex-col gap-1">
+          <span className={`text-sm font-bold ${muted}`}>Numerical response</span>
+          <div className="flex items-center gap-3">
+            <NRBoxes value={nrValue} onChange={setNrValue} negative={item.nr!.kind === 'value' && item.nr!.negative} disabled={done} onEnter={() => submit('sure')} autoFocus={!('ontouchstart' in window)} />
+            {nrVerdict && (
+              <span className={`text-xl font-bold ${nrVerdict.ok ? 'text-good dark:text-good-d' : 'text-bad dark:text-bad-d'}`} aria-label={nrVerdict.ok ? 'correct' : 'incorrect'}>
+                {nrVerdict.ok ? '✓' : '✗'}
+              </span>
+            )}
+          </div>
+        </div>
       ) : (
         <div className="flex flex-col gap-3">
           {item.fields!.map((f, i) => (
@@ -282,11 +308,17 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
               I don't know this yet
             </button>
           )}
-          {!test && hints < 3 && (
-            <button className="self-start text-sm font-bold text-accent hover:underline dark:text-accent-d" onClick={() => setHints(hints + 1)}>
-              {hints === 0 ? 'Show a hint' : 'Another hint'} ({3 - hints} left)
+          <div className="flex flex-wrap gap-x-5 gap-y-2">
+            {!test && hints < 3 && (
+              <button className="text-sm font-bold text-accent hover:underline dark:text-accent-d" onClick={() => setHints(hints + 1)}>
+                {hints === 0 ? 'Show a hint' : 'Another hint'} ({3 - hints} left)
+              </button>
+            )}
+            <button className="text-sm font-bold text-accent hover:underline dark:text-accent-d" onClick={() => setSheet(true)}>
+              Formula sheet
             </button>
-          )}
+          </div>
+          {sheet && <FormulaOverlay onClose={() => setSheet(false)} />}
         </div>
       )}
 
@@ -306,6 +338,11 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
                   </p>
                 )}
               </div>
+            )}
+            {!result.correct && item.format === 'nr' && (
+              <p className="mt-1 text-ink dark:text-ink-d">
+                {nrVerdict?.note ? `${nrVerdict.note} ` : ''}Record: <span className="font-mono font-bold">{nrAnswerText(item.nr!)}</span>
+              </p>
             )}
             {!result.correct && item.format === 'input' && (
               <p className="mt-1 text-ink dark:text-ink-d">

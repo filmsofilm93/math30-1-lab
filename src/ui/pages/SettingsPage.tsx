@@ -35,7 +35,7 @@ export function SettingsPage() {
   }
 
   async function doReset() {
-    await db.transaction('rw', [db.attempts, db.nodes, db.settings, db.reports, db.diagnostic, db.days], () => Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear(), db.diagnostic.clear(), db.days.clear()]));
+    await db.transaction('rw', [db.attempts, db.nodes, db.settings, db.reports, db.diagnostic, db.days, db.mocks], () => Promise.all([db.attempts.clear(), db.nodes.clear(), db.settings.clear(), db.reports.clear(), db.diagnostic.clear(), db.days.clear(), db.mocks.clear()]));
     setConfirmReset(false);
     setMsg('All progress erased.');
   }
@@ -65,6 +65,8 @@ export function SettingsPage() {
       <a className={`${btnGhost} self-start`} href="#/diagnostic">
         Retake the prerequisite check
       </a>
+
+      <ApiKeySection settings={settings} onSave={(k) => save({ apiKey: k })} />
 
       <section className={row}>
         <span className="font-bold">Backup</span>
@@ -130,5 +132,40 @@ export function SettingsPage() {
 
       <p className={`text-xs ${muted}`}>Keyboard: Alt+1–5 switch sections · 1–4 pick a choice · S/U/G submit as sure/unsure/guess · H hint · Enter or N next.</p>
     </div>
+  );
+}
+
+function ApiKeySection({ settings, onSave }: { settings: Settings; onSave: (k: string | undefined) => void }) {
+  const [draft, setDraft] = useState('');
+  const has = !!settings.apiKey;
+  return (
+    <section className={`${card} flex flex-col gap-2 p-4`}>
+      <span className="font-bold">Written-response feedback from Claude (optional)</span>
+      <p className={`text-sm ${muted}`}>
+        Paste an Anthropic API key to have Claude score your written responses against the rubric and explain what lost marks. The key is stored only in this browser, is never included in backups, and is sent only to api.anthropic.com. Each request is billed to your Anthropic account. Self-scoring works without it.
+      </p>
+      {has ? (
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm">Key saved (ends …{settings.apiKey!.slice(-4)}).</span>
+          <button className={btnGhost} onClick={() => onSave(undefined)}>
+            Remove key
+          </button>
+        </div>
+      ) : (
+        <form
+          className="flex flex-wrap gap-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (draft.trim()) onSave(draft.trim());
+            setDraft('');
+          }}
+        >
+          <input type="password" autoComplete="off" aria-label="Anthropic API key" placeholder="sk-ant-…" value={draft} onChange={(e) => setDraft(e.target.value)} className="min-h-11 min-w-0 flex-1 rounded-lg border border-line bg-card px-3 dark:border-line-d dark:bg-card-d" />
+          <button className={btnGhost} type="submit">
+            Save key
+          </button>
+        </form>
+      )}
+    </section>
   );
 }

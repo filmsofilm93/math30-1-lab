@@ -54,7 +54,7 @@ function Readiness({ r }: { r: ReturnType<typeof readiness> }) {
         </span>
       </div>
       <p className={`text-sm ${muted}`}>
-        Based on practice covering {pct(r.coverage)} of the exam's weight. Skills you haven't practised count at a cautious 30% with wide uncertainty, so the estimate starts low and the range narrows as you work. It predicts the machine-scored part only; written response is not modelled yet (M6). Treat it as a rough guide, not a mark.
+        Based on practice covering {pct(r.coverage)} of the exam's weight. Skills you haven't practised count at a cautious 30% with wide uncertainty, so the estimate starts low and the range narrows as you work. It predicts the machine-scored part from practice; mock diploma reports (in Exam) include written response. Treat it as a rough guide, not a mark.
       </p>
       <ul className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm sm:grid-cols-3">
         {r.byUnit.map((u) => (

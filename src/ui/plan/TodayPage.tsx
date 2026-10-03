@@ -132,6 +132,12 @@ export function TodayPage() {
         </a>
       )}
 
+      {plan.mockDates.includes(today) && (
+        <a href="#/exam" className="rounded-xl border border-accent bg-accent-soft px-4 py-3 dark:border-accent-d dark:bg-accent-soft-d">
+          <span className="font-bold">Mock diploma day.</span> Set aside 3 hours and write a full mock in Exam.
+        </a>
+      )}
+
       {diag.length === 0 && (
         <div className={`${card} flex flex-col gap-2 p-4`}>
           <p className="font-bold">Take the 10-minute prerequisite check</p>

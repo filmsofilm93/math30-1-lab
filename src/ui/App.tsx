@@ -9,6 +9,8 @@ import { ErrorsPage } from './pages/ErrorsPage';
 import { ReviewPage } from './pages/ReviewPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { SkillsPage } from './pages/SkillsPage';
+import { ExamHub, FormulaPage, WordsPage, WrPracticePage } from './exam/ExamHub';
+import { MockPage } from './exam/MockPage';
 import { DiagnosticPage } from './plan/DiagnosticPage';
 import { PlanPage } from './plan/PlanPage';
 import { ProgressPage } from './plan/ProgressPage';
@@ -42,8 +44,9 @@ const NAV = [
   { href: '#/', label: 'Today', key: '1' },
   { href: '#/skills', label: 'Skills', key: '2' },
   { href: '#/review', label: 'Review', key: '3' },
-  { href: '#/progress', label: 'Progress', key: '4' },
-  { href: '#/settings', label: 'Settings', key: '5', short: '⚙' },
+  { href: '#/exam', label: 'Exam', key: '4' },
+  { href: '#/progress', label: 'Progress', key: '5' },
+  { href: '#/settings', label: 'Settings', key: '6', short: '⚙' },
 ];
 
 const BEAT = 15;
@@ -79,7 +82,7 @@ export function App() {
     window.scrollTo({ top: 0 });
   }, [path]);
 
-  // Alt+1..5 switches sections on desktop.
+  // Alt+1..6 switches sections on desktop.
   useEffect(() => {
     const on = (e: KeyboardEvent) => {
       if (!e.altKey) return;
@@ -100,6 +103,11 @@ export function App() {
   else if (route.startsWith('/repair/')) page = <RepairPage key={route} nodeId={decodeURIComponent(route.slice(8))} from={params.get('from') ?? undefined} />;
   else if (route.startsWith('/skills')) page = <SkillsPage />;
   else if (route.startsWith('/review')) page = <ReviewPage />;
+  else if (route.startsWith('/exam/mock/')) page = <MockPage key={route} id={Number(route.slice(11))} />;
+  else if (route.startsWith('/exam/wr')) page = <WrPracticePage />;
+  else if (route.startsWith('/exam/words')) page = <WordsPage />;
+  else if (route.startsWith('/exam/formulas')) page = <FormulaPage />;
+  else if (route.startsWith('/exam')) page = <ExamHub />;
   else if (route.startsWith('/errors')) page = <ErrorsPage />;
   else if (route.startsWith('/progress')) page = <ProgressPage />;
   else if (route.startsWith('/settings')) page = <SettingsPage />;
@@ -117,10 +125,10 @@ export function App() {
     <div className="mx-auto flex min-h-dvh max-w-3xl flex-col">
       <header className="sticky top-0 z-10 border-b border-line bg-paper/95 px-4 pt-[env(safe-area-inset-top)] backdrop-blur dark:border-line-d dark:bg-paper-d/95">
         <div className="flex items-center justify-between gap-3 py-2">
-          <a href="#/" className="font-bold tracking-tight whitespace-nowrap">
+          <a href="#/" className="hidden font-bold tracking-tight whitespace-nowrap min-[420px]:inline">
             <span className="hidden sm:inline">Math </span>30-1<span className="hidden sm:inline"> Lab</span>
           </a>
-          <nav className="flex gap-0.5 text-sm whitespace-nowrap sm:gap-1" aria-label="Sections">
+          <nav className="flex flex-1 justify-between gap-0.5 text-sm whitespace-nowrap min-[420px]:flex-none sm:gap-1" aria-label="Sections">
             {NAV.map((n) => (
               <a key={n.href} href={n.href} aria-current={active(n.href) ? 'page' : undefined} className={`relative rounded-lg px-1.5 py-1.5 font-bold sm:px-2 ${active(n.href) ? 'bg-accent-soft text-accent dark:bg-accent-soft-d dark:text-accent-d' : muted}`}>
                 {n.short ? (
