@@ -80,7 +80,35 @@ export interface IdentityPreset {
   problem: string; // id from IDENTITY_PROBLEMS
 }
 
-export type ExplorePreset = TransformPreset | OpsPreset | PolyPreset | ExpLogPreset | LogLawPreset | UnitCirclePreset | SinusoidPreset | TrigEquationPreset | IdentityPreset;
+export interface RadicalPreset {
+  explorer: 'radical';
+  mode?: 'transform' | 'sqrt-of-f' | 'solve';
+  /** Starting f(x) for the √f(x) view. */
+  f?: 'linear' | 'quadratic';
+}
+
+export interface RationalPreset {
+  explorer: 'rational';
+  /** Zeros of the numerator and denominator factors (x − r), and the constant k. */
+  num: number[];
+  den: number[];
+  k?: number;
+}
+
+export interface CountingPreset {
+  explorer: 'counting';
+  mode?: 'slots' | 'arrange' | 'cases' | 'pascal' | 'term';
+  /** Starting values for the slots view. */
+  n?: number;
+  r?: number;
+  order?: boolean;
+  /** Starting constraint for the arrange view. */
+  constraint?: 'none' | 'together' | 'apart' | 'first';
+  /** Starting binomial (a·x^p + b·x^q)^n for the term view. */
+  term?: { a: number; p: number; b: number; q: number; n: number };
+}
+
+export type ExplorePreset = TransformPreset | OpsPreset | PolyPreset | ExpLogPreset | LogLawPreset | UnitCirclePreset | SinusoidPreset | TrigEquationPreset | IdentityPreset | RadicalPreset | RationalPreset | CountingPreset;
 
 export interface Predict {
   question: string; // rich text

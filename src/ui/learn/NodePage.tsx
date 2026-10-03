@@ -16,6 +16,9 @@ import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
 import { ExpLogLab } from '../explorers/ExpLogLab';
 import { LogLawLab } from '../explorers/LogLawLab';
+import { CountingLab } from '../explorers/CountingLab';
+import { RadicalLab } from '../explorers/RadicalLab';
+import { RationalLab } from '../explorers/RationalLab';
 import { IdentityWorkspace } from '../explorers/IdentityWorkspace';
 import { SinusoidLab } from '../explorers/SinusoidLab';
 import { TrigEquationLab } from '../explorers/TrigEquationLab';
@@ -208,6 +211,12 @@ function Explorer({ preset, locked }: { preset: ExplorePreset; locked: boolean }
       return <TrigEquationLab preset={preset} locked={locked} />;
     case 'identity':
       return <IdentityWorkspace preset={preset} locked={locked} />;
+    case 'radical':
+      return <RadicalLab preset={preset} locked={locked} />;
+    case 'rational':
+      return <RationalLab preset={preset} locked={locked} />;
+    case 'counting':
+      return <CountingLab preset={preset} locked={locked} />;
   }
 }
 

@@ -29,7 +29,7 @@ export function sumTex(terms: { coef: number; pow: number }[], v = 'x'): string 
     .join('');
 }
 /** (a·x^p + b·x^q) as LaTeX. */
-function binTex(a: number, p: number, b: number, q: number): string {
+export function binTex(a: number, p: number, b: number, q: number): string {
   const first = monoTex(a, p);
   const second = monoTex(Math.abs(b), q);
   return `\\left(${first} ${b < 0 ? '-' : '+'} ${second}\\right)`;
