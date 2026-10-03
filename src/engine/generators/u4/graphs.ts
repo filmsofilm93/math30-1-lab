@@ -660,7 +660,7 @@ const modFerris: Generator = {
       stem: `${ctx} The height is ${m(eq)}. How long after boarding does the rider first reach ${target} m? Give the time to the nearest tenth of a minute.`,
       format: 'input',
       fields: [field(rounded(t1, 1), 't =', 'Minutes')],
-      hints: ['Set the equation equal to the target height.', `Graph ${m(`y_1 = ${eq.replace('h(t) = ', '').replace(/t/g, 'x')}`)} and ${m(`y_2 = ${target}`)}; find the first intersection.`, `Or solve ${m(`\\cos\\left(${bt} t\\right) = \\frac{${H} - ${target}}{${r}}`)} in radian mode.`],
+      hints: ['Set the equation equal to the target height.', `Graph ${m(`y_1 = ${eq.replace('h(t) = ', '').replace(/(?<![a-zA-Z\\])t(?![a-zA-Z])/g, 'x')}`)} and ${m(`y_2 = ${target}`)}; find the first intersection.`, `Or solve ${m(`\\cos\\left(${bt} t\\right) = \\frac{${H} - ${target}}{${r}}`)} in radian mode.`],
       solution: [
         { tex: m(`\\cos\\left(${bt} t\\right) = \\frac{${H - target}}{${r}}`), why: 'Isolate the cosine.' },
         { tex: m(`${bt}t = \\cos^{-1}\\left(\\frac{${H - target}}{${r}}\\right) \\approx ${((2 * PI) / T * t1).toFixed(4)}`), why: 'The first solution lies in the first half-rotation.' },
@@ -717,7 +717,7 @@ const modTide: Generator = {
       stem: `${ctx} The depth is ${m(eq)}. A ship needs at least ${k} m of water. For how many hours in each 12-hour cycle can it enter? Answer to the nearest tenth of an hour.`,
       format: 'input',
       fields: [field(rounded(dur, 1), undefined, 'Hours')],
-      hints: [`Find when ${m(`d(t) = ${k}`)} on either side of high tide.`, `Graph ${m(`y_1 = ${eq.replace('d(t) = ', '').replace(/t/g, 'x')}`)} and ${m(`y_2 = ${k}`)}; find the two intersections around ${m(`x = ${t1}`)}.`, 'The safe time is the gap between those intersections.'],
+      hints: [`Find when ${m(`d(t) = ${k}`)} on either side of high tide.`, `Graph ${m(`y_1 = ${eq.replace('d(t) = ', '').replace(/(?<![a-zA-Z\\])t(?![a-zA-Z])/g, 'x')}`)} and ${m(`y_2 = ${k}`)}; find the two intersections around ${m(`x = ${t1}`)}.`, 'The safe time is the gap between those intersections.'],
       solution: [
         { tex: m(`\\cos\\left[\\frac{\\pi}{6}(t - ${t1})\\right] = \\frac{${k} - ${D}}{${amp}}`), why: 'Isolate the cosine.' },
         { tex: m(`\\frac{\\pi}{6}(t - ${t1}) = \\pm ${Math.acos((k - D) / amp).toFixed(4)}`), why: 'Symmetric about high tide.' },

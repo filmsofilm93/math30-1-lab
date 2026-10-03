@@ -294,6 +294,8 @@ const sketchCheck: Generator = {
       shownZs = zs.map((z) => (z === ones[0] ? { ...z, m: 2 } : z === twos[0] ? { ...z, m: 1 } : z));
       // Keep the y-intercept right so only the multiplicities are wrong.
       shownK = (k * yInt(1, zs)) / yInt(1, shownZs);
+      // Swapping multiplicities can change the sign of the leading coefficient; then the end behaviour is wrong too.
+      if (Math.sign(shownK) !== Math.sign(k)) throw new Reject();
     }
     if (error === 'yint') shownK = k * 2;
     const p = fromZeros(1, shownZs).map((c) => c * shownK);
@@ -508,7 +510,7 @@ const calcMin: Generator = {
       fields: [field({ kind: 'number', value: want, tex: want.toFixed(2), round: 'hundredth' }, `\\text{${word}} =`)],
       hints: ['There are two turning points of the same kind; the absolute one is the more extreme.', CALC_HINT, `Compare both local ${word}s before answering.`],
       solution: [
-        { tex: `Local ${word}s near ${m(`x \\approx ${mins.map((x) => x.toFixed(2)).join('')}`.replace(/(\d)(-?\d)/, '$1,\\ $2'))}: values ${m((flip ? vals.map((v) => -v) : vals).map((v) => v.toFixed(2)).join(',\\ '))}.` },
+        { tex: `Local ${word}s near ${m(`x \\approx ${mins.map((x) => x.toFixed(2)).join(',\\ ')}`)}: values ${m((flip ? vals.map((v) => -v) : vals).map((v) => v.toFixed(2)).join(',\\ '))}.` },
         { tex: `Absolute ${word}: ${m(want.toFixed(2))}.`, why: `The absolute ${word} is the ${flip ? 'highest' : 'lowest'} point on the whole graph, not just the nearest turning point.` },
       ],
       verify: () => Math.abs(polyEval(q)(mins[absI]) - (flip ? -vals[absI] : vals[absI])) < 1e-6,
@@ -559,19 +561,19 @@ const calcZero: Generator = {
     const zeros: number[] = [];
     for (let x = -6; x < 6; x += 0.01) if (f(x) === 0 || f(x) * f(x + 0.01) < 0) zeros.push(bisect(f, x, x + 0.01));
     if (!zeros.length) throw new Reject();
-    const which = rng.pick(['largest', 'smallest'] as const);
+    const which = zeros.length === 1 ? 'only' : rng.pick(['largest', 'smallest'] as const);
     const z = which === 'largest' ? Math.max(...zeros) : Math.min(...zeros);
     if (nearBoundary(z, 2) || Number.isInteger(round(z, 6))) throw new Reject();
     const want = round(z, 2);
     return {
       cognitive: 'procedural',
-      stem: `Use a graphing calculator to determine the ${which} zero of ${m(`P(x) = ${polyTex(p)}`)}, to the nearest hundredth.`,
+      stem: `Use a graphing calculator to determine the ${which === 'only' ? 'real' : which} zero of ${m(`P(x) = ${polyTex(p)}`)}, to the nearest hundredth.`,
       format: 'input',
       fields: [field({ kind: 'number', value: want, tex: want.toFixed(2), round: 'hundredth' }, 'x =')],
-      hints: ['Graph it and find where it crosses the $x$-axis.', 'TI-84 Plus: 2nd TRACE (CALC), 2:zero, then left bound, right bound, guess.', `It has ${zeros.length} real zero${zeros.length > 1 ? 's' : ''}; pick the ${which}.`],
+      hints: ['Graph it and find where it crosses the $x$-axis.', 'TI-84 Plus: 2nd TRACE (CALC), 2:zero, then left bound, right bound, guess.', which === 'only' ? 'It has only one real zero.' : `It has ${zeros.length} real zeros; pick the ${which}.`],
       solution: [
         { tex: `Zeros: ${m(zeros.map((x) => x.toFixed(3)).join(',\\ '))} (to 3 decimals).` },
-        { tex: `The ${which}, to the nearest hundredth: ${m(want.toFixed(2))}.`, why: 'Round only at the end.' },
+        { tex: `${which === 'only' ? 'To' : `The ${which}, to`} the nearest hundredth: ${m(want.toFixed(2))}.`, why: 'Round only at the end.' },
       ],
       verify: () => Math.abs(f(z)) < 1e-6,
     };

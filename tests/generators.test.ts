@@ -11,6 +11,19 @@ const misIds = new Set(curriculum.misconceptions.map((m) => m.id));
 const nodeIds = new Set(curriculum.nodes.map((n) => n.id));
 const BAD = /NaN|undefined|Infinity|\[object|null/;
 
+/** Notation slips that render badly or read wrongly. Checked on rich text: math is inside $…$. */
+function notationSlip(it: Item): string | null {
+  const rich = [it.stem, ...(it.choices ?? []).flatMap((c) => [c.tex, c.feedback ?? '']), ...it.hints, ...it.solution.flatMap((s) => [s.tex, s.why ?? ''])];
+  for (const t of rich) {
+    const parts = t.split('$');
+    const outside = parts.filter((_, k) => k % 2 === 0).join(' ');
+    const inside = parts.filter((_, k) => k % 2 === 1).join(' ');
+    const hit = outside.match(/\\[a-zA-Z]+/) ?? inside.match(/\\lef(?!t)|\\righ(?!t)|= *\\varnothing/) ?? t.match(/\d\.\d{10,}|(?<![\d.])1k\b|\([a-z]\)!/);
+    if (hit) return `${hit[0]} in ${t.slice(0, 160)}`;
+  }
+  return null;
+}
+
 function allText(it: Item): string {
   return [it.stem, ...(it.choices ?? []).map((c) => c.tex + (c.feedback ?? '')), ...it.hints, ...it.solution.map((s) => s.tex + (s.why ?? '')), ...(it.fields ?? []).map((f) => f.answer.tex)].join(' ');
 }
@@ -30,6 +43,7 @@ describe.each(GENERATORS.map((g) => [g.id, g] as const))('%s', (_id, gen) => {
       const text = allText(it);
       expect(BAD.test(text), `bad text seed ${seed}: ${text.match(BAD)?.[0]} in ${text.slice(0, 300)}`).toBe(false);
       expect((text.match(/\$/g) ?? []).length % 2, `unbalanced $ seed ${seed}`).toBe(0);
+      expect(notationSlip(it), `notation seed ${seed}`).toBeNull();
       if (it.format === 'mc') {
         const ch = it.choices!;
         expect(ch.length).toBe(4);

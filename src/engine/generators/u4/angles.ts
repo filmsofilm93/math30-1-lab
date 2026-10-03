@@ -205,7 +205,7 @@ const refRad: Generator = {
       stem: `Determine the reference angle for ${m(`\\theta = ${radTex(d)}`)}.`,
       format: 'input',
       fields: [field(radNum(r), '\\theta_R =')],
-      hints: ['The reference angle is the acute angle to the $x$-axis.', `${m(radTex(d))} is in quadrant ${QNAME[q]}.`, q === 2 ? '$\\theta_R = \\pi - \\theta$.' : q === 3 ? '$\\theta_R = \\theta - \\pi$.' : q === 4 ? '$\\theta_R = 2\\pi - \\theta$.' : 'Quadrant I: the angle is its own reference angle.'],
+      hints: ['The reference angle is the acute angle to the $x$-axis.', `${m(radTex(d))} is in quadrant ${QNAME[q]}.`, ((t, co) => (q === 2 ? `${m(`\\theta_R = \\pi - ${t}`)}${co}` : q === 3 ? `${m(`\\theta_R = ${t} - \\pi`)}${co}` : q === 4 ? `${m(`\\theta_R = 2\\pi - ${t}`)}${co}` : `Quadrant I: the angle is its own reference angle${co}`))(radTex(((d % 360) + 360) % 360), d >= 0 && d < 360 ? '.' : ', using the coterminal angle in one turn.')],
       solution: [
         ...(norm(d) !== d ? [{ tex: `Coterminal angle in one turn: ${m(radTex(norm(d)))}.` }] : []),
         { tex: `Quadrant ${QNAME[q]}: ${m(`\\theta_R = ${radTex(r)}`)}.`, why: 'Measure to the nearest part of the x-axis.' },
@@ -350,8 +350,8 @@ const arcContext: Generator = {
         fields: [field(spec, 'd =', 'Metres')],
         hints: [`Revolutions in ${sec} s: ${m(`${rpm} \\times \\frac{${sec}}{60}`)}.`, 'Each revolution is $2\\pi$ radians: $\\theta = 2\\pi \\times$ revolutions.', '$a = r\\theta$, then convert cm to m.'],
         solution: [
-          { tex: m(`\\theta = 2\\pi \\cdot ${rpm} \\cdot \\frac{${sec}}{60} = ${(2 * rpm * sec) / 60}\\pi`), why: 'Angle turned, in radians.' },
-          { tex: m(`a = ${r}\\cdot ${(2 * rpm * sec) / 60}\\pi \\approx ${(v * 100).toFixed(1)}\\text{ cm} \\approx ${spec.tex}\\text{ m}`) },
+          { tex: m(`\\theta = 2\\pi \\cdot ${rpm} \\cdot \\frac{${sec}}{60} = ${F(2 * rpm * sec, 60).tex()}\\pi`), why: 'Angle turned, in radians.' },
+          { tex: m(`a = ${r}\\cdot ${F(2 * rpm * sec, 60).tex()}\\pi \\approx ${(v * 100).toFixed(1)}\\text{ cm} \\approx ${spec.tex}\\text{ m}`) },
         ],
       };
     }

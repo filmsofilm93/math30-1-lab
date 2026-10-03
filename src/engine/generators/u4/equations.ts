@@ -469,7 +469,7 @@ const grWindow: Generator = {
       format: 'mc',
       choices: mc({ tex: win(inRad ? 'Radian' : 'Degree', xMax, yOk), key: 'r' }, [
         { tex: win(inRad ? 'Degree' : 'Radian', xMax, yOk), key: 'mode', mis: 'calc-mode', feedback: 'The mode must match the units of the domain.' },
-        { tex: win(inRad ? 'Radian' : 'Degree', inRad ? String(360 * hi) : hi === 2 ? '4\\pi' : '2\\pi', yOk), key: 'x', mis: 'calc-mode', feedback: inRad ? '360 radians is about 57 turns, not one.' : 'In degree mode, x runs to 360 for one turn.' },
+        { tex: win(inRad ? 'Radian' : 'Degree', inRad ? String(360 * hi) : hi === 2 ? '4\\pi' : '2\\pi', yOk), key: 'x', mis: 'calc-mode', feedback: inRad ? `${360 * hi} radians is about ${Math.round((360 * hi) / (2 * Math.PI))} turns.` : `In degree mode, $x$ must run to ${xMax}.` },
         { tex: win(inRad ? 'Radian' : 'Degree', xMax, [yLo, yLo + 2 * a]), key: 'y', mis: 'calc-window', feedback: `The graph runs from ${m(String(d - a))} to ${m(String(d + a))}; the window must include where it crosses ${m('y = 0')}.` },
         { tex: win(inRad ? 'Radian' : 'Degree', inRad ? (hi === 2 ? '2\\pi' : '\\pi') : String(180 * hi), yOk), key: 'half', mis: 'trig-domain-ignore' },
       ]),
@@ -591,7 +591,7 @@ const isMc: Generator = {
       format: 'mc',
       choices: mc(
         { tex: m(right), key: 'r' },
-        c.wrong.map((w, i) => ({ tex: m(w), key: `w${i}`, mis: mis(w), feedback: mis(w) === 'trig-identity-sub-wrong' ? 'That leaves two different functions, or is not an identity.' : mis(w) === 'trig-sin2-sin-squared' ? '$\\sin 2x = 2\\sin x\\cos x$: not $2\\sin x$ or $\\sin^2 x$.' : undefined })),
+        c.wrong.map((w, i) => ({ tex: m(w), key: `w${i}`, mis: mis(w), feedback: mis(w) === 'trig-identity-sub-wrong' ? 'That leaves two different functions, or is not an identity.' : mis(w) === 'trig-sin2-sin-squared' ? (left.includes('\\sin 2x') ? '$\\sin 2x = 2\\sin x\\cos x$: not $2\\sin x$ or $\\sin^2 x$.' : `That is not equal to ${m(left)}: a double angle is not double the function or its square.`) : mis(w) === 'trig-pyth-sign' ? 'Check the signs and squares against $\\sin^2 x + \\cos^2 x = 1$.' : undefined })),
       ),
       hints: ['Aim for one trig function, or a common factor.', 'Look at the other terms in the equation.', `Pick the form of ${m(left)} that matches them.`],
       solution: [{ tex: m(c.sub), why: 'It leaves a single function or a factorable product.' }, { tex: m(c.steps[c.steps.length - 1]) }],

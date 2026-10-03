@@ -26,9 +26,32 @@ export function makeItem(gen: Generator, seed: number, tier: Tier): Item {
       outcome: nodeOutcome.get(gen.nodeId) ?? '',
     };
     if (item.choices) item.choices = new Rng(seed ^ 0x5bd1e995).shuffle(item.choices);
-    return item;
+    return polishItem(item);
   }
   throw new Error(`${gen.id} rejected 50 parameter draws for seed ${seed}`);
+}
+
+/** Tidy machine-built math: 1x → x, -1x → -x, \\frac{a}{1} → a, (x) → x, ^{1} → nothing. Only inside $…$. */
+export function polishMath(tex: string): string {
+  return tex
+    .replace(/(?<![\d.\w^_{}])1(?=[a-zA-Z]|\\(?:sin|cos|tan|csc|sec|cot|log|sqrt|left|pi|theta))/g, '')
+    .replace(/\\frac\{([^{}]+)\}\{1\}/g, '$1')
+    // Bracketed single letters: only as a coefficient's factor, never as a function argument (f(x), \sin(x), (f/g)(x)).
+    .replace(/(?<![a-zA-Z)\]|])\\left\(([a-zA-Z])\\right\)/g, '$1')
+    .replace(/(?<![\w\\}\])|])\(([a-zA-Z])\)/g, '$1')
+    .replace(/\(([a-zA-Z])\)!/g, '$1!')
+    .replace(/\^\{1\}(?![\d])/g, '');
+}
+const polishRich = (s: string) => s.replace(/\$([^$]+)\$/g, (_m, t: string) => `$${polishMath(t)}$`);
+
+function polishItem(it: Item): Item {
+  return {
+    ...it,
+    stem: polishRich(it.stem),
+    hints: it.hints.map(polishRich) as Item['hints'],
+    solution: it.solution.map((s) => ({ tex: polishRich(s.tex), why: s.why && polishRich(s.why) })),
+    choices: it.choices?.map((c) => ({ ...c, tex: polishRich(c.tex), feedback: c.feedback && polishRich(c.feedback) })),
+  };
 }
 
 /** Distractor candidate: display text, comparison key, misconception id. */

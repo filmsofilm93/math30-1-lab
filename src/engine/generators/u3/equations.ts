@@ -73,7 +73,9 @@ const expandMc: Generator = {
       choices: mc({ tex: m(e.correct), key: 'ok' }, [
         { tex: m(`${coefT(cs.x)}${L} x${ySum} + ${coefT(cs.z.neg())}${L} z`), key: 'sign', mis: 'log-quotient-divide', feedback: 'Division gives subtraction: $\\log_b \\frac{M}{N} = \\log_b M - \\log_b N$.' },
         { tex: m(`\\frac{${coefT(cs.x)}${L} x${ySum}}{${coefT(cs.z.neg())}${L} z}`), key: 'div', mis: 'log-quotient-divide' },
-        { tex: m(`${e.root ? '\\frac{1}{2}' : ''}\\left(${L} x\\right)^{${p}}${useY ? ` + ${e.root ? '\\frac{1}{2}' : ''}\\left(${L} y\\right)^{${q}}` : ''} - ${e.root ? '\\frac{1}{2}' : ''}\\left(${L} z\\right)^{${r}}`), key: 'pow', mis: 'log-power-wrong-place', feedback: '$\\log_b x^p = p\\log_b x$: the exponent comes out front as a coefficient.' },
+        p === 1 && (!useY || q === 1) && r === 1 && !e.root
+          ? { tex: m(`${L} z - ${L} x${useY ? ` - ${L} y` : ''}`), key: 'rev', mis: 'log-quotient-divide', feedback: 'Numerator minus denominator, not the reverse.' }
+          : { tex: m(`${e.root ? '\\frac{1}{2}' : ''}\\left(${L} x\\right)^{${p}}${useY ? ` + ${e.root ? '\\frac{1}{2}' : ''}\\left(${L} y\\right)^{${q}}` : ''} - ${e.root ? '\\frac{1}{2}' : ''}\\left(${L} z\\right)^{${r}}`), key: 'pow', mis: 'log-power-wrong-place', feedback: '$\\log_b x^p = p\\log_b x$: the exponent comes out front as a coefficient.' },
         ...(e.root ? [{ tex: m(`2${L} x${useY ? ` + 2${L} y` : ''} - 2${L} z`), key: 'half', mis: 'log-power-wrong-place', feedback: '$\\sqrt{A} = A^{1/2}$, so the coefficient is $\\frac{1}{2}$.' }] : []),
       ]),
       hints: ['Quotient law first: numerator minus denominator.', 'Then product law: a product inside becomes a sum.', `Then power law: ${m('\\log_b x^p = p\\log_b x')}${e.root ? '; $\\sqrt{A} = A^{1/2}$' : ''}.`],
@@ -956,9 +958,9 @@ const ciAmount: Generator = {
       stem: `${money(P)} is invested at ${rate}%/a compounded ${word}. What is the value after ${t} years, to the nearest cent?`,
       format: 'input',
       fields: [field(spec, '\\text{\\textdollar}', 'Value')],
-      hints: ['$A = P(1 + i)^n$ where $i$ is the rate per period.', `${m(`i = \\frac{${rate / 100}}{${n}}`)}, ${m(`n = ${n} \\times ${t}`)}.`, `${m(`A = ${P}(${bt})^{${n * t}}`)}.`],
+      hints: ['$A = P(1 + i)^n$ where $i$ is the rate per period.', `${m(`i = \\frac{${+(rate / 100).toFixed(4)}}{${n}}`)}, ${m(`n = ${n} \\times ${t}`)}.`, `${m(`A = ${P}(${bt})^{${n * t}}`)}.`],
       solution: [
-        { tex: m(`i = \\frac{${rate / 100}}{${n}} = ${+i.toFixed(6)},\\quad n = ${n}(${t}) = ${n * t}`), why: 'Rate and number of compounding periods.' },
+        { tex: m(`i = \\frac{${+(rate / 100).toFixed(4)}}{${n}} = ${+i.toFixed(6)},\\quad n = ${n}(${t}) = ${n * t}`), why: 'Rate and number of compounding periods.' },
         { tex: m(`A = ${P}(${bt})^{${n * t}} \\approx ${spec.tex}`) },
       ],
     };
@@ -1021,8 +1023,8 @@ const ciModel: Generator = {
         { tex: f(1 + i, 't'), key: 'n', mis: 'growth-p-period', feedback: `There are ${n} periods per year, so ${n}t periods in total.` },
         { tex: f(1 + r, `\\frac{t}{${n}}`), key: 'both', mis: 'growth-p-period' },
       ]),
-      hints: ['$A = P(1 + i)^n$.', `${m(`i = ${r} \\div ${n}`)}.`, `Number of periods in ${m('t')} years: ${m(`${n}t`)}.`],
-      solution: [{ tex: `${m(`i = \\frac{${r}}{${n}} = ${i}`)}, ${m(`n = ${n}t`)}: ${f(1 + i, `${n}t`)}.` }],
+      hints: ['$A = P(1 + i)^n$.', `${m(`i = ${+r.toFixed(4)} \\div ${n}`)}.`, `Number of periods in ${m('t')} years: ${m(`${n}t`)}.`],
+      solution: [{ tex: `${m(`i = \\frac{${+r.toFixed(4)}}{${n}} = ${+i.toFixed(6)}`)}, ${m(`n = ${n}t`)}: ${f(1 + i, `${n}t`)}.` }],
     };
   },
 };

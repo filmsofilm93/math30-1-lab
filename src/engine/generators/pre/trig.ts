@@ -70,8 +70,8 @@ const refExact: Generator = {
     const opt = (e: Exact, mis: string, feedback?: string): Cand => ({ tex: m(e.tex), key: e.v, mis, feedback });
     const cands: Cand[] = [
       opt(signed(EX[fn][r], -s), 'trig-cast-sign', `In quadrant ${['I', 'II', 'III', 'IV'][q - 1]}, ${m(`\\${fn}`)} is ${s > 0 ? 'positive' : 'negative'} (CAST).`),
-      opt(signed(swapped, s), fn === 'tan' ? 'ref-angle-measure-y' : 'trig-exact-swap', fn === 'tan' ? `That is ${m(`\\tan ${deg(90 - r)}`)}; the reference angle is ${m(deg(r))}.` : `That is the exact value of ${m(`\\${other} ${deg(r)}`)}.`),
-      opt(signed(swapped, -s), 'trig-cast-sign'),
+      opt(signed(swapped, s), fn === 'tan' ? 'ref-angle-measure-y' : 'trig-exact-swap', fn === 'tan' ? `That uses ${m(`\\tan ${deg(90 - r)}`)}; the reference angle is ${m(deg(r))}.` : `That uses the exact value of ${m(`\\${other} ${deg(r)}`)}.`),
+      opt(signed(swapped, -s), 'trig-cast-sign', `Two errors: the wrong ratio from the triangle, and the wrong sign for quadrant ${['I', 'II', 'III', 'IV'][q - 1]}.`),
     ];
     return {
       cognitive: 'procedural',
