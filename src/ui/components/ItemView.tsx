@@ -311,6 +311,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
               <p className="mt-1 text-ink dark:text-ink-d">
                 {verdicts?.some((v) => v.reason === 'exact') ? 'This question wants exact values (fractions, radicals), not decimals. ' : ''}
                 {verdicts?.some((v) => v.reason === 'branches') ? 'Your answer needs both branches: use ±. ' : ''}
+                {verdicts?.find((v) => v.reason === 'form')?.note ? `${verdicts.find((v) => v.reason === 'form')!.note} ` : ''}
                 Answer: {answerTex.map((t, i) => (
                   <span key={i}>
                     {i > 0 && ';  '}

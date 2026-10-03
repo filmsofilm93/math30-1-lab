@@ -103,6 +103,11 @@ M = {
  "poly-zero-sign": "Writes the factor of zero x = a as (x + a).",
  "poly-max-local": "Reports a local maximum as the absolute maximum.",
  "poly-degree-count": "Counts the number of factors rather than summing multiplicities to get the degree.",
+ "poly-division-remainder": "Mishandles the remainder or quotient in the division statement (drops the divisor under R, or reads dividend coefficients as the quotient).",
+ "poly-remainder-constant": "Takes the constant term (or the sum of the coefficients) as the remainder.",
+ "poly-izt-incomplete": "Lists only some divisors of the constant term (misses negatives, ±1 or the constant itself).",
+ "poly-model-cut": "Subtracts the cut-out square once instead of twice from each dimension.",
+ "poly-sketch-check": "Accepts a sketch without checking end behaviour, every zero's behaviour and the y-intercept.",
 
  # exp/log
  "log-product-sum": "Writes log(A + B) = log A + log B.",

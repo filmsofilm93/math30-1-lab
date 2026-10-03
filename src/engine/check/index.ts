@@ -76,7 +76,8 @@ function checkExpr(spec: Extract<AnswerSpec, { kind: 'expr' }>, input: string): 
   };
   if (want.length === 1) {
     if (!same(user[0], want[0])) return { ok: false, reason: 'wrong' };
-    if (spec.form === 'factored' && !isFullyFactored(t, spec.variable)) return { ok: false, reason: 'form' };
+    if (spec.form === 'factored' && !isFullyFactored(t, spec.variable)) return { ok: false, reason: 'form', note: 'Equivalent, but not fully factored.' };
+    if (spec.form === 'single-log' && (t.match(/\\log/g) ?? []).length !== 1) return { ok: false, reason: 'form', note: 'Equivalent, but not written as a single logarithm.' };
     return { ok: true };
   }
   const ok = (same(user[0], want[0]) && same(user[1], want[1])) || (same(user[0], want[1]) && same(user[1], want[0]));

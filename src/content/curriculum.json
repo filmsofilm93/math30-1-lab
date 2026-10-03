@@ -628,6 +628,26 @@
    "description": "Counts the number of factors rather than summing multiplicities to get the degree."
   },
   {
+   "id": "poly-division-remainder",
+   "description": "Mishandles the remainder or quotient in the division statement (drops the divisor under R, or reads dividend coefficients as the quotient)."
+  },
+  {
+   "id": "poly-remainder-constant",
+   "description": "Takes the constant term (or the sum of the coefficients) as the remainder."
+  },
+  {
+   "id": "poly-izt-incomplete",
+   "description": "Lists only some divisors of the constant term (misses negatives, ±1 or the constant itself)."
+  },
+  {
+   "id": "poly-model-cut",
+   "description": "Subtracts the cut-out square once instead of twice from each dimension."
+  },
+  {
+   "id": "poly-sketch-check",
+   "description": "Accepts a sketch without checking end behaviour, every zero's behaviour and the y-intercept."
+  },
+  {
    "id": "log-product-sum",
    "description": "Writes log(A + B) = log A + log B."
   },

@@ -71,4 +71,4 @@ export function hasDecimal(tex: string): boolean {
 }
 
 export const close = (a: number, b: number, rel = 1e-9) =>
-  Math.abs(a - b) <= rel * Math.max(1, Math.abs(a), Math.abs(b));
+  Number.isFinite(a) && Number.isFinite(b) ? Math.abs(a - b) <= rel * Math.max(1, Math.abs(a), Math.abs(b)) : a === b;
