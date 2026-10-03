@@ -46,7 +46,41 @@ export interface LogLawPreset {
   problem: string; // id from LOG_PROBLEMS
 }
 
-export type ExplorePreset = TransformPreset | OpsPreset | PolyPreset | ExpLogPreset | LogLawPreset;
+export interface UnitCirclePreset {
+  explorer: 'unit-circle';
+  /** Starting angle in degrees. */
+  angle?: number;
+  inRad?: boolean;
+  /** Show the coterminal list, the arc-length panel, or all six ratios. */
+  show?: ('coterminal' | 'arc' | 'ratios')[];
+}
+
+export interface SinusoidPreset {
+  explorer: 'sinusoid';
+  mode?: 'explore' | 'match' | 'model';
+  f?: 'sin' | 'cos';
+  inRad?: boolean;
+  /** Offer y = tan x for the basic-graphs lesson. */
+  tan?: boolean;
+  /** Use bx − k (unfactored) in the equation readout. */
+  unfactored?: boolean;
+}
+
+export interface TrigEquationPreset {
+  explorer: 'trig-equation';
+  fn?: 'sin' | 'cos' | 'tan';
+  k?: number;
+  /** Second factor value, for second-degree equations. */
+  k2?: number;
+  inRad?: boolean;
+}
+
+export interface IdentityPreset {
+  explorer: 'identity';
+  problem: string; // id from IDENTITY_PROBLEMS
+}
+
+export type ExplorePreset = TransformPreset | OpsPreset | PolyPreset | ExpLogPreset | LogLawPreset | UnitCirclePreset | SinusoidPreset | TrigEquationPreset | IdentityPreset;
 
 export interface Predict {
   question: string; // rich text

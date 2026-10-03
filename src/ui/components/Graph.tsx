@@ -1,4 +1,5 @@
 import { Coordinates, Line, Mafs, Plot, Point, Text, Theme } from 'mafs';
+import { piLabel } from '../../engine/generators/u4/shared';
 import type { Curve, GraphSpec } from '../../engine/types';
 
 export const ROLE_COLOR: Record<Curve['role'], string> = {
@@ -27,12 +28,24 @@ const tame = (fn: (x: number) => number, lim: number) => (x: number) => {
   return Number.isFinite(y) ? Math.max(-lim, Math.min(lim, y)) : NaN;
 };
 
+const multiple = (v: number, step: number) => Math.abs(v / step - Math.round(v / step)) < 1e-6;
+
+/** Axis tick label: every labelStep, in degrees, multiples of π, or plain numbers. */
+export function tickLabel(v: number, labelStep: number, unit?: 'deg' | 'pi'): string {
+  if (!multiple(v, labelStep)) return '';
+  if (unit === 'pi') return piLabel(Math.round((v * 180) / Math.PI));
+  const n = String(+v.toFixed(4));
+  return unit === 'deg' ? `${n}°` : n;
+}
+
 export function Graph({ spec, height = 260 }: { spec: GraphSpec; height?: number }) {
   const lim = 10 * Math.max(Math.abs(spec.view.y[0]), Math.abs(spec.view.y[1]), 10);
+  const t = spec.ticks;
+  const [xs, xl, ys, yl] = t ? [t.x, t.xLabel, t.y ?? 1, t.yLabel ?? 2 * (t.y ?? 1)] : [1, 2, 1, 2];
   return (
     <div className="overflow-hidden rounded-xl border border-line dark:border-line-d" role="img" aria-label="Graph">
       <Mafs height={height} viewBox={{ x: spec.view.x, y: spec.view.y, padding: 0 }} preserveAspectRatio={false} pan={false}>
-        <Coordinates.Cartesian xAxis={{ lines: 1, labels: (n) => (n % 2 === 0 ? n : '') }} yAxis={{ lines: 1, labels: (n) => (n % 2 === 0 ? n : '') }} />
+        <Coordinates.Cartesian xAxis={{ lines: xs, labels: (n) => tickLabel(n, xl, t?.xUnit) }} yAxis={{ lines: ys, labels: (n) => tickLabel(n, yl) }} />
         {spec.vlines?.map((v, i) => <Line.ThroughPoints key={`v${i}`} point1={[v.x, 0]} point2={[v.x, 1]} style={v.dashed ? 'dashed' : 'solid'} color={Theme.foreground} opacity={0.5} />)}
         {spec.hlines?.map((h, i) => <Line.ThroughPoints key={`h${i}`} point1={[0, h.y]} point2={[1, h.y]} style={h.dashed ? 'dashed' : 'solid'} color={Theme.foreground} opacity={0.5} />)}
         {spec.curves.map((c, i) =>

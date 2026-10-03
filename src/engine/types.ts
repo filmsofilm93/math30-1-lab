@@ -17,9 +17,11 @@ export type AnswerSpec =
       fnMinus?: (v: number) => number;
       exact?: boolean;
       /** Also require the typed answer to be fully factored over the integers, or a single logarithm. */
-      form?: 'factored' | 'single-log';
+      form?: 'factored' | 'single-log' | 'simplified';
     }
-  | { kind: 'set'; values: number[]; tex: string; exact?: boolean } // finite solution set, order-free; [] = no solution
+  | { kind: 'set'; values: number[]; tex: string; exact?: boolean; deg?: boolean; round?: Round } // finite solution set, order-free; [] = no solution; deg: values in degrees, ° optional
+  /** General solution: every root + period·n, n ∈ I. Equivalent forms are accepted (compared as sets over several periods). */
+  | { kind: 'general'; roots: number[]; period: number; tex: string; deg?: boolean }
   | { kind: 'points'; values: [number, number][]; tex: string } // set of ordered pairs (one point = list of one)
   | { kind: 'interval'; value: RealSet; tex: string };
 
@@ -52,6 +54,8 @@ export interface GraphSpec {
   points?: { x: number; y: number; label?: string; kind?: 'key' | 'invariant' | 'open' }[];
   vlines?: { x: number; dashed?: boolean }[];
   hlines?: { y: number; dashed?: boolean }[];
+  /** Grid spacing and labels. Default: lines every 1, labels every 2. xUnit 'deg' adds °, 'pi' labels multiples of π. */
+  ticks?: { x: number; xLabel: number; y?: number; yLabel?: number; xUnit?: 'deg' | 'pi' };
 }
 
 export interface Step {
