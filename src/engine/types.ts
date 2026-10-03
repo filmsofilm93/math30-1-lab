@@ -16,8 +16,8 @@ export type AnswerSpec =
       /** Second branch for answers like y = 2 ± √(x − 1). */
       fnMinus?: (v: number) => number;
       exact?: boolean;
-      /** Also require the typed answer to be fully factored over the integers. */
-      form?: 'factored';
+      /** Also require the typed answer to be fully factored over the integers, or a single logarithm. */
+      form?: 'factored' | 'single-log';
     }
   | { kind: 'set'; values: number[]; tex: string; exact?: boolean } // finite solution set, order-free; [] = no solution
   | { kind: 'points'; values: [number, number][]; tex: string } // set of ordered pairs (one point = list of one)

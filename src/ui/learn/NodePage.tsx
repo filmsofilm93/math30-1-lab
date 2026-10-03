@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
 import { hasContent, lessonFor, NODE, unitTitle } from '../../content';
-import type { Lesson } from '../../content/lessons/types';
+import type { ExplorePreset, Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
 import { makeItem } from '../../engine/framework';
@@ -13,6 +13,9 @@ import { ItemView, Steps, Stem, type ItemResult } from '../components/ItemView';
 import { Rich } from '../components/Rich';
 import { FunctionOpsLab } from '../explorers/FunctionOpsLab';
 import { TransformationLab } from '../explorers/TransformationLab';
+import { PolynomialLab } from '../explorers/PolynomialLab';
+import { ExpLogLab } from '../explorers/ExpLogLab';
+import { LogLawLab } from '../explorers/LogLawLab';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 
 const STAGES = ['Explore', 'Explain', 'Faded', 'Practice'] as const;
@@ -181,6 +184,21 @@ function PredictBox({ lesson, onDone }: { lesson: Lesson; onDone: (choice: numbe
   );
 }
 
+function Explorer({ preset, locked }: { preset: ExplorePreset; locked: boolean }) {
+  switch (preset.explorer) {
+    case 'transformation':
+      return <TransformationLab preset={preset} locked={locked} />;
+    case 'function-ops':
+      return <FunctionOpsLab preset={preset} locked={locked} />;
+    case 'polynomial':
+      return <PolynomialLab preset={preset} locked={locked} />;
+    case 'exp-log':
+      return <ExpLogLab preset={preset} locked={locked} />;
+    case 'log-law':
+      return <LogLawLab preset={preset} locked={locked} />;
+  }
+}
+
 function ExploreStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }) {
   const [pick, setPick] = useState<number | null>(null);
   const [revealed, setRevealed] = useState(false);
@@ -212,7 +230,7 @@ function ExploreStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }
           )}
         </div>
       )}
-      {preset.explorer === 'transformation' ? <TransformationLab preset={preset} locked={pick === null} /> : <FunctionOpsLab preset={preset} locked={pick === null} />}
+      <Explorer preset={preset} locked={pick === null} />
       <button className={btnPrimary} onClick={onNext}>
         Continue to the explanation
       </button>

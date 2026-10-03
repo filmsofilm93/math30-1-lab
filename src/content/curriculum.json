@@ -628,6 +628,26 @@
    "description": "Counts the number of factors rather than summing multiplicities to get the degree."
   },
   {
+   "id": "poly-division-remainder",
+   "description": "Mishandles the remainder or quotient in the division statement (drops the divisor under R, or reads dividend coefficients as the quotient)."
+  },
+  {
+   "id": "poly-remainder-constant",
+   "description": "Takes the constant term (or the sum of the coefficients) as the remainder."
+  },
+  {
+   "id": "poly-izt-incomplete",
+   "description": "Lists only some divisors of the constant term (misses negatives, ±1 or the constant itself)."
+  },
+  {
+   "id": "poly-model-cut",
+   "description": "Subtracts the cut-out square once instead of twice from each dimension."
+  },
+  {
+   "id": "poly-sketch-check",
+   "description": "Accepts a sketch without checking end behaviour, every zero's behaviour and the y-intercept."
+  },
+  {
    "id": "log-product-sum",
    "description": "Writes log(A + B) = log A + log B."
   },
@@ -1897,7 +1917,7 @@
    "id": "RF9.exp-graph",
    "outcome": "RF9",
    "unit": "U3",
-   "title": "Graph and characteristics of y = b^x (growth vs decay)",
+   "title": "Graph and characteristics of y = bˣ (growth vs decay)",
    "prerequisites": [
     "P.exp-laws",
     "P.domain-range"
@@ -1918,7 +1938,7 @@
    "id": "RF9.exp-transform",
    "outcome": "RF9",
    "unit": "U3",
-   "title": "Transformations of y = a·b^(x − c) + d",
+   "title": "Transformations of exponential functions",
    "prerequisites": [
     "RF9.exp-graph",
     "RF4.combined"
@@ -1978,7 +1998,7 @@
    "id": "RF9.log-graph",
    "outcome": "RF9",
    "unit": "U3",
-   "title": "Graph y = a·log_b(x − c) + d; relationship to the exponential",
+   "title": "Graphs of logarithmic functions and their inverses",
    "prerequisites": [
     "RF7.log-def",
     "RF9.exp-transform"
@@ -2120,7 +2140,7 @@
    "id": "RF10.growth-decay",
    "outcome": "RF10",
    "unit": "U3",
-   "title": "Growth and decay y = a·b^(t/p) (half-life, doubling)",
+   "title": "Growth and decay (half-life, doubling, percent change)",
    "prerequisites": [
     "RF10.exp-logs"
    ],
@@ -2139,7 +2159,7 @@
    "id": "RF10.compound-interest",
    "outcome": "RF10",
    "unit": "U3",
-   "title": "Compound interest as y = a·b^(t/p)",
+   "title": "Compound interest",
    "prerequisites": [
     "RF10.growth-decay"
    ],

@@ -14,8 +14,8 @@ describe('isFullyFactored', () => {
 describe('factored answers', () => {
   const spec = { kind: 'expr' as const, tex: '2(x-1)(x+3)', variable: 'x', fn: (x: number) => 2 * (x - 1) * (x + 3), sample: [-5, 5] as [number, number], form: 'factored' as const };
   it('accepts any order of factors', () => expect(checkField(spec, '2(x+3)(x-1)').ok).toBe(true));
-  it('flags the expanded form as not factored', () => expect(checkField(spec, '2x^2+4x-6')).toEqual({ ok: false, reason: 'form' }));
-  it('flags a missing common factor', () => expect(checkField(spec, '(2x-2)(x+3)')).toEqual({ ok: false, reason: 'form' }));
+  it('flags the expanded form as not factored', () => expect(checkField(spec, '2x^2+4x-6')).toMatchObject({ ok: false, reason: 'form' }));
+  it('flags a missing common factor', () => expect(checkField(spec, '(2x-2)(x+3)')).toMatchObject({ ok: false, reason: 'form' }));
   it('marks a wrong factorization wrong', () => expect(checkField(spec, '2(x+1)(x-3)').reason).toBe('wrong'));
 });
 
