@@ -94,6 +94,7 @@ math-field::part(menu-toggle) {
   --mafs-red: #c2410c;
   --mafs-green: #1c7c4a;
   --mafs-violet: #6a3fb5;
+  --open-point-fill: var(--color-card);
   border-radius: 10px;
 }
 html.dark .MafsView {
@@ -104,6 +105,7 @@ html.dark .MafsView {
   --mafs-red: #fb923c;
   --mafs-green: #5fd394;
   --mafs-violet: #b99cf0;
+  --open-point-fill: var(--color-card-d);
 }
 @media (prefers-reduced-motion: reduce) {
   * {

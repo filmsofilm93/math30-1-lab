@@ -1,8 +1,9 @@
 import type { AnswerSpec, Round } from '../types';
 import { close, compileTex, hasDecimal, numeric, tidy } from './ce';
+import { isFullyFactored } from './factored';
 import { parseRealSet, setEqual } from './realset';
 
-export type Verdict = { ok: boolean; reason?: 'unreadable' | 'exact' | 'rounding' | 'wrong' | 'branches' | 'variable'; note?: string };
+export type Verdict = { ok: boolean; reason?: 'unreadable' | 'exact' | 'rounding' | 'wrong' | 'branches' | 'variable' | 'form'; note?: string };
 
 const REASON_TEXT: Record<NonNullable<Verdict['reason']>, string> = {
   unreadable: "I couldn't read that answer. Check brackets and notation.",
@@ -11,6 +12,7 @@ const REASON_TEXT: Record<NonNullable<Verdict['reason']>, string> = {
   wrong: 'Not quite.',
   branches: 'This answer has two branches (±).',
   variable: 'Use only the variable in the question.',
+  form: 'Equivalent, but not fully factored.',
 };
 export const reasonText = (v: Verdict) => (v.reason ? REASON_TEXT[v.reason] : '');
 
@@ -26,8 +28,11 @@ export function roundTo(x: number, r: Round): number {
   return Math.round((x + Math.sign(x) * 1e-12) * p) / p;
 }
 
+/** Degree signs are dropped: angle answers in this app are entered in the unit the question asks for. */
+const stripDegrees = (t: string) => t.replace(/\^\{?\\circ\}?|°|\\degree/g, '');
+
 function checkNumber(spec: Extract<AnswerSpec, { kind: 'number' }>, input: string): Verdict {
-  const t = rhs(input);
+  const t = stripDegrees(rhs(input));
   const v = numeric(t);
   if (Number.isNaN(v)) return { ok: false, reason: 'unreadable' };
   if (spec.exact && hasDecimal(t)) return { ok: false, reason: 'exact' };
@@ -69,7 +74,11 @@ function checkExpr(spec: Extract<AnswerSpec, { kind: 'expr' }>, input: string): 
     }
     return compared >= 5;
   };
-  if (want.length === 1) return same(user[0], want[0]) ? { ok: true } : { ok: false, reason: 'wrong' };
+  if (want.length === 1) {
+    if (!same(user[0], want[0])) return { ok: false, reason: 'wrong' };
+    if (spec.form === 'factored' && !isFullyFactored(t, spec.variable)) return { ok: false, reason: 'form' };
+    return { ok: true };
+  }
   const ok = (same(user[0], want[0]) && same(user[1], want[1])) || (same(user[0], want[1]) && same(user[1], want[0]));
   return ok ? { ok: true } : { ok: false, reason: 'wrong' };
 }
@@ -100,7 +109,8 @@ export function parseNumberList(input: string): number[] | null {
     .replace(/\\text\{\s*or\s*\}|\\text\{\s*and\s*\}|\\lor/g, ',');
   if (isEmptyAnswer(tidy(input))) return [];
   t = t.replace(/(^|,)\s*(\\theta|[a-zA-Z](_\{?\d\}?)?)\s*=/g, '$1'); // drop "x =" labels
-  const parts = splitList(t);
+  // "\frac{3\pm\sqrt{5}}{2}" stands for two values.
+  const parts = splitList(t).flatMap((p) => (/\\pm|\\mp/.test(p) ? [p.replace(/\\pm|\\mp/g, '+'), p.replace(/\\pm|\\mp/g, '-')] : [p]));
   if (!parts.length) return null;
   const vals = parts.map(numeric);
   return vals.some(Number.isNaN) ? null : vals;
@@ -142,6 +152,7 @@ export function checkField(spec: AnswerSpec, input: string): Verdict {
     case 'set': {
       const v = parseNumberList(input);
       if (!v) return { ok: false, reason: 'unreadable' };
+      if (spec.exact && hasDecimal(input)) return { ok: false, reason: 'exact' };
       return sameNumberSet(v, spec.values) ? { ok: true } : { ok: false, reason: 'wrong' };
     }
     case 'points': {

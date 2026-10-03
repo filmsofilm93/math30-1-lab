@@ -30,7 +30,7 @@ export interface Predict {
 
 export interface Lesson {
   nodeId: string;
-  explore: { preset: TransformPreset | OpsPreset; predict: Predict };
+  explore?: { preset: TransformPreset | OpsPreset; predict: Predict };
   /** Concise explanation, ≤ 200 words, rich text paragraphs. */
   explain: string[];
   /** Worked examples: generator items shown step by step. */
