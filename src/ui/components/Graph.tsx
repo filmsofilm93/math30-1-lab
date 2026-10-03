@@ -31,7 +31,7 @@ const tame = (fn: (x: number) => number, lim: number) => (x: number) => {
 const multiple = (v: number, step: number) => Math.abs(v / step - Math.round(v / step)) < 1e-6;
 
 /** Axis tick label: every labelStep, in degrees, multiples of π, or plain numbers. */
-function tickLabel(v: number, labelStep: number, unit?: 'deg' | 'pi'): string {
+export function tickLabel(v: number, labelStep: number, unit?: 'deg' | 'pi'): string {
   if (!multiple(v, labelStep)) return '';
   if (unit === 'pi') return piLabel(Math.round((v * 180) / Math.PI));
   const n = String(+v.toFixed(4));

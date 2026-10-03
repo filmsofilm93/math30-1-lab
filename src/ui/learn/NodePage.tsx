@@ -16,6 +16,10 @@ import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
 import { ExpLogLab } from '../explorers/ExpLogLab';
 import { LogLawLab } from '../explorers/LogLawLab';
+import { IdentityWorkspace } from '../explorers/IdentityWorkspace';
+import { SinusoidLab } from '../explorers/SinusoidLab';
+import { TrigEquationLab } from '../explorers/TrigEquationLab';
+import { UnitCircle } from '../explorers/UnitCircle';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 
 const STAGES = ['Explore', 'Explain', 'Faded', 'Practice'] as const;
@@ -196,6 +200,14 @@ function Explorer({ preset, locked }: { preset: ExplorePreset; locked: boolean }
       return <ExpLogLab preset={preset} locked={locked} />;
     case 'log-law':
       return <LogLawLab preset={preset} locked={locked} />;
+    case 'unit-circle':
+      return <UnitCircle preset={preset} locked={locked} />;
+    case 'sinusoid':
+      return <SinusoidLab preset={preset} locked={locked} />;
+    case 'trig-equation':
+      return <TrigEquationLab preset={preset} locked={locked} />;
+    case 'identity':
+      return <IdentityWorkspace preset={preset} locked={locked} />;
   }
 }
 
