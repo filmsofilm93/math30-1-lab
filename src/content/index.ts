@@ -21,5 +21,7 @@ const LESSONS = new Map<string, Lesson>([...PRE_LESSONS, ...U1_LESSONS, ...U2_LE
 export const lessonFor = (nodeId: string) => LESSONS.get(nodeId);
 export const hasContent = (nodeId: string) => LESSONS.has(nodeId);
 
+/** Workbook section (McGraw-Hill Ryerson Pre-Calculus 12 numbering), e.g. "2.1". */
+export const sectionOf = (n: SkillNode): string | undefined => (n as { section?: string }).section;
 export const nodesInUnit = (unitId: string) => NODES.filter((n) => n.unit === unitId);
 export const unitTitle = (unitId: string) => UNITS.find((u) => u.id === unitId)?.title ?? unitId;

@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { hasContent, lessonFor, NODE, unitTitle } from '../../content';
+import { hasContent, lessonFor, NODE, sectionOf, unitTitle } from '../../content';
 import type { ExplorePreset, Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
@@ -72,6 +72,7 @@ export function NodePage({ nodeId }: { nodeId: string }) {
         </a>
         <h1 className={h1}>{node.title}</h1>
         <p className={`text-sm ${muted}`}>
+          {sectionOf(node) ? `Workbook ${sectionOf(node)} · ` : ''}
           {node.outcome} · {node.standard === 'excellence' ? 'Standard of Excellence' : 'Acceptable standard'}
           {node.weakSpot ? ' · Exam weak spot' : ''}
         </p>

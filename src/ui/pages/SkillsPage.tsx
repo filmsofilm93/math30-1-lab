@@ -1,5 +1,5 @@
 import { useLiveQuery } from 'dexie-react-hooks';
-import { hasContent, NODES, nodesInUnit, UNITS } from '../../content';
+import { hasContent, NODES, nodesInUnit, sectionOf, UNITS } from '../../content';
 import { db, DEFAULT_SETTINGS, type NodeState } from '../../db/db';
 import { masteryStatus } from '../../engine/mastery';
 import { btnPrimary, card, h1, muted } from '../styles';
@@ -66,6 +66,7 @@ export function SkillsPage() {
                         <span className="min-w-0 flex-1">
                           <span className="block">{n.title}</span>
                           <span className={`text-xs ${muted}`}>
+                            {sectionOf(n) ? `${sectionOf(n)} · ` : ''}
                             {n.outcome}
                             {n.weakSpot ? ' · exam weak spot' : ''}
                             {n.standard === 'excellence' ? ' · excellence' : ''}
