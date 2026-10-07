@@ -1,6 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { hasContent, lessonFor, NODE, sectionOf, unitTitle } from '../../content';
+import { hasContent, lessonFor, NODE, plainTitle, sectionOf } from '../../content';
+import { SECTION_TITLE } from '../../content/course';
 import type { ExplorePreset, Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
@@ -28,7 +29,7 @@ import { TrigEquationLab } from '../explorers/TrigEquationLab';
 import { UnitCircle } from '../explorers/UnitCircle';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 
-const STAGES = ['Explore', 'Explain', 'Faded', 'Practice'] as const;
+const STAGES = ['Explore', 'Learn', 'Try with help', 'Practice'] as const;
 
 export function NodePage({ nodeId }: { nodeId: string }) {
   const node = NODE.get(nodeId);
@@ -71,13 +72,13 @@ export function NodePage({ nodeId }: { nodeId: string }) {
     <div className="flex flex-col gap-4">
       <header className="flex flex-col gap-1">
         <a href="#/skills" className={`text-sm ${muted} hover:underline`}>
-          ← {unitTitle(node.unit)}
+          ← Skills
         </a>
-        <h1 className={h1}>{node.title}</h1>
+        <h1 className={h1}>{plainTitle(node)}</h1>
         <p className={`text-sm ${muted}`}>
-          {sectionOf(node) ? `Workbook ${sectionOf(node)} · ` : ''}
-          {node.outcome} · {node.standard === 'excellence' ? 'Standard of Excellence' : 'Acceptable standard'}
-          {node.weakSpot ? ' · Exam weak spot' : ''}
+          {sectionOf(node) ? `Section ${sectionOf(node)}${SECTION_TITLE[sectionOf(node)!] ? `: ${SECTION_TITLE[sectionOf(node)!]}` : ''}` : node.title}
+          {node.standard === 'excellence' ? ' · harder skill' : ''}
+          {node.weakSpot ? ' · often missed on the diploma' : ''}
         </p>
       </header>
 

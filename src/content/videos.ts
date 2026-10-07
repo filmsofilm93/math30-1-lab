@@ -9,3 +9,9 @@ export interface LessonVideo {
 }
 
 export const VIDEOS: Record<string, LessonVideo> = {};
+
+/** The teacher's videos for each textbook section, in order (part 1, part 2, ...). */
+export const SECTION_VIDEOS: Record<string, { id: string; title: string }[]> = {};
+
+/** The order the teacher's video covers each section's skills. */
+export const SECTION_ORDER: Record<string, string[]> = {};
