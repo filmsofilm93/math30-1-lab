@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { db } from '../../db/db';
 import { NODE } from '../../content';
 import type { Mode } from '../../db/db';
 import { recordAttempt } from '../../db/progress';
-import { itemFor } from '../../engine/practice';
+import { itemFor, nextTier } from '../../engine/practice';
 import type { Item, Tier } from '../../engine/types';
 import { btnPrimary, h1, h2, muted } from '../styles';
 import { ItemView, type ItemResult } from './ItemView';
@@ -25,9 +26,29 @@ export function shuffle<T>(a: T[]): T[] {
 /** Runs a queue of items, records each attempt, then shows the score. */
 export function SessionRunner({ title, queue, blind, onExit, doneLabel = 'Back' }: { title: string; queue: QueueEntry[]; blind: boolean; onExit: (right: number, total: number) => void; doneLabel?: string }) {
   const [index, setIndex] = useState(0);
-  const [item, setItem] = useState<Item | null>(() => (queue.length ? itemFor(queue[0].nodeId, queue[0].tier) : null));
+  const [item, setItem] = useState<Item | null>(null);
+  const [ready, setReady] = useState(false);
   const [right, setRight] = useState(0);
   const cur = queue[index];
+  // Each skill starts easy and only gets harder after a run of unassisted correct answers.
+  const caps = useRef(new Map<string, Tier>());
+  const make = (e: QueueEntry) => itemFor(e.nodeId, Math.min(e.tier, caps.current.get(e.nodeId) ?? 1) as Tier);
+
+  useEffect(() => {
+    const ids = [...new Set(queue.map((e) => e.nodeId))];
+    db.attempts
+      .where('nodeId')
+      .anyOf(ids)
+      .toArray()
+      .then((all) => {
+        for (const id of ids) caps.current.set(id, nextTier(all.filter((a) => a.nodeId === id && a.mode !== 'faded' && a.mode !== 'diagnostic').sort((a, b) => a.at - b.at)));
+        setItem(queue.length ? make(queue[0]) : null);
+        setReady(true);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!ready) return <p className={muted}>Loading…</p>;
 
   if (index >= queue.length || !item)
     return (
@@ -49,7 +70,7 @@ export function SessionRunner({ title, queue, blind, onExit, doneLabel = 'Back' 
   function next() {
     const i = index + 1;
     setIndex(i);
-    setItem(i < queue.length ? itemFor(queue[i].nodeId, queue[i].tier) : null);
+    setItem(i < queue.length ? make(queue[i]) : null);
   }
   return (
     <div className="flex flex-col gap-3">

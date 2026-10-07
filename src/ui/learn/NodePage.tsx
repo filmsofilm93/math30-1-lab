@@ -12,6 +12,8 @@ import type { Item, Tier } from '../../engine/types';
 import { ItemView, Steps, Stem, type ItemResult } from '../components/ItemView';
 import { Rich } from '../components/Rich';
 import { CardDeck } from './CardDeck';
+import { VideoCard } from './VideoCard';
+import { VIDEOS } from '../../content/videos';
 import { FunctionOpsLab } from '../explorers/FunctionOpsLab';
 import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
@@ -291,7 +293,14 @@ export function WorkedExample({ item, n }: { item: Item; n: number }) {
 function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }) {
   const examples = useMemo(() => lesson.examples.map((e) => makeItem(generatorById(e.generatorId)!, e.seed, e.tier)), [lesson]);
   const [cardsDone, setCardsDone] = useState(false);
-  if (lesson.cards && !cardsDone) return <CardDeck key={lesson.nodeId} cards={lesson.cards} onDone={() => setCardsDone(true)} />;
+  const video = VIDEOS[lesson.nodeId];
+  if (lesson.cards && !cardsDone)
+    return (
+      <div className="flex flex-col gap-4">
+        {video && <VideoCard video={video} />}
+        <CardDeck key={lesson.nodeId} cards={lesson.cards} onDone={() => setCardsDone(true)} />
+      </div>
+    );
   return (
     <div className="flex flex-col gap-4">
       {lesson.cards && (
@@ -302,6 +311,7 @@ function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }
           </button>
         </div>
       )}
+      {!lesson.cards && video && <VideoCard video={video} />}
       <div className={`${card} flex flex-col gap-3 p-4 leading-relaxed`}>
         {lesson.explain.map((para, i) => (
           <p key={i}>
@@ -322,7 +332,7 @@ function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }
 /** Three items: last step left to you, last two steps, then the whole problem. */
 function FadedStage({ nodeId, onNext }: { nodeId: string; onNext: () => void }) {
   const [round, setRound] = useState(0);
-  const [item, setItem] = useState<Item | null>(() => itemFor(nodeId, 2));
+  const [item, setItem] = useState<Item | null>(() => itemFor(nodeId, 1));
   const [done, setDone] = useState(false);
   if (!item) return null;
   const n = item.solution.length;
@@ -336,7 +346,7 @@ function FadedStage({ nodeId, onNext }: { nodeId: string; onNext: () => void }) 
   function next() {
     if (round === 2) return onNext();
     setRound(round + 1);
-    setItem(itemFor(nodeId, round === 0 ? 2 : 3, item!.generatorId));
+    setItem(itemFor(nodeId, round === 0 ? 1 : 2, item!.generatorId));
     setDone(false);
   }
   return (
