@@ -63,6 +63,8 @@ export interface Settings {
   setupDone?: boolean;
   /** Anthropic API key for optional written-response feedback. Stays on this device: never exported. */
   apiKey?: string;
+  /** When a backup was last exported (epoch ms). */
+  lastExportAt?: number;
 }
 
 /** One written-response question in a mock: typed work, photos of handwritten work, and scores. */

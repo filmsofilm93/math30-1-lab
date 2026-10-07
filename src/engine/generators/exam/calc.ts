@@ -14,7 +14,7 @@ const CALC_MENU = `${k('2nd', 'TRACE')} (CALC)`;
 const QUIT = k('2nd', 'MODE');
 
 const r2 = (x: number) => Math.round(x * 100) / 100;
-const fmt = (x: number, d = 2) => String(+x.toFixed(d));
+const fmt = (x: number, d = 2) => (Math.abs(x) < 0.5 * 10 ** -d ? 0 : x).toFixed(d);
 /** Reject values that sit near a rounding boundary, so the keyed answer is unambiguous. */
 const clean = (x: number) => Math.abs(Math.abs((x * 100) % 1) - 0.5) > 0.06;
 
@@ -237,7 +237,7 @@ const calcRange: Generator = {
     const [x2, y2] = extremum(f, -3, 0, true);
     const ymax = Math.max(y1, y2);
     if (!clean(ymax) || Math.abs(y1 - y2) < 0.05) throw new Reject();
-    const eq = `-x^4 + ${p}x^2 + ${s === 1 ? '' : s}x ${q < 0 ? `- ${-q}` : `+ ${q}`}`.replace('+ 0', '').trim();
+    const eq = `-x^4 + ${p}x^2 + ${s === 1 ? '' : s}x${q < 0 ? ` - ${-q}` : q > 0 ? ` + ${q}` : ''}`;
     return {
       cognitive: 'problemSolving',
       stem: `Determine the range of ${m(`y = ${eq}`)}, to the nearest hundredth.`,
@@ -305,7 +305,8 @@ const modeValue: Generator = {
     const F = { sin: Math.sin, cos: Math.cos, tan: Math.tan }[fn];
     const [tex, rad] = deg ? ((d) => [`${d}^\\circ`, (d * Math.PI) / 180] as [string, number])(rng.pick(DEG_ANGLES)) : rng.pick(RAD_ANGLES);
     const v = F(rad);
-    const wrongV = deg ? F(Number(tex.replace('^\\circ', ''))) : F((rad * 180) / Math.PI);
+    // Wrong mode: degree input read as radians, or radian input read as degrees (same keystrokes).
+    const wrongV = deg ? F(Number(tex.replace('^\\circ', ''))) : F((rad * Math.PI) / 180);
     if (!clean(v) || Math.abs(v) > 20) throw new Reject();
     return {
       cognitive: 'procedural',
@@ -331,14 +332,15 @@ const modeError: Generator = {
     const [tex, rad] = rng.pick(RAD_ANGLES.filter((a) => a[0].includes('pi')));
     const shown = Math.sin(rad); // correct, radian mode
     const degShown = Math.sin((rad * Math.PI) / 180); // what degree mode gives for the same keystrokes
+    const [, num, den] = tex.match(/\\frac\{(.+)\}\{(.+)\}/)!;
     return {
       cognitive: 'conceptual',
       stem: `A student evaluates ${m(`\\sin ${tex}`)} and the calculator shows ${m(fmt(degShown, 4))}. The correct value is about ${m(fmt(shown, 4))}. What went wrong?`,
       format: 'mc',
       choices: mc({ tex: 'The calculator was in degree mode, so it took the angle as degrees', key: 'deg' }, [
-        { tex: 'The student forgot brackets around the fraction', key: 'br', mis: 'calc-brackets', feedback: `Missing brackets give a different error: ${m('\\sin(2\\pi)/7')}, not ${m('\\sin(2\\pi/7)')}.` },
+        { tex: 'The student forgot brackets around the fraction', key: 'br', mis: 'calc-brackets', feedback: `Missing brackets give a different error: ${m(`\\sin(${num})/${den}`)} instead of ${m(`\\sin(${num}/${den})`)}.` },
         { tex: 'The calculator was in radian mode', key: 'rad', mis: 'calc-mode', feedback: 'Radian mode gives the correct value here.' },
-        { tex: 'The calculator rounds trig values to 4 decimals', key: 'rnd', mis: 'calc-mode', feedback: 'Rounding cannot change 0.78 into 0.02.' },
+        { tex: 'The calculator rounds trig values to 4 decimals', key: 'rnd', mis: 'calc-mode', feedback: `Rounding cannot change ${fmt(shown)} into ${fmt(degShown)}.` },
       ]),
       hints: ['How big is the shown value compared with the correct one?', `${m(tex)} is a small number of radians but a tiny number of degrees.`, 'A tiny result from a trig key often means degree mode.'],
       solution: [{ tex: `In degree mode, ${m(`\\sin ${tex}`)} is ${m(`\\sin(${fmt(rad, 4)}^\\circ)`)}, almost 0.`, why: 'π alone does not force radians: the calculator still uses the mode setting.' }, { tex: `Fix: ${k('MODE')} → **RADIAN**, ${QUIT}, and re-enter.` }],

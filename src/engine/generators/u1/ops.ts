@@ -190,10 +190,9 @@ const quotientDomain: Generator = {
     let dom: RealSet = useRoot ? [iv(p, Infinity)] : ALL;
     dom = except(dom, zeros);
     if (useRoot && zeros.every((z) => z < p)) throw new Reject('zeros outside domain');
-    const swap = !useRoot && rng.chance(0.3);
     return {
       cognitive: 'conceptual',
-      stem: `${m(`f(x) = ${fTex}`)} and ${m(`g(x) = ${tx(g)}`)}. State the domain of ${m(swap ? '\\left(\\frac{f}{g}\\right)(x)' : '\\left(\\frac{f}{g}\\right)(x)')}.`,
+      stem: `${m(`f(x) = ${fTex}`)} and ${m(`g(x) = ${tx(g)}`)}. State the domain of ${m('\\left(\\frac{f}{g}\\right)(x)')}.`,
       format: 'input',
       fields: [field({ kind: 'interval', value: dom, tex: intervalTex(dom) }, '', 'Domain')],
       hints: [
@@ -204,7 +203,7 @@ const quotientDomain: Generator = {
       solution: [
         ...(useRoot ? [{ tex: `Domain of $f$: ${m(`x \\ge ${p}`)}.`, why: 'A square root needs a non-negative radicand.' }] : []),
         { tex: `${m(`g(x) = 0`)} when ${m(`x = ${zeros.join(', ')}`)}${r2 !== null ? `, since ${m(`${tx(g)} = (${shiftTex(r1)})(${shiftTex(r2!)})`)}` : ''}.`, why: 'You cannot divide by zero.' },
-        { tex: `Domain: ${m(intervalTex(dom))}, or ${m(setBuilderTex(dom))}.` },
+        { tex: `Domain: ${m(intervalTex(dom))}${setBuilderTex(dom) === intervalTex(dom) ? '' : `, or ${m(setBuilderTex(dom))}`}.` },
       ],
     };
   },

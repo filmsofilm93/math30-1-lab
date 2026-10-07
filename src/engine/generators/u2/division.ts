@@ -405,7 +405,7 @@ const factorYesNo: Generator = {
       format: 'mc',
       choices: mc({ tex: right, key: 'ok' }, [
         yes ? { tex: `No, because ${m(`P(${-a}) = ${Pn}`)}`, key: 'n1', mis: 'poly-remainder-sign', feedback: `For $${div}$ test $x = ${a}$.` } : { tex: `Yes, because ${m(`${Math.abs(a)}`)} divides the constant term ${m(String(p[3]))}`, key: 'y1', mis: 'poly-izt-leading', feedback: 'Dividing the constant only makes $a$ a candidate; you still have to test it.' },
-        { tex: yes ? `No, because ${m(`P(${a}) = ${Pa + 1 || 2}`)}` : `Yes, because ${m(`P(${-a}) = ${Pn}`)}`, key: 'n2', mis: 'poly-remainder-sign' },
+        { tex: yes ? `No, because ${m(`P(${a}) = ${Pa + 1 || 2}`)}` : `Yes, because ${m(`P(${-a}) = ${Pn}`)}`, key: 'n2', mis: 'poly-remainder-sign', feedback: yes ? `Recheck the arithmetic: ${m(`P(${a}) = 0`)}.` : `A nonzero value never shows a factor, and for ${m(div)} the test value is ${m(String(a))}.` },
         { tex: yes ? `Yes, because ${m(`P(${-a}) = 0`)}` : `No, because ${m(`P(${-a}) = ${Pn}`)}`, key: 'n3', mis: 'poly-remainder-sign', feedback: 'The test value is the zero of the binomial.' },
       ]),
       hints: ['Factor theorem.', `Evaluate ${m(`P(${a})`)}.`, `${m(`P(${a}) = ${Pa}`)}.`],
@@ -542,7 +542,7 @@ const factorFull: Generator = {
       stem: `Factor completely: ${m(polyTex(p))}.`,
       format: 'input',
       fields: [field(factoredAns(1, fs), '')],
-      hints: [`Try divisors of ${m(String(p[p.length - 1]))}.`, `${m(`P(${first}) = 0`)}, so divide by ${m(shiftTex(first))}.`, 'Keep factoring the quotient until every factor is linear or a quadratic that does not factor.'],
+      hints: [p[p.length - 1] === 0 ? 'Take out the common factor of $x$ first, then try divisors of the new constant term.' : `Try divisors of ${m(String(p[p.length - 1]))}.`, `${m(`P(${first}) = 0`)}, so divide by ${m(shiftTex(first))}.`, 'Keep factoring the quotient until every factor is linear or a quadratic that does not factor.'],
       solution: [
         { tex: `${m(`P(${first}) = 0`)}; synthetic division gives ${m(`(${shiftTex(first)})(${polyTex(q)})`)}.` },
         { tex: `Factor the quotient the same way (or as a trinomial).`, why: 'Each zero found lowers the degree by one.' },

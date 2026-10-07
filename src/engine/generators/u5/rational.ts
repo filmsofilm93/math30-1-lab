@@ -225,7 +225,7 @@ const ratXintMc: Generator = {
       format: 'mc',
       choices: mc({ tex: list(a.xints), key: key(a.xints) }, [
         { tex: list(withHole), key: key(withHole), mis: 'rat-xint-at-hole', feedback: 'The cancelled factor makes a hole; the function is not defined there.' },
-        { tex: list(a.vas), key: key(a.vas), mis: 'rat-xint-from-denominator', feedback: 'Zeros of the denominator give asymptotes, not intercepts.' },
+        { tex: list(a.vas), key: key(a.vas), mis: 'rat-xint-from-denominator', feedback: a.vas.length ? 'Zeros of the denominator give asymptotes, not intercepts.' : 'The simplified numerator has a zero in the domain, so there is an intercept.' },
         { tex: list(a.xints.map((x) => x.neg())), key: key(a.xints.map((x) => x.neg())), mis: 'tr-h-sign', feedback: `${m('(x - a) = 0')} gives ${m('x = a')}.` },
         { tex: list([...a.xints, ...a.vas].sort((p, q) => p.value - q.value)), key: 'xv' + key([...a.xints, ...a.vas]), mis: 'rat-xint-from-denominator' },
       ]),
@@ -298,7 +298,7 @@ const ratDrMc: Generator = {
     const { r, a } = pick(rng, ['lin-hole', 'const-hole'], (a) => a.range !== null && a.vas.length === 1, tier);
     const h = a.holes[0];
     const askRange = tier > 1;
-    const sb = (ex: Frac[], v = 'x') => `\\{${v} \\mid ${v} \\ne ${ex.map((e) => e.tex()).join(', ')}, ${v} \\in \\mathbb{R}\\}`;
+    const sb = (ex: Frac[], v = 'x') => `\\{${v} \\mid ${v} \\ne ${ex.filter((e, i) => ex.findIndex((f) => f.eq(e)) === i).map((e) => e.tex()).join(', ')}, ${v} \\in \\mathbb{R}\\}`;
     const right = askRange ? sb([a.ha!, h.y].sort((p, q) => p.value - q.value), 'y') : sb([a.vas[0], h.x].sort((p, q) => p.value - q.value));
     const cands: Cand[] = askRange
       ? [
@@ -541,7 +541,7 @@ const ratEqFeatures: Generator = {
     const kTex = kind === 'const' ? `y = \\frac{k}{x - p}` : `y = \\frac{a(x - r)}{x - p}`;
     return {
       cognitive: 'problemSolving',
-      stem: `A rational function has ${facts.slice(0, -1).join(', ')}, and ${facts[facts.length - 1]}. Write its equation.`,
+      stem: `A rational function has ${facts.slice(0, -1).join(', ')}, and ${facts[facts.length - 1]}. Write its equation in the form ${m(kTex)}${hasHole ? ', with a common factor added for the hole' : ''}.`,
       format: 'input',
       fields: [field(eqAnswer(r, a), 'y =')],
       hints: [
@@ -572,7 +572,7 @@ const ratEqGraphMc: Generator = {
     const swapped: RatFn = { k: r.k, num: r.num.map((f) => (a.holes.some((x) => x.x.eq(zeroOf(f))) ? f : L(a.vas[0].n))), den: r.den.map((f) => (a.holes.some((x) => x.x.eq(zeroOf(f))) ? f : L(a.xints[0]?.n ?? 0))) };
     const cands: Cand[] = [
       ...(hasHole ? [{ tex: m(`y = ${t(noHole)}`), key: t(noHole), mis: 'rat-domain-hole', feedback: `This has no hole at ${m(`x = ${h.x.tex()}`)}.` }] : []),
-      { tex: m(`y = ${t(holeAsVa)}`), key: t(holeAsVa), mis: hasHole ? 'rat-hole-as-va' : 'rat-xint-at-hole', feedback: 'That factor would be a vertical asymptote, not a hole.' },
+      { tex: m(`y = ${t(holeAsVa)}`), key: t(holeAsVa), mis: hasHole ? 'rat-hole-as-va' : 'rat-xint-at-hole', feedback: hasHole ? 'That factor would be a vertical asymptote, not a hole.' : r.num.length ? 'The common factor cancels, leaving a hole where the graph has an $x$-intercept.' : 'That adds a second vertical asymptote.' },
       { tex: m(`y = ${t(swapped)}`), key: t(swapped), mis: 'rat-xint-from-denominator', feedback: 'The numerator gives the $x$-intercept; the denominator gives the asymptote.' },
       { tex: m(`y = ${t({ ...r, k: -r.k })}`), key: t({ ...r, k: -r.k }), mis: 'rat-ha-degree', feedback: `The horizontal asymptote is ${m(`y = ${a.ha!.tex()}`)}.` },
     ];

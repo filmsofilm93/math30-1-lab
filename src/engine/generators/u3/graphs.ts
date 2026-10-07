@@ -37,7 +37,7 @@ const expGrowth: Generator = {
       stem: `${m(`y = ${shown}`)}. ${tierStem}`,
       format: 'mc',
       choices: mc({ tex: right, key: 'r' }, [
-        { tex: wrong, key: 'w', mis: 'exp-base-range', feedback: negExp ? `$${powTex(b, '-x')} = ${powTex(F(b.d, b.n), 'x')}$: the effective base is the reciprocal.` : `Base ${b.tex()} is ${b.value > 1 ? 'greater than 1' : 'between 0 and 1'}.` },
+        { tex: wrong, key: 'w', mis: 'exp-base-range', feedback: negExp ? `$${powTex(b, '-x')} = ${powTex(F(b.d, b.n), 'x')}$: the effective base is the reciprocal.` : `Base $${b.tex()}$ is ${b.value > 1 ? 'greater than 1' : 'between 0 and 1'}.` },
         { tex: 'Neither: it is a horizontal line', key: 'h', mis: 'exp-base-range' },
         { tex: `${isDecay ? 'Decay' : 'Growth'}, with ${m('x')}-intercept ${m('1')}`, key: 'x', mis: 'exp-asymptote', feedback: 'The graph never meets the $x$-axis; $y = b^x$ has $y$-intercept 1.' },
       ]),
@@ -238,6 +238,8 @@ const expEquation: Generator = {
 
 // ---------------------------------------------------------------- RF7.log-def
 
+const par = (s: string) => (s.startsWith('-') || s.includes('\\frac') ? `\\left(${s}\\right)` : s);
+
 function logTriple(rng: Parameters<Generator['make']>[0], tier: number) {
   const b = rng.pick([2, 3, 4, 5, 10]);
   const y = tier === 1 ? rng.int(2, 4) : rng.pick([-2, -1, 2, 3, 4]);
@@ -260,8 +262,9 @@ const logToExp: Generator = {
       stem,
       format: 'mc',
       choices: mc({ tex: m(`${L}^{${Y}} = ${X}`), key: 'ok' }, [
-        { tex: m(`${X}^{${Y}} = ${L}`), key: 'a', mis: 'log-def-swap' },
-        { tex: m(`${Y}^{${L}} = ${X}`), key: 'b', mis: 'log-def-swap' },
+        // With y = -1, (1/b)^(-1) = b is true, so use a different swap.
+        y === -1 && !symbolic ? { tex: m(`${par(X)}^{${L}} = ${Y}`), key: 'a', mis: 'log-def-swap' } : { tex: m(`${par(X)}^{${Y}} = ${L}`), key: 'a', mis: 'log-def-swap' },
+        { tex: m(`${par(Y)}^{${L}} = ${X}`), key: 'b', mis: 'log-def-swap' },
         { tex: m(`${L}^{${X}} = ${Y}`), key: 'c', mis: 'log-def-swap' },
       ]),
       hints: ['A logarithm is an exponent.', '$\\log_b x = y$ asks: $b$ to what power gives $x$?', 'The base stays the base; the log value is the exponent.'],
@@ -286,7 +289,8 @@ const expToLog: Generator = {
       format: 'mc',
       choices: mc({ tex: m(`${lb(B)} ${X} = ${Y}`), key: 'ok' }, [
         { tex: m(`${lb(B)} \\left(${Y}\\right) = ${X}`), key: 'a', mis: 'log-def-swap' },
-        { tex: m(`${lb(X)} ${B} = ${Y}`), key: 'b', mis: 'log-def-swap' },
+        // With y = -1, log_{1/b} b = -1 is true, so use a sign slip instead.
+        y === -1 && !symbolic ? { tex: m(`${lb(B)} ${X} = 1`), key: 'b', mis: 'log-def-swap' } : { tex: m(`${lb(X)} ${B} = ${Y}`), key: 'b', mis: 'log-def-swap' },
         { tex: m(`${lb(Y)} ${X} = ${B}`), key: 'c', mis: 'log-def-swap' },
       ]),
       hints: ['The exponent is what the logarithm equals.', '$b^y = x \\iff \\log_b x = y$.', `The base is ${m(B)}.`],

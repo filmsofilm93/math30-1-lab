@@ -48,7 +48,7 @@ const fnEval: Generator = {
       fields: [field(num(f(a)), `f(${a}) =`)],
       hints: [`${m(`f(${a})`)} is the output when the input is ${a}.`, `Replace every $x$ with ${m(paren(a))}.`, `${m(`f(${a}) = ${polyTex(poly).replace(/x/g, `\\left(${a}\\right)`)}`)}`],
       solution: [
-        { tex: `${m(`f(${a}) = ${polyTex(poly).replace(/x/g, `\\left(${a}\\right)`)}`)}`, why: 'Substitute with brackets so a negative input is squared correctly.' },
+        { tex: `${m(`f(${a}) = ${polyTex(poly).replace(/x/g, `\\left(${a}\\right)`)}`)}`, why: 'Brackets keep the sign of the input attached to it.' },
         { tex: `${m(`= ${f(a)}`)}` },
       ],
     };
@@ -729,7 +729,7 @@ const sysGraph: Generator = {
       hints: ['The solutions are the intersection points.', 'Read each crossing point and check it in both equations.', `One crossing is at ${m(`x = ${r1}`)}.`],
       solution: [
         { tex: `The graphs cross at ${pts.map(([x, y]) => m(ptTex(x, y))).join(' and ')}.`, why: 'A solution must satisfy both equations, so it lies on both graphs.' },
-        { tex: `Check ${m(ptTex(...pts[0]))} in both equations: ${m(`${polyTex(quad).replace(/x/g, `\\left(${r1}\\right)`)} = ${pts[0][1]}`)}.` },
+        { tex: `Check ${m(ptTex(...pts[0]))} in both equations: ${m(`${polyTex(quad).replace(/x/g, `\\left(${r1}\\right)`)} = ${pts[0][1]}`)} and ${m(`${polyTex([mm, d]).replace(/x/g, `\\left(${r1}\\right)`)} = ${pts[0][1]}`)}.` },
       ],
       verify: () => pts.every(([x, y]) => Math.abs(polyEval(quad)(x) - y) < 1e-9),
     };

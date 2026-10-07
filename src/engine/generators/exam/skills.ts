@@ -378,7 +378,7 @@ const hygieneBrackets: Generator = {
       hints: ['Exponents come before the negative sign.', `${m(`-${a}^{${n}}`)} means ${m(`-(${a}^{${n}})`)}.`, `Only ${m(`(-${a})^{${n}}`)} would be positive.`],
       solution: [
         { tex: `${m(`-${a}^{${n}} = -(${a}^{${n}}) = ${right}`)}.`, why: 'The exponent applies to the base next to it, not to the sign.' },
-        { tex: `Compare ${m(`(-${a})^{${n}} = ${a ** n}`)}. Write the brackets whenever a negative base is squared.` },
+        { tex: `Compare ${m(`(-${a})^{${n}} = ${a ** n}`)}. Write the brackets whenever a negative base is raised to a power.` },
       ],
     };
   },
@@ -461,7 +461,7 @@ const sketchHole: Generator = {
       hints: ['The common factor cancels, but its zero is still excluded from the domain.', `Cancel ${m(pa(a))}: the graph is ${m(`y = ${kk}${pa(c)}`)} with ${m(`x \\ne ${a}`)}.`, `Substitute ${m(`x = ${a}`)} into the simplified function.`],
       solution: [
         { tex: `Simplify: ${m(`y = ${kk}${pa(c)},\\ x \\ne ${a}`)}.` },
-        { tex: `${m(`y(${a}) = ${kk ? kk + '(' : ''}${a} - ${c < 0 ? `(${c})` : c}${kk ? ')' : ''} = ${y}`)}, so the open circle is at ${m(`(${a}, ${y})`)}.`, why: 'A sketch without the open circle misses a key feature.' },
+        { tex: `${m(`y(${a}) = ${((inner) => (kk ? `${kk}(${inner})` : inner))(c === 0 ? String(a) : `${a} ${c > 0 ? '-' : '+'} ${Math.abs(c)}`)} = ${y}`)}, so the open circle is at ${m(`(${a}, ${y})`)}.`, why: 'A sketch without the open circle misses a key feature.' },
       ],
       verify: () => y === k * (a - c),
     };
@@ -476,16 +476,20 @@ const sketchAxes: Generator = {
     const amp = rng.int(2, 6);
     const b = rng.pick([2, 3, 4]);
     const d = rng.int(-3, 3);
-    const per = `\\frac{2\\pi}{${b}}`;
-    const step = `\\frac{\\pi}{${2 * b}}`;
+    const piOver = (n: number, dd: number) => { const g = n % dd === 0 ? dd : dd % n === 0 ? n : 1; const [p, q] = [n / g, dd / g]; return `${q === 1 ? '' : '\\frac{'}${p === 1 ? '' : p}\\pi${q === 1 ? '' : `}{${q}}`}`; };
+    const per = piOver(2, b);
+    const step = piOver(1, 2 * b);
+    const half = piOver(1, b);
     return {
       cognitive: 'conceptual',
-      stem: `You sketch ${m(`y = ${amp}\\cos ${b}x ${d < 0 ? `- ${-d}` : d > 0 ? `+ ${d}` : ''}`)} for one period. Which ${m('x')}-axis scale lets you mark the maximums, minimums and midline crossings exactly on tick marks?`,
+      stem: `You sketch ${m(`y = ${amp}\\cos ${b}x${d < 0 ? ` - ${-d}` : d > 0 ? ` + ${d}` : ''}`)} for one period. Which ${m('x')}-axis scale lets you mark the maximums, minimums and midline crossings exactly on tick marks?`,
       format: 'mc',
       choices: mc({ tex: `Ticks every ${m(step)}`, key: 'q' }, [
-        { tex: 'Ticks every 1', key: 'one', mis: 'wr-sketch-features', feedback: 'Key points are at multiples of π, which fall between integer ticks.' },
+        { tex: 'Ticks every 1', key: 'one', mis: 'wr-sketch-features', feedback: 'Key points are at fractions of $\\pi$, which fall between integer ticks.' },
         { tex: `Ticks every ${m(per)}`, key: 'per', mis: 'wr-sketch-features', feedback: 'That marks only the start and end of the period.' },
-        { tex: 'Ticks every $\\pi$', key: 'pi', mis: 'wr-sketch-features', feedback: `The period is ${m(per)}, so ticks every π skip the key points.` },
+        b === 2
+          ? { tex: `Ticks every ${m(half)}`, key: 'pi', mis: 'wr-sketch-features', feedback: 'That is half a period, so the midline crossings fall between ticks.' }
+          : { tex: 'Ticks every $\\pi$', key: 'pi', mis: 'wr-sketch-features', feedback: `The period is ${m(per)}, so ticks every $\\pi$ skip the key points.` },
       ]),
       hints: [`Period ${m(per)}.`, 'Key points of a sinusoid are a quarter period apart.', `A quarter of ${m(per)} is ${m(step)}.`],
       solution: [{ tex: `Period ${m(`${per}`)}; quarter period ${m(step)}.`, why: 'Maximum, midline, minimum, midline, maximum are a quarter period apart.' }, { tex: `Ticks every ${m(step)}, with the range ${m(`[${d - amp}, ${d + amp}]`)} scaled on the y-axis.` }],

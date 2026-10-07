@@ -213,7 +213,7 @@ const npvMc: Generator = {
         { tex: L(all.filter((d) => d < 180)), key: `h${all.filter((d) => d < 180).join()}`, mis: 'trig-general-period' },
         { tex: L(union(all, all.map((d) => norm(d + 90)))), key: 'x', mis: 'trig-general-period' },
       ]),
-      hints: ['Two sources: denominators and the reciprocal or quotient functions.', `Denominator: ${m(c.tex.match(/\\frac\{.*?\}\{(.*)\}$/)?.[1] ?? '')} \\ne 0.`, 'Combine both lists.'],
+      hints: ['Two sources: denominators and the reciprocal or quotient functions.', `Denominator: ${m(`${c.tex.match(/\\frac\{.*?\}\{(.*)\}$/)?.[1] ?? ''} \\ne 0`)}.`, 'Combine both lists.'],
       solution: [{ tex: `Denominator: ${m(listTex(c.den, true))}. Hidden: ${m(listTex(c.hidden, true))}.` }, { tex: L(all) }],
     };
   },
@@ -311,9 +311,9 @@ const simpPyth: Generator = {
       format: 'mc',
       choices: mc(
         { tex: m(c.right), key: 'r' },
-        c.wrong.map((w, i) => ({ tex: m(w), key: `w${i}`, mis: 'trig-pyth-sign', feedback: `Test ${m('x = 0')} or ${m('x = \\frac{\\pi}{4}')}: the sides differ.` })),
+        c.wrong.map((w, i) => ({ tex: m(w), key: `w${i}`, mis: 'trig-pyth-sign', feedback: `Test ${m('x = \\frac{\\pi}{6}')}: the sides differ.` })),
       ),
-      hints: ['Start from $\\sin^2 x + \\cos^2 x = 1$.', 'Divide by $\\cos^2 x$ to get the tan and sec form; by $\\sin^2 x$ for cot and csc.', 'Check a value such as $x = 0$.'],
+      hints: ['Start from $\\sin^2 x + \\cos^2 x = 1$.', 'Divide by $\\cos^2 x$ to get the tan and sec form; by $\\sin^2 x$ for cot and csc.', 'Check a value such as $x = \\frac{\\pi}{6}$.'],
       solution: [{ tex: `${m(c.right)} is a rearrangement of a Pythagorean identity.`, why: 'The others fail a quick numeric check.' }],
     };
   },
@@ -443,7 +443,7 @@ const esdValue: Generator = {
           : `\\frac{${a('tan', A)} ${op} ${a('tan', B)}}{1 ${op === '+' ? '-' : '+'} \\left(${a('tan', A)}\\right)\\left(${a('tan', B)}\\right)}`;
     return {
       cognitive: 'procedural',
-      stem: `Use a sum or difference identity to determine the exact value of ${m(`\\${fn} ${angTex(d, inRad)}`)}.${fn === 'tan' ? ' (Standard of excellence.)' : ''}`,
+      stem: `Use a sum or difference identity to determine the exact value of ${m(`\\${fn} ${angTex(d, inRad)}`)}.`,
       format: 'input',
       fields: [field({ kind: 'number', value: e.value, tex: e.tex, exact: true })],
       hints: [`Write ${m(angTex(d, inRad))} as a sum or difference of special angles.`, `${m(`${angTex(d, inRad)} = ${angTex(A, inRad)} ${op} ${angTex(B, inRad)}`)}.`, `${m(`\\${fn}(A ${op} B) = ${fn === 'sin' ? `\\sin A\\cos B ${op} \\cos A\\sin B` : fn === 'cos' ? `\\cos A\\cos B ${op === '+' ? '-' : '+'} \\sin A\\sin B` : `\\frac{\\tan A ${op} \\tan B}{1 ${op === '+' ? '-' : '+'} \\tan A\\tan B}`}`)}.`],
@@ -496,7 +496,7 @@ const esdDouble: Generator = {
     const Q = ['', 'I', 'II', 'III', 'IV'][q];
     return {
       cognitive: 'problemSolving',
-      stem: `Given ${m(givenSin ? `\\sin\\theta = ${s.tex()}` : `\\cos\\theta = ${co.tex()}`)} with ${m('\\theta')} in quadrant ${Q}, determine the exact value of ${m(`\\${want} 2\\theta`)}.${want === 'tan' ? ' (Standard of excellence.)' : ''}`,
+      stem: `Given ${m(givenSin ? `\\sin\\theta = ${s.tex()}` : `\\cos\\theta = ${co.tex()}`)} with ${m('\\theta')} in quadrant ${Q}, determine the exact value of ${m(`\\${want} 2\\theta`)}.`,
       format: 'input',
       fields: [field({ kind: 'number', value: ans.value, tex: ans.tex(), exact: true })],
       hints: [`Sketch ${m('\\theta')} in quadrant ${Q} and find the missing side with ${m('x^2 + y^2 = r^2')}.`, `${m(`\\sin\\theta = ${s.tex()}`)}, ${m(`\\cos\\theta = ${co.tex()}`)}.`, want === 'sin' ? '$\\sin 2\\theta = 2\\sin\\theta\\cos\\theta$.' : want === 'cos' ? '$\\cos 2\\theta = \\cos^2\\theta - \\sin^2\\theta$.' : '$\\tan 2\\theta = \\frac{\\sin 2\\theta}{\\cos 2\\theta}$.'],
@@ -642,7 +642,7 @@ const paSimplify: Generator = {
       stem: `Simplify ${m(c.tex)} to a single term.`,
       format: 'input',
       fields: [field(trigExpr(c.ans))],
-      hints: ['Replace any double angle with single-angle identities.', 'Combine fractions over a common denominator.', `${m(c.steps[0])}.`],
+      hints: ['Expand, or replace any double angle with a single-angle identity.', 'Look for $\\sin^2 x + \\cos^2 x = 1$; then combine fractions or cancel a common factor.', `${m(c.steps[0])}.`],
       solution: [...c.steps.map((s, i) => ({ tex: m(`${i === 0 ? c.tex : ''} = ${s}`) })), { tex: m(`= ${c.ans}`) }],
     };
   },
@@ -659,7 +659,7 @@ const paMc: Generator = {
       stem: `Which expression is equivalent to ${m(c.tex)}?`,
       format: 'mc',
       choices: mc({ tex: m(c.ans), key: 'r' }, notEquiv(c.ans, c.wrong).map((w) => ({ ...w, tex: m(w.tex) }))),
-      hints: ['Use double-angle identities to write everything in terms of $x$.', 'Combine fractions; factor and cancel.', `${m(c.steps[0])}.`],
+      hints: ['Expand, or replace any double angle with a single-angle identity.', 'Look for $\\sin^2 x + \\cos^2 x = 1$; then combine fractions or cancel a common factor.', `${m(c.steps[0])}.`],
       solution: [...c.steps.map((s, i) => ({ tex: m(`${i === 0 ? c.tex : ''} = ${s}`) })), { tex: m(`= ${c.ans}`) }],
     };
   },

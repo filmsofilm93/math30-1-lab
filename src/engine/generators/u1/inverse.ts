@@ -243,15 +243,17 @@ const restrictWhich: Generator = {
   title: 'Choose a domain restriction',
   make(rng): Draft {
     const { h, k, f } = quadSetup(rng);
-    const ge = rng.chance(0.5);
+    // Distractors must cross the vertex, or they would also be valid restrictions (one-sided subsets of a branch).
+    const ge = h.value > 0;
     const op = ge ? '\\ge' : '\\le';
+    if (ge ? k.value >= h.value : k.value <= h.value) throw new Reject();
     return {
       cognitive: 'conceptual',
       stem: `Which restriction on the domain of ${m(`f(x) = ${f}`)} makes its inverse a function?`,
       format: 'mc',
       choices: mc({ tex: m(`x ${op} ${h.tex()}`), key: 'r' }, [
         { tex: m(`x ${op} ${k.tex()}`), key: 'k', mis: 'inv-restrict-wrong', feedback: '$k$ is the $y$-coordinate of the vertex. The domain restriction uses its $x$-coordinate.' },
-        { tex: m(`y ${op} ${k.tex()}`), key: 'y', mis: 'inv-restrict-wrong', feedback: 'That restricts the range, which is already true of the whole parabola.' },
+        { tex: m(`y ${op} ${k.tex()}`), key: 'y', mis: 'inv-restrict-wrong', feedback: 'That restricts $y$, not $x$. A domain restriction is a condition on $x$.' },
         { tex: m(`x ${op} ${h.neg().tex()}`), key: 'h', mis: 'tr-h-sign' },
       ]),
       hints: ['The inverse is a function only if $f$ passes the horizontal line test.', 'Keep one half of the parabola: cut it at the vertex.', `The vertex is at $x = ${h.tex()}$.`],
@@ -283,7 +285,7 @@ const restrictedInverse: Generator = {
       hints: [
         'Find the inverse as usual, then decide which sign of the root to keep.',
         'The range of $f^{-1}$ equals the restricted domain of $f$.',
-        `$f^{-1}$ must give values ${ge ? '\\ge' : '\\le'} $${h.tex()}$.`,
+        `$f^{-1}$ must give values $${ge ? '\\ge' : '\\le'} ${h.tex()}$.`,
       ],
       solution: [
         { tex: `Swap and solve: ${m(`y = ${h.tex()} \\pm \\sqrt{${rad}}`)}.` },

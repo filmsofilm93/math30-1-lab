@@ -275,7 +275,7 @@ const hstretchPoint: Generator = {
       `Divide the $x$-coordinate by $${b.tex()}$.`,
     ];
     const solution = [
-      { tex: `Mapping: ${m(`(x, y) \\to \\left(\\frac{x}{${b.tex()}}, y\\right)`)}.`, why: `To get the same output as before, the input must be $${b.tex()}$ times smaller: if $f(${x.tex()}) = ${y.tex()}$, then $f(${b.tex()} \\cdot ${X.tex()}) = ${y.tex()}$.` },
+      { tex: `Mapping: ${m(`(x, y) \\to \\left(\\frac{x}{${b.tex()}}, y\\right)`)}.`, why: `Check: the new function at $x = ${X.tex()}$ is $f(${b.tex()} \\cdot ${X.tex()}) = f(${x.tex()}) = ${y.tex()}$.` },
       { tex: `Image: ${m(ptTex(X, y))}.` },
     ];
     if (tier < 3) {
@@ -319,7 +319,7 @@ const hstretchEquation: Generator = {
         `Factor $${factor.tex()}$ means $b = ${b.tex()}$.`,
       ],
       solution: [
-        { tex: `$b = \\frac{1}{${factor.tex()}} = ${b.tex()}$.`, why: 'A horizontal stretch by factor $s$ multiplies $x$-coordinates by $s$, which happens when $x$ is replaced by $\\frac{x}{s}$, so $b = \\frac{1}{s}$.' },
+        { tex: factor.d === 1 ? `$b = \\frac{1}{${factor.tex()}}$.` : `$b = 1 \\div ${factor.tex()} = ${b.tex()}$.`, why: 'A horizontal stretch by factor $s$ multiplies $x$-coordinates by $s$, which happens when $x$ is replaced by $\\frac{x}{s}$, so $b = \\frac{1}{s}$.' },
         { tex: `Replace $x$ with $${b.tex()}x$: $y = ${tex}$.` },
       ],
     };
@@ -436,7 +436,7 @@ const reflectDescribe: Generator = {
   nodeId: 'RF5.reflect-axes',
   title: 'Identify the reflection from the equation',
   make(rng, tier): Draft {
-    const base = pickBase(rng, tier === 1 ? ['sqrt', 'exp2'] : ['sqrt', 'exp2', 'cubic', 'log']);
+    const base = pickBase(rng, tier === 1 ? ['sqrt', 'exp2'] : ['sqrt', 'exp2', 'log']); // not x³: odd functions make both reflections look identical
     const kind = rng.pick(['x', 'y', 'both'] as const);
     const p = TP(kind === 'y' ? 1 : -1, kind === 'x' ? 1 : -1, 0, 0);
     const g = transformedTex(BASE[base.id], p);

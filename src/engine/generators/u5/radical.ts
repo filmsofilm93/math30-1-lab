@@ -101,7 +101,7 @@ const sqrtMap: Generator = {
       choices: mc({ tex: m(ptTex(X, Y)), key: pkey(X.value, Y.value) }, [
         cand(TP(p.a, p.b.inv(), p.h, p.k), 'tr-b-not-reciprocal', 'The $x$-coordinate is divided by $b$, not multiplied.'),
         cand(TP(p.a, p.b, p.h.neg(), p.k), 'tr-h-sign', `${m(`x ${p.h.n > 0 ? '-' : '+'} ${p.h.abs().tex()}`)} moves the graph ${p.h.n > 0 ? 'right' : 'left'}.`),
-        cand(TP(p.a, p.b, p.h.mul(p.b), p.k), 'tr-b-not-reciprocal', 'Factor $b$ out first; $h$ is read from $b(x - h)$.'),
+        cand(TP(p.a, p.b, p.h.mul(p.b), p.k), 'tr-b-not-reciprocal', '$h$ is read from inside the bracket $b(x - h)$; do not multiply it by $b$.'),
         cand(TP(p.a.neg(), p.b, p.h, p.k), 'tr-h-sign'),
       ]),
       hints: ['Mapping: $(x, y) \\to \\left(\\frac{x}{b} + h, ay + k\\right)$.', `${m(`a = ${p.a.tex()}`)}, ${m(`b = ${p.b.tex()}`)}, ${m(`h = ${p.h.tex()}`)}, ${m(`k = ${p.k.tex()}`)}.`, `New ${m('x')}: ${m(`\\frac{${key[0]}}{${p.b.tex()}} ${signedTex(p.h)}`)}.`],
@@ -215,7 +215,7 @@ const sqrtfInvariant: Generator = {
         choices: mc({ tex: m(tex), key: tex }, [
           { tex: m(noOne), key: noOne, mis: 'rad-invariant-wrong', feedback: 'Points with $y = 1$ are invariant too, since $\\sqrt{1} = 1$.' },
           { tex: wrongPts([0, -1]) ? m(wrongPts([0, -1])) : 'There are none', key: 'neg' + wrongPts([0, -1]), mis: 'rad-invariant-wrong', feedback: '$\\sqrt{-1}$ is not real; the invariant heights are $0$ and $1$.' },
-          { tex: m(`(0, ${polyTexAt(fn)})`), key: 'yint', mis: 'rad-invariant-wrong', feedback: 'The $y$-intercept moves unless it is 0 or 1.' },
+          { tex: m(`(0, ${polyTexAt(fn)})`), key: 'yint', mis: 'rad-invariant-wrong', feedback: fn(0) === 0 || fn(0) === 1 ? 'That point is invariant, but the list is incomplete: solve both $f(x) = 0$ and $f(x) = 1$.' : 'The $y$-intercept moves unless it is 0 or 1.' },
           { tex: 'There are none', key: 'none', mis: 'rad-invariant-wrong' },
         ]),
         hints: ['A point stays put when $\\sqrt{y} = y$.', '$\\sqrt{y} = y$ only for $y = 0$ and $y = 1$.', `Solve ${m(`${fTex} = 0`)} and ${m(`${fTex} = 1`)}.`],
@@ -448,7 +448,7 @@ const radSolveAlg: Generator = {
       hints: [isolated ? 'Square both sides.' : 'Isolate the radical first.', `${m(`${polyTex([p, c])} = ${lin(-d)}^2`)}`, 'Solve the quadratic, then check each root in the original equation. Type ∅ if none work.'],
       solution: [
         ...(isolated ? [] : [{ tex: m(`${radTex(p, c)} = ${polyTex([1, d])}`), why: 'Isolate the radical before squaring.' }]),
-        { tex: m(`${polyTex([p, c])} = ${polyTex([1, 2 * d, d * d])}`), why: 'Square both sides; $(x + d)^2$ has a middle term.' },
+        { tex: m(`${polyTex([p, c])} = ${polyTex([1, 2 * d, d * d])}`), why: d === 0 ? 'Square both sides.' : `Square both sides; ${m(`(${polyTex([1, d])})^2`)} has a middle term.` },
         { tex: m(`${polyTex(quad)} = 0 \\Rightarrow ${lin(r1)}${lin(r2)} = 0`) },
         { tex: [r1, r2].map((r) => `${m(`x = ${r}`)}: right side ${m(String(r + d))} ${r + d >= 0 ? '✓' : '✗ (negative)'}`).join('; ') + '.', why: 'A principal square root is never negative, so a root that makes the right side negative is extraneous.' },
         { tex: valid.length ? `Solution: ${solutionText(valid)}.` : 'No solution: both roots are extraneous.' },
