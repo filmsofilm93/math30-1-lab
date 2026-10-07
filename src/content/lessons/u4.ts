@@ -505,7 +505,7 @@ export const U4_LESSONS: Lesson[] = [
       '**Quotient**: $\\tan x = \\frac{\\sin x}{\\cos x}$, $\\cot x = \\frac{\\cos x}{\\sin x}$.',
       '**Pythagorean**: $\\sin^2 x + \\cos^2 x = 1$, $1 + \\tan^2 x = \\sec^2 x$, $1 + \\cot^2 x = \\csc^2 x$, and rearrangements such as $1 - \\sin^2 x = \\cos^2 x$.',
       'Strategy: rewrite in sine and cosine, combine fractions, look for a Pythagorean pattern, factor, cancel factors (never terms).',
-      'Signs: $\\sec^2 x - \\tan^2 x = 1$, but $1 - \\tan^2 x \\ne \\sec^2 x$. Check a rearrangement with $x = 0$.',
+      'Signs: $\\sec^2 x - \\tan^2 x = 1$, but $1 - \\tan^2 x \\ne \\sec^2 x$. Check a rearrangement with $x = \\frac{\\pi}{4}$, not $x = 0$.',
     ],
     examples: [
       { generatorId: 'u4-simp-mc', seed: 2, tier: 2 },
@@ -595,7 +595,7 @@ export const U4_LESSONS: Lesson[] = [
       'Pythagorean: $2\\sin^2 x = 3\\cos x$ $\\Rightarrow 2(1 - \\cos^2 x)$ $= 3\\cos x \\Rightarrow (2\\cos x - 1)(\\cos x + 2)$ $= 0$.',
       'Sum and difference: condense first. $\\cos x\\cos\\frac{\\pi}{4} - \\sin x\\sin\\frac{\\pi}{4}$ $= \\cos\\left(x + \\frac{\\pi}{4}\\right)$.',
       'Other multiple-angle equations, such as $\\sin 3x = \\frac{1}{2}$, are outside the algebraic scope; solve them graphically.',
-      'Never divide by a trig expression; check NPVs for any quotient you introduce.',
+      'Do not divide by a trig expression unless you first check that it being zero gives no solution; check NPVs for any quotient you introduce.',
     ],
     examples: [
       { generatorId: 'u4-is-double', seed: 2, tier: 2 },
