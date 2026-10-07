@@ -27,7 +27,7 @@ function render(segs: Seg[]): string {
   for (let i = 0; i < segs.length; i++) {
     const s = segs[i];
     if (s.t === 'text') html += esc(s.v);
-    else if (s.t === 'bold') html += `<strong>${esc(s.v)}</strong>`;
+    else if (s.t === 'bold') html += `<strong>${render(parse(s.v))}</strong>`;
     else if (s.t === 'display') html += tex(s.v, true);
     else {
       const nxt = segs[i + 1];

@@ -11,6 +11,7 @@ import { itemFor, nextPracticeItem } from '../../engine/practice';
 import type { Item, Tier } from '../../engine/types';
 import { ItemView, Steps, Stem, type ItemResult } from '../components/ItemView';
 import { Rich } from '../components/Rich';
+import { CardDeck } from './CardDeck';
 import { FunctionOpsLab } from '../explorers/FunctionOpsLab';
 import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
@@ -289,8 +290,18 @@ export function WorkedExample({ item, n }: { item: Item; n: number }) {
 
 function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }) {
   const examples = useMemo(() => lesson.examples.map((e) => makeItem(generatorById(e.generatorId)!, e.seed, e.tier)), [lesson]);
+  const [cardsDone, setCardsDone] = useState(false);
+  if (lesson.cards && !cardsDone) return <CardDeck key={lesson.nodeId} cards={lesson.cards} onDone={() => setCardsDone(true)} />;
   return (
     <div className="flex flex-col gap-4">
+      {lesson.cards && (
+        <div className="flex items-center justify-between gap-3">
+          <h2 className={h2}>The short version</h2>
+          <button className={`text-sm font-bold text-accent hover:underline dark:text-accent-d`} onClick={() => setCardsDone(false)}>
+            Go through the steps again
+          </button>
+        </div>
+      )}
       <div className={`${card} flex flex-col gap-3 p-4 leading-relaxed`}>
         {lesson.explain.map((para, i) => (
           <p key={i}>
