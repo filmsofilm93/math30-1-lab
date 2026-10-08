@@ -29,7 +29,7 @@ export const U1_LESSONS: Lesson[] = [
         check: { q: 'Which way does $y = (x + 2)^2$ move compared with $y = x^2$?', options: ['Left 2', 'Right 2', 'Up 2', 'Down 2'], answer: 0, why: 'Inside the bracket works backwards: $+2$ means left 2.' },
       },
       {
-        say: 'A quick trick for the inside number: ask what value of $x$ makes the bracket zero. That value is where the graph moved to.',
+        say: 'A quick trick for the inside number: ask what value of $x$ makes the bracket zero. That value is $h$. It tells you how far the graph moved sideways, and which way.',
         example: ['$y = (x - 4)^2$', '$x - 4 = 0$ when $x = 4$.', 'So $h = 4$: right 4.', '$y = (x + 2)^2$', '$x + 2 = 0$ when $x = -2$.', 'So $h = -2$: left 2.'],
         check: { q: 'What value of $x$ makes $(x - 7)$ zero?', options: ['$7$', '$-7$', '$0$', '$1$'], answer: 0, why: '$7 - 7 = 0$, so the graph moved right 7.' },
       },

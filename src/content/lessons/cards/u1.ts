@@ -51,14 +51,14 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: '$(8, 1)$ is on $y = f(x)$. Which point is on $y = f(4x)$?', options: ['$(2, 1)$', '$(32, 1)$', '$(8, 4)$', '$(2, 4)$'], answer: 0, why: 'Divide $x$ by $b$: $8 \\div 4 = 2$. The $y$ stays $1$.' },
     },
     {
-      say: 'Why divide? On $y = f(2x)$, the old input now comes from $2x$. To feed $f$ the same old input, $x$ only needs to be half as big.',
+      say: 'Why divide? On $y = f(2x)$, the function gets $2x$ as its input, not $x$. To give $f$ the same input as before, $x$ only needs to be half as big.',
       example: ['Old graph: $f(2) = 4$.', 'New graph $y = f(2x)$ gives output $4$ when $2x = 2$.', 'So $x = 1$.', 'The point $(2, 4)$ moved to $(1, 4)$.'],
       check: { q: '$f(6) = 7$. On $y = f(3x)$, which $x$ gives the output $7$?', options: ['$2$', '$18$', '$6$', '$9$'], answer: 0, why: 'You need $3x = 6$, so $x = 2$.' },
     },
     {
       say: 'The **horizontal stretch factor** is $\\frac{1}{|b|}$, measured from the $y$-axis. So $b = 2$ means a factor of $\\frac{1}{2}$ (narrower), and $b = \\frac{1}{3}$ means a factor of $3$ (wider).',
       example: ['Point $(2, 5)$. Graph $y = f\\left(\\frac{1}{3}x\\right)$.', 'New $x$: $2 \\div \\frac{1}{3} = 2 \\times 3 = 6$.', 'New point: $(6, 5)$.', 'The graph got 3 times wider.'],
-      check: { q: '$y = f(4x)$ is a horizontal stretch by what factor?', options: ['$\\frac{1}{4}$', '$4$', '$-4$', '$2$'], answer: 0, why: 'The factor is $\\frac{1}{b} = \\frac{1}{4}$. The graph gets narrower.' },
+      check: { q: '$y = f(4x)$ is a horizontal stretch by what factor?', options: ['$\\frac{1}{4}$', '$4$', '$-4$', '$2$'], answer: 0, why: 'The factor is $\\frac{1}{|b|} = \\frac{1}{4}$. The graph gets narrower.' },
     },
     {
       say: 'Exam trap: "horizontal stretch by a factor of $3$" means $b = \\frac{1}{3}$, **not** $b = 3$. Flip the factor to get $b$.',
@@ -166,7 +166,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'Every point follows one **mapping rule**: $(x, y) \\to \\left(\\frac{x}{b} + h,\\ ay + k\\right)$. The $x$ part uses $b$ and $h$. The $y$ part uses $a$ and $k$.',
-      example: ['$y = 2f(x - 4) - 1$, point $(5, 3)$.', 'Here $b = 1$: new $x = 5 + 4 = 9$.', 'New $y = 2(3) - 1 = 5$.', 'New point: $(9, 5)$.'],
+      example: ['Point $(5, 3)$ on $y = f(x)$. Graph $y = 2f(x - 4) - 1$.', 'Here $b = 1$: new $x = 5 + 4 = 9$.', 'New $y = 2(3) - 1 = 5$.', 'New point: $(9, 5)$.'],
       check: { q: 'For $y = 2f(x - 4) - 1$, an old point has $y = 3$. What is its new $y$?', options: ['$5$', '$4$', '$2$', '$6$'], answer: 0, why: 'New $y = ay + k = 2(3) - 1 = 5$.' },
     },
     {
@@ -181,7 +181,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'Put it together to move one point. Read $a$, $b$, $h$ and $k$, then work out the new $x$ and new $y$ separately.',
-      example: ['$(6, -2)$ on $y = -3f(2(x + 1)) + 4$.', '$a = -3$, $b = 2$, $h = -1$, $k = 4$.', 'New $x$: $6 \\div 2 = 3$, then $3 - 1 = 2$.', 'New $y$: $-3 \\times (-2) = 6$, then $6 + 4 = 10$.', 'New point: $(2, 10)$.'],
+      example: ['Point $(6, -2)$ on $y = f(x)$. Graph $y = -3f(2(x + 1)) + 4$.', '$a = -3$, $b = 2$, $h = -1$, $k = 4$.', 'New $x$: $6 \\div 2 = 3$, then $3 - 1 = 2$.', 'New $y$: $-3 \\times (-2) = 6$, then $6 + 4 = 10$.', 'New point: $(2, 10)$.'],
       check: { q: '$(4, 1)$ is on $y = f(x)$. Where does it go on $y = 2f\\left(\\frac{1}{2}(x - 3)\\right) - 5$?', options: ['$(11, -3)$', '$(5, -3)$', '$(11, -8)$', '$(7, -3)$'], answer: 0, why: '$4 \\div \\frac{1}{2} = 8$ and $8 + 3 = 11$. Then $2(1) - 5 = -3$.' },
     },
     {
@@ -214,7 +214,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'Once it is factored, map points with the usual rule $(x, y) \\to \\left(\\frac{x}{b} + h,\\ ay + k\\right)$.',
-      example: ['$(4, 5)$ on $y = f(2x - 6) + 1$.', 'Factor: $f(2(x - 3)) + 1$, so $b = 2$, $h = 3$.', 'New $x$: $4 \\div 2 + 3 = 5$.', 'New $y$: $5 + 1 = 6$.', 'New point: $(5, 6)$.'],
+      example: ['Point $(4, 5)$ on $y = f(x)$. Graph $y = f(2x - 6) + 1$.', 'Factor: $f(2(x - 3)) + 1$, so $b = 2$, $h = 3$.', 'New $x$: $4 \\div 2 + 3 = 5$.', 'New $y$: $5 + 1 = 6$.', 'New point: $(5, 6)$.'],
       check: { q: '$(6, 2)$ is on $y = f(x)$. Which point is on $y = f(3x + 3)$?', options: ['$(1, 2)$', '$(-1, 2)$', '$(17, 2)$', '$(3, 2)$'], answer: 0, why: '$3x + 3 = 3(x + 1)$, so $b = 3$ and $h = -1$. Then $6 \\div 3 - 1 = 1$.' },
     },
     {
@@ -223,7 +223,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is the domain of $y = \\sqrt{3x + 12}$?', options: ['$x \\ge -4$', '$x \\ge 4$', '$x \\ge -12$', '$x \\le -4$'], answer: 0, why: '$3x + 12 \\ge 0$ gives $3x \\ge -12$, so $x \\ge -4$.' },
     },
     {
-      say: 'If you divide by a **negative** number, flip the inequality sign. Then the domain points left, and the graph runs to the left.',
+      say: 'If you divide by a **negative** number, flip the inequality sign. Then the domain is $x \\le$ a number, and the graph runs to the left.',
       example: ['$y = \\sqrt{-2x + 8}$', '$-2x + 8 \\ge 0$', '$-2x \\ge -8$', 'Divide by $-2$ and flip: $x \\le 4$.'],
       check: { q: 'What is the domain of $y = \\sqrt{-3x + 9}$?', options: ['$x \\le 3$', '$x \\ge 3$', '$x \\le -3$', '$x \\ge -3$'], answer: 0, why: '$-3x \\ge -9$. Dividing by $-3$ flips the sign: $x \\le 3$.' },
     },
