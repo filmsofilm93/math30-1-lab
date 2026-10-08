@@ -275,7 +275,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Evaluate $\\binom{7}{3}$.', options: ['$35$', '$210$', '$21$', '$70$'], answer: 0, why: '$\\frac{7 \\times 6 \\times 5}{3 \\times 2 \\times 1} = \\frac{210}{6} = 35$.' },
     },
     {
-      say: '**Symmetry**: ${}_nC_r = {}_nC_{n - r}$. Choosing 3 people to take is the same as choosing the 5 people to leave behind.',
+      say: '**Symmetry**: ${}_nC_r = {}_nC_{n - r}$. Choosing 3 of 8 people to take is the same as choosing the 5 to leave behind.',
       example: ['${}_8C_5 = {}_8C_3$', '$= \\frac{8 \\times 7 \\times 6}{3!} = \\frac{336}{6} = 56$'],
       check: { q: 'Which has the same value as ${}_{10}C_7$?', options: ['${}_{10}C_3$', '${}_{10}C_{17}$', '${}_{10}C_4$', '${}_{10}P_3$'], answer: 0, why: '$10 - 7 = 3$, so ${}_{10}C_7 = {}_{10}C_3$.' },
     },
@@ -319,7 +319,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'A common mistake: picking one woman first, then any 2 from the rest. This counts some committees **twice**, so the answer comes out too big.',
-      example: ['Wrong: ${}_4C_1 \\times {}_8C_2 = 4 \\times 28 = 112$.', 'Right: $74$.', 'Ann, Bea, Cal is counted once with Ann picked first and again with Bea picked first.'],
+      example: ['Wrong: ${}_4C_1 \\times {}_8C_2 = 4 \\times 28 = 112$.', 'Right: $74$.', 'The committee Ann, Bea, Cal (two women) is counted once with Ann picked first and again with Bea picked first.'],
       check: { q: 'Why is ${}_4C_1 \\times {}_8C_2$ wrong for "at least one woman"?', options: ['It counts some groups more than once', 'It leaves out the men', 'It should add, not multiply', 'Order should matter'], answer: 0, why: 'A group with 2 women is counted once for each woman picked first.' },
     },
     {
@@ -386,7 +386,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'If the top number is $n + 1$ instead of $n$, solve the same way. The two factors are now $(n + 1)$ and $n$.',
       example: ['${}_{n + 1}C_2 = 10$', '$\\frac{(n + 1)n}{2} = 10$, so $n^2 + n = 20$.', '$n^2 + n - 20 = 0$', '$(n + 5)(n - 4) = 0$, so $n = 4$.'],
-      check: { q: 'Solve ${}_{n + 1}C_2 = 21$.', options: ['$6$', '$7$', '$-7$', '$5$'], answer: 0, why: '$(n + 1)n = 42$ gives $(n + 7)(n - 6) = 0$, so $n = 6$. Then $n + 1 = 7$, not $n$.' },
+      check: { q: 'Solve ${}_{n + 1}C_2 = 21$.', options: ['$6$', '$7$', '$-7$', '$5$'], answer: 0, why: '$(n + 1)n = 42$ gives $(n + 7)(n - 6) = 0$, so $n = 6$. Careful: $7$ is $n + 1$, not $n$.' },
     },
     {
       say: 'When both sides share a factor, divide it out. A big equation then becomes a small one.',
@@ -439,7 +439,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: '**Pascal\'s identity** writes the adding rule in symbols: ${}_nC_r = {}_{n-1}C_{r-1} + {}_{n-1}C_r$. Each entry is the two entries above it, added.',
       example: ['${}_5C_2 = {}_4C_1 + {}_4C_2$', '$= 4 + 6$', '$= 10$'],
-      check: { q: 'Which is equal to ${}_7C_3$?', options: ['${}_6C_2 + {}_6C_3$', '${}_6C_3 + {}_6C_4$', '${}_7C_2 + {}_7C_4$', '${}_6C_2 \\times {}_6C_3$'], answer: 0, why: 'By the identity, ${}_7C_3 = {}_6C_2 + {}_6C_3 = 15 + 20 = 35$.' },
+      check: { q: 'Which is equal to ${}_7C_3$?', options: ['${}_6C_2 + {}_6C_3$', '${}_6C_2 + {}_6C_4$', '${}_7C_2 + {}_7C_4$', '${}_6C_2 \\times {}_6C_3$'], answer: 0, why: 'By the identity, ${}_7C_3 = {}_6C_2 + {}_6C_3 = 15 + 20 = 35$.' },
     },
   ],
 
@@ -481,7 +481,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'Check an expansion by putting $x = 1$ into both sides. The two answers must match.',
-      example: ['Left: $(2(1) - 3)^3 = (-1)^3 = -1$.', 'Right: $8 - 36 + 54 - 27 = -1$.', 'They match.'],
+      example: ['Check $(2x - 3)^3 = 8x^3 - 36x^2 + 54x - 27$.', 'Left: $(2(1) - 3)^3 = (-1)^3 = -1$.', 'Right: $8 - 36 + 54 - 27 = -1$.', 'They match.'],
       check: { q: 'For $(x + 1)^3 = x^3 + 3x^2 + 3x + 1$, what do both sides equal at $x = 1$?', options: ['$8$', '$4$', '$6$', '$1$'], answer: 0, why: '$(1 + 1)^3 = 8$, and $1 + 3 + 3 + 1 = 8$.' },
     },
   ],
@@ -503,7 +503,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is the 2nd term of $(x + 3)^4$?', options: ['$12x^3$', '$4x^3$', '$54x^2$', '$108x$'], answer: 0, why: '$k = 1$: ${}_4C_1 (x)^3 (3)^1 = 4 \\times 3 \\times x^3 = 12x^3$.' },
     },
     {
-      say: 'With a negative second term, the sign depends on $k$. Even $k$ gives a plus. Odd $k$ gives a minus.',
+      say: 'When only the second term is negative, the sign depends on $k$. Even $k$ gives a plus. Odd $k$ gives a minus.',
       example: ['3rd term of $(2x - 1)^6$, so $k = 2$.', '$t_3 = {}_6C_2 (2x)^4 (-1)^2$', '$= 15 \\times 16x^4 \\times 1$', '$= 240x^4$'],
       check: { q: 'What is the 2nd term of $(x - 2)^5$?', options: ['$-10x^4$', '$10x^4$', '$-2x^4$', '$40x^3$'], answer: 0, why: '$k = 1$: ${}_5C_1 (x)^4 (-2)^1 = 5 \\times (-2) \\times x^4 = -10x^4$.' },
     },
@@ -547,7 +547,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'The **constant term** has no $x$ in it, so its power of $x$ is 0. Set the power equal to 0 and solve for $k$.',
-      example: ['$6 - 2k = 0$', '$k = 3$', 'The constant term is $t_4$.'],
+      example: ['In $\\left(2x - \\frac{1}{x}\\right)^6$ the power is $6 - 2k$.', '$6 - 2k = 0$', '$k = 3$', 'The constant term is $t_4$.'],
       check: { q: 'The power of $x$ in a general term is $12 - 3k$. Which $k$ gives the constant term?', options: ['$k = 4$', '$k = 12$', '$k = 3$', '$k = 9$'], answer: 0, why: '$12 - 3k = 0$ gives $3k = 12$, so $k = 4$.' },
     },
     {

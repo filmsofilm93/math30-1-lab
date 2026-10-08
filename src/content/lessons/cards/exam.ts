@@ -112,7 +112,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'The calculator then asks three things. Move left of the crossing, **[ENTER]** (Left Bound). Move right of it, **[ENTER]** (Right Bound). Press **[ENTER]** once more (Guess).',
       example: ['$Y_1 = x^2 - 2$, crossing near $x = 1.4$.', 'Left Bound: move to about $x = 1$, **[ENTER]**.', 'Right Bound: move to about $x = 2$, **[ENTER]**.', 'Guess: **[ENTER]**.', 'Screen: X = 1.4142136, Y = 0.'],
-      check: { q: 'A crossing is near $x = 3$. Which bounds work?', options: ['Left $2.5$, right $3.5$', 'Left $3.5$, right $2.5$', 'Left $3.2$, right $3.8$', 'Left $1$, right $2$'], answer: 0, why: 'The left bound must be left of the crossing and the right bound right of it.' },
+      check: { q: 'A crossing is near $x = 3$. Which bounds work?', options: ['Left $2.5$, right $3.5$', 'Left $3.5$, right $2.5$', 'Left $3.5$, right $4$', 'Left $1$, right $2$'], answer: 0, why: 'The left bound must be left of the crossing and the right bound right of it.' },
     },
     {
       say: 'The bounds must surround **exactly one** crossing. For more solutions, run CALC zero again, once for each. A **cubic** (highest power $3$) can have three zeros, so count them.',
@@ -164,8 +164,8 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'These find a **local** max or min: the highest or lowest point between your bounds only. A graph can have several peaks of different heights.',
-      example: ['Peak A: $(-2, 6)$. Peak B: $(3, 10)$.', 'Both are local maximums.', 'The highest, $10$, is the **absolute** maximum.'],
-      check: { q: 'A graph has peaks at $y = 4$ and $y = 9$. What is the absolute maximum?', options: ['$9$', '$4$', '$13$'], answer: 0, why: 'The absolute maximum is the highest peak, $9$.' },
+      example: ['Peak A: $(-2, 6)$. Peak B: $(3, 10)$.', 'Both are local maximums.', 'Both ends go down, so the highest, $10$, is the **absolute** maximum.'],
+      check: { q: 'A graph has peaks at $y = 4$ and $y = 9$, and both ends go down. What is the absolute maximum?', options: ['$9$', '$4$', '$13$'], answer: 0, why: 'The absolute maximum is the highest peak, $9$.' },
     },
     {
       say: 'For the **range** of a polynomial with both ends going down, find every peak and keep the highest $y$. The range is every $y$ up to that value.',

@@ -52,7 +52,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: '$(5, 9)$ is on $y = f(x)$. Which point is on $y = \\sqrt{f(x)}$?', options: ['$(5, 3)$', '$(\\sqrt{5}, 9)$', '$(5, 81)$', '$(5, 4.5)$'], answer: 0, why: 'Keep $x = 5$ and take $\\sqrt{9} = 3$.' },
     },
     {
-      say: 'A negative number has no real square root. So wherever $f(x)$ is **below** the $x$-axis, $y = \\sqrt{f(x)}$ has **no point** at all.',
+      say: 'A negative number has no real square root. So wherever the graph of $f$ is **below** the $x$-axis, $y = \\sqrt{f(x)}$ has **no point** at all.',
       example: ['$(2, -4)$ is on $y = f(x)$.', '$\\sqrt{-4}$ is not a real number.', 'So $y = \\sqrt{f(x)}$ has no point at $x = 2$.'],
       check: { q: '$(1, -9)$ is on $y = f(x)$. What is on $y = \\sqrt{f(x)}$ at $x = 1$?', options: ['No point', '$(1, -3)$', '$(1, 3)$', '$(-1, 3)$'], answer: 0, why: '$-9$ is negative, so $\\sqrt{-9}$ is not real.' },
     },
@@ -72,12 +72,12 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What are the invariant points for $f(x) = x + 4$ and $y = \\sqrt{f(x)}$?', options: ['$(-4, 0)$ and $(-3, 1)$', '$(4, 0)$ and $(5, 1)$', '$(-4, 0)$ only', '$(0, 4)$ and $(1, 5)$'], answer: 0, why: '$x + 4 = 0$ at $x = -4$, and $x + 4 = 1$ at $x = -3$.' },
     },
     {
-      say: 'Between 0 and 1, the root is **bigger**: the $\\sqrt{f}$ graph is **above** $f$. Above 1, the root is **smaller**: the $\\sqrt{f}$ graph is **below** $f$.',
+      say: 'Where $f(x)$ is between 0 and 1, its root is **bigger**: the $\\sqrt{f}$ graph is **above** $f$. Where $f(x)$ is above 1, its root is **smaller**: the $\\sqrt{f}$ graph is **below** $f$.',
       example: ['$f(x) = 0.25$ gives $\\sqrt{0.25} = 0.5$: above.', '$f(x) = 4$ gives $\\sqrt{4} = 2$: below.'],
       check: { q: 'Where $f(x) = 9$, is the graph of $y = \\sqrt{f(x)}$ above or below $y = f(x)$?', options: ['Below', 'Above', 'At the same point', 'There is no point'], answer: 0, why: '$\\sqrt{9} = 3$, and $3$ is less than $9$.' },
     },
     {
-      say: 'A highest or lowest point of $f$ stays at the **same** $x$ on $\\sqrt{f}$. Only its height changes to the square root.',
+      say: 'A highest or lowest point of $f$ that is not below the $x$-axis stays at the **same** $x$ on $\\sqrt{f}$. Only its height changes to the square root.',
       example: ['$f$ has a maximum at $(2, 16)$.', '$\\sqrt{16} = 4$.', '$y = \\sqrt{f(x)}$ has a maximum at $(2, 4)$.'],
       check: { q: '$f$ has a minimum at $(-3, 25)$. Where is the minimum of $y = \\sqrt{f(x)}$?', options: ['$(-3, 5)$', '$(-3, 25)$', '$(5, -3)$', '$(-3, 12.5)$'], answer: 0, why: 'Same $x = -3$, and $\\sqrt{25} = 5$.' },
     },
@@ -175,7 +175,7 @@ export const CARDS: Record<string, LessonCard[]> = {
 
   'RF14.ha-intercepts': [
     {
-      say: 'A **horizontal asymptote** is a flat line the graph gets close to when $x$ is very large or very small. To find it, compare the **degree** (highest power of $x$) on top and bottom.',
+      say: 'A **horizontal asymptote** is a flat line the graph gets close to as $x$ goes far to the right or far to the left. To find it, compare the **degree** (highest power of $x$) on top and bottom.',
       example: ['$x^2 - 4$ has degree 2.', '$3x + 1$ has degree 1.', 'A plain number like $5$ has degree 0.'],
       check: { q: 'What is the degree of $5x^3 - x$?', options: ['3', '5', '1', '2'], answer: 0, why: 'The highest power of $x$ is $x^3$.' },
     },
@@ -393,7 +393,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'On the related graph, an extraneous root shows up as a **hole** or an asymptote, not as an $x$-intercept.',
-      example: ['$\\frac{x}{x - 2} - \\frac{2}{x - 2} - 3$', '$= \\frac{x - 2}{x - 2} - 3 = 1 - 3 = -2$, with $x \\ne 2$.', 'The graph is the line $y = -2$ with a hole at $(2, -2)$.', 'It never meets the $x$-axis: no solution.'],
+      example: ['$y = \\frac{x}{x - 2} - \\frac{2}{x - 2} - 3$', '$= \\frac{x - 2}{x - 2} - 3 = 1 - 3 = -2$, with $x \\ne 2$.', 'The graph is the line $y = -2$ with a hole at $(2, -2)$.', 'It never meets the $x$-axis: no solution.'],
       check: { q: 'Algebra gives $x = 1$ and $x = 5$. The related graph has a hole at $x = 1$. What is the solution?', options: ['$x = 5$ only', '$x = 1$ and $x = 5$', '$x = 1$ only', 'No solution'], answer: 0, why: 'A hole is not an $x$-intercept, so $x = 1$ is extraneous.' },
     },
     {
