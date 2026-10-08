@@ -434,7 +434,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: '$\\sin\\theta = \\frac{3}{5}$. Find $\\cos 2\\theta$ using $1 - 2\\sin^2\\theta$.', options: ['$\\frac{7}{25}$', '$-\\frac{7}{25}$', '$\\frac{24}{25}$', '$\\frac{1}{5}$'], answer: 0, why: '$1 - 2\\cdot\\frac{9}{25} = \\frac{25}{25} - \\frac{18}{25} = \\frac{7}{25}$.' },
     },
     {
-      say: 'Read an identity backwards to **condense** a long expression into one function. Tangent versions of these identities are for the excellence level.',
+      say: 'Read an identity backwards to **condense** a long expression into one function. The tangent versions of these identities appear only in the harder **standard of excellence** questions.',
       example: ['$\\sin 50^\\circ\\cos 20^\\circ - \\cos 50^\\circ\\sin 20^\\circ$', 'This is the pattern $\\sin A\\cos B - \\cos A\\sin B$.', '$= \\sin(50^\\circ - 20^\\circ)$', '$= \\sin 30^\\circ = \\frac{1}{2}$'],
       check: { q: 'Condense $\\cos 70^\\circ\\cos 20^\\circ - \\sin 70^\\circ\\sin 20^\\circ$.', options: ['$\\cos 90^\\circ = 0$', '$\\cos 50^\\circ$', '$\\sin 90^\\circ = 1$'], answer: 0, why: 'It matches $\\cos(A + B)$, so it is $\\cos(70^\\circ + 20^\\circ)$.' },
     },

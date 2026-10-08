@@ -221,7 +221,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'Angles on an axis land on easy points: $P(0) = (1, 0)$, $P\\left(\\frac{\\pi}{2}\\right) = (0, 1)$, $P(\\pi) = (-1, 0)$, $P\\left(\\frac{3\\pi}{2}\\right) = (0, -1)$.',
       example: ['$\\pi$ is half a turn.', 'The arm points left along the $x$-axis.', 'It meets the circle at $(-1, 0)$.'],
-      check: { q: 'What is $P\\left(\\frac{3\\pi}{2}\\right)$?', options: ['$(0, -1)$', '$(-1, 0)$', '$(1, 0)$', '$(0, 1)$'], answer: 0, why: 'Three quarter turns points the arm straight down, to $(0, -1)$.' },
+      check: { q: 'What is $P\\left(\\frac{3\\pi}{2}\\right)$?', options: ['$(0, -1)$', '$(-1, 0)$', '$(1, 0)$', '$(0, 1)$'], answer: 0, why: 'Three quarter turns point the arm straight down, to $(0, -1)$.' },
     },
     {
       say: 'For any other special angle: find the reference angle, copy its point, then attach the quadrant signs. II: $(-, +)$. III: $(-, -)$. IV: $(+, -)$.',
@@ -229,7 +229,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is $P\\left(\\frac{4\\pi}{3}\\right)$?', options: ['$\\left(-\\frac{1}{2}, -\\frac{\\sqrt{3}}{2}\\right)$', '$\\left(-\\frac{\\sqrt{3}}{2}, -\\frac{1}{2}\\right)$', '$\\left(\\frac{1}{2}, -\\frac{\\sqrt{3}}{2}\\right)$', '$\\left(-\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)$'], answer: 0, why: 'Reference angle $\\frac{\\pi}{3}$ gives $\\left(\\frac{1}{2}, \\frac{\\sqrt{3}}{2}\\right)$. Quadrant III makes both negative.' },
     },
     {
-      say: 'Quick check: the bigger number goes with the axis the arm is closer to. Near the $x$-axis, $x$ has size $\\frac{\\sqrt{3}}{2}$. Near the $y$-axis, $y$ does.',
+      say: 'Quick check for the $\\frac{\\pi}{6}$ and $\\frac{\\pi}{3}$ families: the bigger number, $\\frac{\\sqrt{3}}{2}$, goes with the axis the arm is closer to. Near the $x$-axis, $x$ has size $\\frac{\\sqrt{3}}{2}$. Near the $y$-axis, $y$ does.',
       example: ['$\\frac{11\\pi}{6}$ is $30^\\circ$ below the positive $x$-axis.', 'Close to the $x$-axis, so $x$ is big.', '$P\\left(\\frac{11\\pi}{6}\\right) = \\left(\\frac{\\sqrt{3}}{2}, -\\frac{1}{2}\\right)$'],
       check: { q: 'For $P\\left(\\frac{2\\pi}{3}\\right)$, which coordinate has size $\\frac{\\sqrt{3}}{2}$?', options: ['$y$', '$x$', 'Both'], answer: 0, why: '$\\frac{2\\pi}{3}$ is $120^\\circ$, only $30^\\circ$ from the $y$-axis, so $y$ is the big one.' },
     },
