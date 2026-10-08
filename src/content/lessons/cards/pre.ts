@@ -4,7 +4,7 @@ import type { LessonCard } from '../types';
 export const CARDS: Record<string, LessonCard[]> = {
   'P.exp-laws': [
     {
-      say: 'An **exponent** counts how many times a number is multiplied by itself. In $2^3$, the $2$ is the **base** and the $3$ is the exponent.',
+      say: 'An **exponent** tells how many copies of a number to multiply together. In $2^3$, the $2$ is the **base** (the number being multiplied) and the $3$ is the exponent.',
       example: ['$2^3$ means $2 \\cdot 2 \\cdot 2$.', '$2 \\cdot 2 = 4$, then $4 \\cdot 2 = 8$.', 'So $2^3 = 8$.'],
       check: { q: 'What is $3^2$?', options: ['$9$', '$6$', '$5$', '$8$'], answer: 0, why: '$3^2 = 3 \\cdot 3 = 9$. It is not $3 \\cdot 2$.' },
     },
@@ -34,7 +34,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is $7^0$?', options: ['$1$', '$0$', '$7$', '$-7$'], answer: 0, why: 'Any nonzero number to the power $0$ is $1$.' },
     },
     {
-      say: 'A **negative exponent** means "flip it into a fraction". It never makes the answer negative: $x^{-n} = \\frac{1}{x^n}$.',
+      say: 'A **negative exponent** means "flip it into a fraction": $x^{-n} = \\frac{1}{x^n}$. The minus sign in the exponent does not make the answer negative.',
       example: ['$2^{-3}$', 'Flip: $\\frac{1}{2^3}$.', '$2^3 = 8$.', 'So $2^{-3} = \\frac{1}{8}$.'],
       check: { q: 'What is $5^{-2}$?', options: ['$\\frac{1}{25}$', '$-25$', '$-10$', '$\\frac{1}{10}$'], answer: 0, why: '$5^{-2} = \\frac{1}{5^2} = \\frac{1}{25}$. A negative exponent is a reciprocal.' },
     },
@@ -168,7 +168,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Factor $x^2 - 6x + 8$.', options: ['$(x - 2)(x - 4)$', '$(x + 2)(x + 4)$', '$(x - 2)(x + 4)$', '$(x - 1)(x - 8)$'], answer: 0, why: '$(-2)(-4) = 8$ and $-2 + (-4) = -6$.' },
     },
     {
-      say: 'If $c$ is negative, the numbers have **opposite signs**. The bigger one takes the sign of $b$.',
+      say: 'If $c$ is negative, the numbers have **opposite signs**. The one farther from zero takes the sign of $b$.',
       example: ['$x^2 + 2x - 15$', 'Multiply to $-15$, add to $+2$.', '$5 \\cdot (-3) = -15$ and $5 + (-3) = 2$.', 'Answer: $(x + 5)(x - 3)$.'],
       check: { q: 'Factor $x^2 - x - 12$.', options: ['$(x - 4)(x + 3)$', '$(x + 4)(x - 3)$', '$(x - 6)(x + 2)$', '$(x - 4)(x - 3)$'], answer: 0, why: '$(-4)(3) = -12$ and $-4 + 3 = -1$.' },
     },
@@ -216,7 +216,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Solve $(3x + 2)(x - 1) = 0$.', options: ['$x = -\\frac{2}{3}$ or $x = 1$', '$x = -2$ or $x = 1$', '$x = \\frac{2}{3}$ or $x = -1$', '$x = -\\frac{3}{2}$ or $x = 1$'], answer: 0, why: '$3x + 2 = 0$ gives $3x = -2$, so $x = -\\frac{2}{3}$.' },
     },
     {
-      say: 'If the equation is $x^2 = k$, take the square root of both sides. There are **two** answers: $x = \\pm\\sqrt{k}$.',
+      say: 'If the equation is $x^2 = k$ with $k > 0$, take the square root of both sides. There are **two** answers: $x = \\pm\\sqrt{k}$.',
       example: ['$x^2 = 49$', '$x = \\pm\\sqrt{49}$', '$x = 7$ or $x = -7$, since $(-7)^2 = 49$ too.'],
       check: { q: 'Solve $x^2 - 16 = 0$.', options: ['$x = \\pm 4$', '$x = 4$', '$x = \\pm 8$', '$x = 16$'], answer: 0, why: '$x^2 = 16$, so $x = 4$ or $x = -4$.' },
     },
@@ -231,7 +231,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Solve $x^2 - 4x + 1 = 0$.', options: ['$x = 2 \\pm \\sqrt{3}$', '$x = -2 \\pm \\sqrt{3}$', '$x = 4 \\pm \\sqrt{3}$', '$x = 2 \\pm 2\\sqrt{3}$'], answer: 0, why: '$16 - 4 = 12$, so $x = \\frac{4 \\pm 2\\sqrt{3}}{2} = 2 \\pm \\sqrt{3}$.' },
     },
     {
-      say: 'The **discriminant** $b^2 - 4ac$ tells how many real roots: positive means two, zero means one (a double root), negative means none. A perfect-square answer means it factors.',
+      say: 'The **discriminant** $b^2 - 4ac$ tells how many real roots: positive means two, zero means one (a double root), negative means none. With whole-number $a$, $b$, $c$, a perfect-square discriminant means it factors.',
       example: ['$x^2 + 2x + 5 = 0$', '$b^2 - 4ac = 2^2 - 4(1)(5)$', '$= 4 - 20 = -16$', 'Negative, so no real roots.'],
       check: { q: 'How many real roots does $x^2 - 6x + 9 = 0$ have?', options: ['One (a double root)', 'Two', 'None', 'Three'], answer: 0, why: '$(-6)^2 - 4(1)(9) = 36 - 36 = 0$, so one root.' },
     },
@@ -269,7 +269,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is the vertex of $y = x^2 + 4x + 1$?', options: ['$(-2, -3)$', '$(2, 13)$', '$(-2, 13)$', '$(-4, 1)$'], answer: 0, why: '$x = -\\frac{4}{2} = -2$, and $4 - 8 + 1 = -3$.' },
     },
     {
-      say: '**Completing the square** turns standard form into vertex form. Take half the $x$ number, square it, then add and subtract that amount.',
+      say: '**Completing the square** turns standard form into vertex form. When $a = 1$, take half the $x$ number, square it, then add and subtract that amount.',
       example: ['$y = x^2 + 6x + 2$', 'Half of $6$ is $3$; $3^2 = 9$.', '$y = (x^2 + 6x + 9) - 9 + 2$', '$y = (x + 3)^2 - 7$'],
       check: { q: 'Write $y = x^2 - 8x + 10$ in vertex form.', options: ['$y = (x - 4)^2 - 6$', '$y = (x + 4)^2 - 6$', '$y = (x - 4)^2 + 26$', '$y = (x - 8)^2 + 10$'], answer: 0, why: 'Half of $-8$ is $-4$, $(-4)^2 = 16$, and $10 - 16 = -6$.' },
     },
@@ -474,8 +474,8 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Simplify $\\frac{x^2 - x}{x^2 - 1}$.', options: ['$\\frac{x}{x + 1}$, $x \\ne 1, -1$', '$\\frac{x}{x + 1}$, $x \\ne -1$', '$\\frac{x}{x + 1}$, $x \\ne 0, 1, -1$', '$-x$, $x \\ne 1, -1$'], answer: 0, why: '$\\frac{x(x - 1)}{(x - 1)(x + 1)}$. Both $1$ and $-1$ made the original bottom zero.' },
     },
     {
-      say: 'To multiply, multiply tops and bottoms, then cancel factors. To **divide**, flip the second fraction and multiply. The top of the flipped fraction is also a restriction.',
-      example: ['$\\frac{x}{x - 1} \\div \\frac{x + 3}{x - 1} = \\frac{x}{x - 1} \\cdot \\frac{x - 1}{x + 3}$', 'Cancel $(x - 1)$: $\\frac{x}{x + 3}$.', 'Restrictions: $x \\ne 1$ (bottoms) and $x \\ne -3$ (flipped top).'],
+      say: 'To multiply, multiply tops and bottoms, then cancel factors. To **divide**, flip the second fraction and multiply. The top of the second fraction ends up on the bottom, so it is a restriction too.',
+      example: ['$\\frac{x}{x - 1} \\div \\frac{x + 3}{x - 1} = \\frac{x}{x - 1} \\cdot \\frac{x - 1}{x + 3}$', 'Cancel $(x - 1)$: $\\frac{x}{x + 3}$.', 'Restrictions: $x \\ne 1$ (bottoms) and $x \\ne -3$ (top of the second fraction).'],
       check: { q: 'Simplify $\\frac{2}{x} \\div \\frac{4}{x}$.', options: ['$\\frac{1}{2}$', '$2$', '$\\frac{8}{x^2}$', '$\\frac{x}{2}$'], answer: 0, why: '$\\frac{2}{x} \\cdot \\frac{x}{4} = \\frac{2}{4} = \\frac{1}{2}$, with $x \\ne 0$.' },
     },
     {
@@ -502,7 +502,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Non-permissible values of $\\frac{4}{x + 1} = \\frac{2}{x - 5}$?', options: ['$x \\ne -1, 5$', '$x \\ne 1, -5$', '$x \\ne 4, 2$', '$x \\ne -1$'], answer: 0, why: '$x + 1 = 0$ at $-1$ and $x - 5 = 0$ at $5$.' },
     },
     {
-      say: 'Multiply **both sides** by the **lowest common denominator** (all the bottoms multiplied). The fractions disappear. Then solve as usual.',
+      say: 'Multiply **both sides** by the **lowest common denominator**: the smallest expression that every bottom divides into. The fractions disappear. Then solve as usual.',
       example: ['$\\frac{3}{x - 2} = \\frac{5}{x}$; multiply by $x(x - 2)$.', '$3x = 5(x - 2)$', '$3x = 5x - 10$', '$-2x = -10$, so $x = 5$.', '$5$ is permissible, so $x = 5$.'],
       check: { q: 'Solve $\\frac{2}{x} = \\frac{6}{x + 4}$.', options: ['$x = 2$', '$x = 1$', '$x = -2$', '$x = 4$'], answer: 0, why: '$2(x + 4) = 6x$, so $2x + 8 = 6x$, $8 = 4x$, $x = 2$.' },
     },
@@ -681,7 +681,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'Set your calculator to **degree mode**. Keep full decimals until the end; round only the final answer. (This review is not tested directly on the diploma, but the habits carry over.)',
       example: ['Degree mode: $\\sin 30^\\circ = 0.5$.', 'Radian mode gives $\\sin 30 \\approx -0.988$. Wrong mode!'],
-      check: { q: 'Your calculator says $\\sin 30 \\approx -0.988$. What is wrong?', options: ['It is in radian mode', '$\\sin 30^\\circ$ really is negative', 'You rounded too early', 'Nothing is wrong'], answer: 0, why: 'In degree mode $\\sin 30^\\circ = 0.5$. A negative value means radian mode.' },
+      check: { q: 'Your calculator says $\\sin 30 \\approx -0.988$. What is wrong?', options: ['It is in radian mode', '$\\sin 30^\\circ$ really is negative', 'You rounded too early', 'Nothing is wrong'], answer: 0, why: 'In degree mode $\\sin 30^\\circ = 0.5$. Here a negative value means radian mode.' },
     },
   ],
 };
