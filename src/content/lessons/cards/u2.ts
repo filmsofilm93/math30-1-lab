@@ -114,7 +114,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'The **factor theorem**: $x - a$ is a factor of $P(x)$ exactly when $P(a) = 0$. A **factor** divides in evenly, with nothing left over.',
       example: ['$P(x) = x^2 - 5x + 6$. Is $x - 2$ a factor?', '$P(2) = 4 - 10 + 6 = 0$', 'Yes, $x - 2$ is a factor.'],
-      check: { q: 'Is $x - 1$ a factor of $x^2 + x - 6$?', options: ['No, because $P(1) = -4$', 'Yes, because $P(1) = 0$', 'Yes, because $1$ divides $6$', 'No, because $P(-1) = -6$'], answer: 0, why: '$P(1) = 1 + 1 - 6 = -4$, which is not $0$.' },
+      check: { q: 'Is $x - 1$ a factor of $x^2 + x - 6$?', options: ['No, because $P(1) = -4$', 'Yes, because $P(1) = 0$', 'Yes, because $1$ divides $6$', 'Yes, because $P(-1) = 0$'], answer: 0, why: '$P(1) = 1 + 1 - 6 = -4$, which is not $0$.' },
     },
     {
       say: 'This is the remainder theorem with a remainder of $0$. No remainder means the division comes out exact, so $x - a$ is a factor.',
@@ -159,7 +159,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'List the possible integer zeros of $x^3 - 6x^2 + 11x - 6$.', options: ['$\\pm 1, \\pm 2, \\pm 3, \\pm 6$', '$\\pm 1, \\pm 11$', '$\\pm 1, \\pm 2, \\pm 3, \\pm 6, \\pm 11$', '$1, 2, 3, 6$'], answer: 0, why: 'Use only the constant, $-6$. Its factors are $1, 2, 3, 6$, with both signs.' },
     },
     {
-      say: 'A candidate is only a guess. Test each one with the factor theorem, smallest first, until one gives $P(a) = 0$.',
+      say: 'A candidate is only a guess. Test each one with the factor theorem, starting with $\\pm 1$, until one gives $P(a) = 0$.',
       example: ['$P(x) = x^3 - 2x^2 - 5x + 6$', 'Try $1$: $P(1) = 1 - 2 - 5 + 6 = 0$.', 'So $1$ is a zero and $x - 1$ is a factor.'],
       check: { q: 'Which candidate is a zero of $x^3 - 2x - 4$?', options: ['$2$', '$1$', '$-1$', '$-2$'], answer: 0, why: '$P(2) = 8 - 4 - 4 = 0$. The others give $-5$, $-3$ and $-8$.' },
     },
@@ -169,7 +169,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Factor the quotient $x^2 - x - 6$.', options: ['$(x - 3)(x + 2)$', '$(x + 3)(x - 2)$', '$(x - 6)(x + 1)$', '$(x - 3)(x - 2)$'], answer: 0, why: '$-3 \\times 2 = -6$ and $-3 + 2 = -1$.' },
     },
     {
-      say: 'Some zeros are fractions, like $\\frac{1}{2}$ from a factor $2x - 1$. They are not on the integer list. They show up only after you divide out an integer zero and factor the quotient.',
+      say: 'Some zeros are fractions, like $\\frac{1}{2}$ from a factor $2x - 1$. They are not on the integer list. You usually find them by dividing out an integer zero, then factoring the quotient.',
       example: ['$2x^3 - x^2 - 2x + 1$ divided by $x - 1$ gives $2x^2 + x - 1$.', '$2x^2 + x - 1 = (2x - 1)(x + 1)$', '$2x - 1 = 0$ gives $x = \\frac{1}{2}$.'],
       check: { q: 'What zero comes from the factor $3x + 2$?', options: ['$-\\frac{2}{3}$', '$\\frac{2}{3}$', '$-\\frac{3}{2}$', '$-2$'], answer: 0, why: '$3x + 2 = 0$ gives $3x = -2$, so $x = -\\frac{2}{3}$.' },
     },
@@ -240,7 +240,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'How does $y = -3x^4 + x$ extend?', options: ['From quadrant III to quadrant IV', 'From quadrant II to quadrant I', 'From quadrant II to quadrant IV', 'From quadrant III to quadrant I'], answer: 0, why: 'Even degree, negative leading coefficient: both ends go down.' },
     },
     {
-      say: 'In **factored form** you do not need to expand. Degree: add the exponents of $x$ in every factor. Leading coefficient: multiply the number in front by the $x$-coefficient of each factor.',
+      say: 'In **factored form** you do not need to expand. Degree: add the exponents on the factors. Leading coefficient: multiply the number in front by the $x$-coefficient of each factor, raised to that factor\'s exponent.',
       example: ['$y = 3(x - 1)^2(2x + 1)$', 'Degree: $2 + 1 = 3$.', 'Leading coefficient: $3 \\times 1^2 \\times 2 = 6$.'],
       check: { q: 'For $y = (x + 1)^2(4 - x)$, what are the degree and leading coefficient?', options: ['Degree $3$, leading coefficient $-1$', 'Degree $3$, leading coefficient $1$', 'Degree $2$, leading coefficient $4$', 'Degree $3$, leading coefficient $4$'], answer: 0, why: 'Exponents $2 + 1 = 3$. In $(4 - x)$ the $x$ has coefficient $-1$, so $1 \\times (-1) = -1$.' },
     },
@@ -250,7 +250,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'What is the $y$-intercept of $y = -(x + 2)(x - 3)^2$?', options: ['$-18$', '$18$', '$-6$', '$6$'], answer: 0, why: '$-(0 + 2)(0 - 3)^2 = -(2)(9) = -18$.' },
     },
     {
-      say: 'A degree $n$ polynomial has at most $n$ $x$-intercepts and at most $n - 1$ **turning points** (where the graph changes from rising to falling). Odd degree always has at least one $x$-intercept. Even degree may have none.',
+      say: 'A degree $n$ polynomial has at most $n$ $x$-intercepts and at most $n - 1$ **turning points** (where the graph switches between rising and falling). Odd degree always has at least one $x$-intercept. Even degree may have none.',
       example: ['Degree $3$: at most $3$ $x$-intercepts, at most $2$ turning points.', 'Its ends point opposite ways, so it must cross the $x$-axis at least once.'],
       check: { q: 'What is the most turning points a degree $5$ polynomial can have?', options: ['$4$', '$5$', '$6$', '$3$'], answer: 0, why: 'At most $n - 1 = 5 - 1 = 4$.' },
     },
@@ -374,7 +374,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     },
     {
       say: 'First set a good **window**, the part of the graph the screen shows. Every turning point and every intercept must be visible. If you are unsure, zoom out first.',
-      check: { q: 'Your screen shows only one turning point of a quartic. What should you do?', options: ['Zoom out or widen the window', 'Use that turning point', 'Change the equation', 'Round the answer more'], answer: 0, why: 'A quartic can have up to $3$ turning points. You must see them all before choosing.' },
+      check: { q: 'Your screen shows only one turning point of a quartic. What should you do?', options: ['Zoom out or widen the window', 'Use that turning point', 'Change the equation', 'Round the answer more'], answer: 0, why: 'A quartic can have up to $3$ turning points. You must see them all before you trust the graph.' },
     },
     {
       say: 'To find a zero, use the **zero** feature for each $x$-intercept. Round only your final answer, never in the middle.',
@@ -384,7 +384,7 @@ export const CARDS: Record<string, LessonCard[]> = {
     {
       say: 'A **local** minimum is the bottom of one valley. The **absolute** minimum is the lowest point on the whole graph. If there are two valleys, check both and take the lower one.',
       example: ['A W-shaped quartic has two local minimums.', 'Their $y$-values are $-3.20$ and $-7.50$.', 'The absolute minimum is $-7.50$, the lower one.'],
-      check: { q: 'A graph has local minimums with $y$-values $4.10$ and $-2.60$. What is the absolute minimum value?', options: ['$-2.60$', '$4.10$', '$1.50$', 'There is none'], answer: 0, why: 'The absolute minimum is the lowest $y$-value: $-2.60 < 4.10$.' },
+      check: { q: 'An even degree graph that opens up has local minimums with $y$-values $4.10$ and $-2.60$. What is the absolute minimum value?', options: ['$-2.60$', '$4.10$', '$1.50$', 'There is none'], answer: 0, why: 'The absolute minimum is the lowest $y$-value: $-2.60 < 4.10$.' },
     },
     {
       say: 'An absolute **maximum** exists only for even degree opening down. An absolute minimum exists only for even degree opening up. An odd degree graph has neither, because its ends go to opposite infinities.',

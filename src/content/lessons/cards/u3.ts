@@ -191,7 +191,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Which point is on $y = \\log_3 x$?', options: ['$(3, 1)$', '$(1, 3)$', '$(0, 1)$', '$(3, 0)$'], answer: 0, why: '$\\log_3 3 = 1$, so $(3, 1)$ is on the graph.' },
     },
     {
-      say: 'The graph hugs the $y$-axis but never touches it. So $x = 0$ is a **vertical asymptote**. Domain: $x > 0$. Range: all real numbers. These are the swap of $y = b^x$.',
+      say: 'The graph hugs the $y$-axis but never touches it. So $x = 0$ is a **vertical asymptote**. Domain: $x > 0$. Range: all real numbers. These are the domain and range of $y = b^x$, swapped.',
       example: ['$y = \\log_2 x$', '$x$ must be positive, so domain $x > 0$.', '$y$ can be any number, so range is all real numbers.', 'Asymptote: $x = 0$.'],
       check: { q: 'What is the domain of $y = \\log_5 x$?', options: ['$x > 0$', '$x \\ge 0$', 'All real numbers', '$x > 1$'], answer: 0, why: 'Only positive numbers have logs, and $0$ is not positive.' },
     },
@@ -373,7 +373,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: 'Solve $5^{x - 2} = 125$.', options: ['$5$', '$3$', '$1$', '$127$'], answer: 0, why: '$125 = 5^3$, so $x - 2 = 3$ and $x = 5$.' },
     },
     {
-      say: 'When the bases differ, rewrite both with the **smallest** base. Know these: $4, 8, 16, 32$ are powers of $2$. $9, 27, 81$ are powers of $3$. $25, 125$ are powers of $5$.',
+      say: 'When the bases differ, rewrite both sides as powers of one **smaller base**. Know these: $4, 8, 16, 32$ are powers of $2$. $9, 27, 81$ are powers of $3$. $25, 125$ are powers of $5$.',
       example: ['$4^x = 8$', '$4 = 2^2$ and $8 = 2^3$.', '$(2^2)^x = 2^3$, so $2^{2x} = 2^3$.', '$2x = 3$', '$x = \\frac{3}{2}$'],
       check: { q: 'Solve $8^x = 16$.', options: ['$\\frac{4}{3}$', '$\\frac{3}{4}$', '$2$', '$8$'], answer: 0, why: '$2^{3x} = 2^4$, so $3x = 4$ and $x = \\frac{4}{3}$.' },
     },
@@ -570,7 +570,7 @@ export const CARDS: Record<string, LessonCard[]> = {
       check: { q: '$500$ dollars at $5\\%$/a compounded annually. Which equation finds when it reaches $1500$ dollars?', options: ['$3 = 1.05^n$', '$1000 = 1.05^n$', '$3 = 0.05^n$', '$1500 = 525^n$'], answer: 0, why: '$1500 = 500(1.05)^n$. Divide by $500$: $3 = 1.05^n$.' },
     },
     {
-      say: 'Interest is only added at the **end** of each period. So always round $n$ **up** to the next whole number.',
+      say: 'Interest is only added at the **end** of each period. So when you solve for $n$, round **up** to the next whole number.',
       example: ['$n \\approx 11.9$ years.', 'After $11$ years, it has not doubled yet.', 'Interest is added at the end of year $12$.', 'Answer: $12$ years.'],
       check: { q: 'You get $n \\approx 15.2$ quarters. What is the answer?', options: ['$16$ quarters', '$15$ quarters', '$15.2$ quarters'], answer: 0, why: 'After $15$ quarters it is not there yet. It gets there at the end of quarter $16$.' },
     },
@@ -583,7 +583,7 @@ export const CARDS: Record<string, LessonCard[]> = {
 
   'RF10.log-scales': [
     {
-      say: 'A **log scale** squeezes huge numbers into small ones. Each step of $1$ on the scale means **10 times** as much.',
+      say: 'A **log scale** squeezes huge numbers into small ones. When the reading is just $\\log$ of the amount, each step of $1$ means **10 times** as much.',
       example: ['Intensity $10$: $\\log 10 = 1$', 'Intensity $100$: $\\log 100 = 2$', 'Intensity $1000$: $\\log 1000 = 3$', 'Each step up is $\\times 10$.'],
       check: { q: 'A log reading goes from $4$ to $5$. The amount is multiplied by what?', options: ['$10$', '$1$', '$5$', '$2$'], answer: 0, why: 'One step on a log scale is a factor of $10$.' },
     },
