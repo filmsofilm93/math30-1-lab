@@ -117,6 +117,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
   const [result, setResult] = useState<ItemResult | null>(null);
   const [reported, setReported] = useState(false);
   const [sheet, setSheet] = useState(false);
+  const [guided, setGuided] = useState(0);
   const start = useRef(Date.now());
   const nextRef = useRef<HTMLButtonElement>(null);
 
@@ -130,6 +131,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
     setProblem(null);
     setResult(null);
     setReported(false);
+    setGuided(0);
     start.current = Date.now();
   }, [item.id]);
 
@@ -162,7 +164,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
       correct = vs.every((v) => v.ok);
     }
     setProblem(null);
-    const r: ItemResult = { correct, assisted: hints > 0 || shownSteps > 0, hints, confidence, misconception, ms: Date.now() - start.current };
+    const r: ItemResult = { correct, assisted: hints > 0 || shownSteps > 0 || guided > 0, hints, confidence, misconception, ms: Date.now() - start.current };
     setResult(r);
     onDone(r);
     setTimeout(() => nextRef.current?.focus({ preventScroll: true }), 30);
@@ -279,6 +281,23 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
         </div>
       )}
 
+      {!done && !test && guided > 0 && (
+        <div className={`${card} flex flex-col gap-3 p-4`}>
+          <p className={`text-sm font-bold uppercase tracking-wide ${muted}`}>Step by step</p>
+          <Steps steps={item.solution} upTo={guided} startOpen />
+          {guided < item.solution.length ? (
+            <>
+              <p className={muted}>Try the next step yourself first. Then tap to check it.</p>
+              <button className={btnGhost} onClick={() => setGuided(guided + 1)}>
+                Show step {guided + 1} of {item.solution.length}
+              </button>
+            </>
+          ) : (
+            <p className={muted}>That is every step. Now enter the answer above.</p>
+          )}
+        </div>
+      )}
+
       {problem && <p className="rounded-lg bg-warn-soft px-3 py-2 text-warn dark:bg-warn-soft-d dark:text-warn-d">{problem}</p>}
 
       {!done && (
@@ -292,6 +311,11 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
                 </li>
               ))}
             </ol>
+          )}
+          {!test && guided === 0 && (
+            <button className={btnGhost} onClick={() => setGuided(1)}>
+              Show me step by step
+            </button>
           )}
           <div className="flex flex-col gap-2">
             <span className={`text-sm font-bold ${muted}`}>Check, and how sure are you?</span>
@@ -360,7 +384,7 @@ export function ItemView({ item, shownSteps = 0, onDone, onNext, nextLabel = 'Ne
           </div>
           <div className={`${card} p-4`}>
             <p className={`mb-2 text-sm font-bold uppercase tracking-wide ${muted}`}>Worked solution</p>
-            <Steps steps={item.solution} />
+            <Steps steps={item.solution} startOpen />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <button ref={nextRef} className={btnPrimary} onClick={onNext}>

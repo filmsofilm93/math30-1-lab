@@ -118,11 +118,23 @@ export interface Predict {
   tryIt: string;
 }
 
+/** One small idea, shown on its own screen. */
+export interface LessonCard {
+  /** The idea in plain words: one to three short sentences (rich text). */
+  say: string;
+  /** A tiny worked example, one line per step (rich text). */
+  example?: string[];
+  /** A quick tap-to-answer check on this card's idea. */
+  check?: { q: string; options: string[]; answer: number; why: string };
+}
+
 export interface Lesson {
   nodeId: string;
   explore?: { preset: ExplorePreset; predict: Predict };
-  /** Concise explanation, ≤ 200 words, rich text paragraphs. */
+  /** Concise explanation, ≤ 200 words, rich text paragraphs. Shown as "The short version" after the cards. */
   explain: string[];
+  /** The lesson in small steps, plain words, one idea per screen. */
+  cards?: LessonCard[];
   /** Worked examples: generator items shown step by step. */
   examples: { generatorId: string; seed: number; tier: Tier }[];
 }

@@ -1,6 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { useEffect, useMemo, useState } from 'react';
-import { hasContent, lessonFor, NODE, sectionOf, unitTitle } from '../../content';
+import { hasContent, lessonFor, NODE, plainTitle, sectionOf } from '../../content';
+import { SECTION_TITLE } from '../../content/course';
 import type { ExplorePreset, Lesson } from '../../content/lessons/types';
 import { db } from '../../db/db';
 import { recordAttempt, setStage } from '../../db/progress';
@@ -11,6 +12,9 @@ import { itemFor, nextPracticeItem } from '../../engine/practice';
 import type { Item, Tier } from '../../engine/types';
 import { ItemView, Steps, Stem, type ItemResult } from '../components/ItemView';
 import { Rich } from '../components/Rich';
+import { CardDeck } from './CardDeck';
+import { VideoCard } from './VideoCard';
+import { VIDEOS } from '../../content/videos';
 import { FunctionOpsLab } from '../explorers/FunctionOpsLab';
 import { TransformationLab } from '../explorers/TransformationLab';
 import { PolynomialLab } from '../explorers/PolynomialLab';
@@ -25,7 +29,7 @@ import { TrigEquationLab } from '../explorers/TrigEquationLab';
 import { UnitCircle } from '../explorers/UnitCircle';
 import { btnGhost, btnPrimary, card, h1, h2, muted } from '../styles';
 
-const STAGES = ['Explore', 'Explain', 'Faded', 'Practice'] as const;
+const STAGES = ['Explore', 'Learn', 'Try with help', 'Practice'] as const;
 
 export function NodePage({ nodeId }: { nodeId: string }) {
   const node = NODE.get(nodeId);
@@ -68,13 +72,13 @@ export function NodePage({ nodeId }: { nodeId: string }) {
     <div className="flex flex-col gap-4">
       <header className="flex flex-col gap-1">
         <a href="#/skills" className={`text-sm ${muted} hover:underline`}>
-          ← {unitTitle(node.unit)}
+          ← Skills
         </a>
-        <h1 className={h1}>{node.title}</h1>
+        <h1 className={h1}>{plainTitle(node)}</h1>
         <p className={`text-sm ${muted}`}>
-          {sectionOf(node) ? `Workbook ${sectionOf(node)} · ` : ''}
-          {node.outcome} · {node.standard === 'excellence' ? 'Standard of Excellence' : 'Acceptable standard'}
-          {node.weakSpot ? ' · Exam weak spot' : ''}
+          {sectionOf(node) ? `Section ${sectionOf(node)}${SECTION_TITLE[sectionOf(node)!] ? `: ${SECTION_TITLE[sectionOf(node)!]}` : ''}` : node.title}
+          {node.standard === 'excellence' ? ' · harder skill' : ''}
+          {node.weakSpot ? ' · often missed on the diploma' : ''}
         </p>
       </header>
 
@@ -289,8 +293,26 @@ export function WorkedExample({ item, n }: { item: Item; n: number }) {
 
 function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }) {
   const examples = useMemo(() => lesson.examples.map((e) => makeItem(generatorById(e.generatorId)!, e.seed, e.tier)), [lesson]);
+  const [cardsDone, setCardsDone] = useState(false);
+  const video = VIDEOS[lesson.nodeId];
+  if (lesson.cards && !cardsDone)
+    return (
+      <div className="flex flex-col gap-4">
+        {video && <VideoCard video={video} />}
+        <CardDeck key={lesson.nodeId} cards={lesson.cards} onDone={() => setCardsDone(true)} />
+      </div>
+    );
   return (
     <div className="flex flex-col gap-4">
+      {lesson.cards && (
+        <div className="flex items-center justify-between gap-3">
+          <h2 className={h2}>The short version</h2>
+          <button className={`text-sm font-bold text-accent hover:underline dark:text-accent-d`} onClick={() => setCardsDone(false)}>
+            Go through the steps again
+          </button>
+        </div>
+      )}
+      {!lesson.cards && video && <VideoCard video={video} />}
       <div className={`${card} flex flex-col gap-3 p-4 leading-relaxed`}>
         {lesson.explain.map((para, i) => (
           <p key={i}>
@@ -311,7 +333,7 @@ function ExplainStage({ lesson, onNext }: { lesson: Lesson; onNext: () => void }
 /** Three items: last step left to you, last two steps, then the whole problem. */
 function FadedStage({ nodeId, onNext }: { nodeId: string; onNext: () => void }) {
   const [round, setRound] = useState(0);
-  const [item, setItem] = useState<Item | null>(() => itemFor(nodeId, 2));
+  const [item, setItem] = useState<Item | null>(() => itemFor(nodeId, 1));
   const [done, setDone] = useState(false);
   if (!item) return null;
   const n = item.solution.length;
@@ -325,7 +347,7 @@ function FadedStage({ nodeId, onNext }: { nodeId: string; onNext: () => void }) 
   function next() {
     if (round === 2) return onNext();
     setRound(round + 1);
-    setItem(itemFor(nodeId, round === 0 ? 2 : 3, item!.generatorId));
+    setItem(itemFor(nodeId, round === 0 ? 1 : 2, item!.generatorId));
     setDone(false);
   }
   return (

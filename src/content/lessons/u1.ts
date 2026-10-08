@@ -13,6 +13,42 @@ export const U1_LESSONS: Lesson[] = [
         tryIt: 'Drag $h$ to $3$ and watch the vertex.',
       },
     },
+    cards: [
+      {
+        say: 'A **translation** slides a graph to a new place. The shape does not change. It only moves left, right, up or down.',
+        check: { q: 'After a translation, the graph is…', options: ['the same shape, in a new place', 'wider', 'flipped over', 'a different shape'], answer: 0, why: 'A translation only slides the graph. Nothing stretches or flips.' },
+      },
+      {
+        say: 'A number **added outside** the function moves the graph **up or down**. Plus means up. Minus means down.',
+        example: ['$y = x^2 + 3$', 'The $+3$ is outside the square.', 'So the graph moves **up 3**.'],
+        check: { q: 'Which way does $y = x^2 - 5$ move compared with $y = x^2$?', options: ['Down 5', 'Up 5', 'Left 5', 'Right 5'], answer: 0, why: 'The $-5$ is outside, so it moves the graph down 5.' },
+      },
+      {
+        say: 'A number **inside the bracket with $x$** moves the graph **left or right**. This one works backwards: minus means right, plus means left.',
+        example: ['$y = (x - 4)^2$', 'The $-4$ is inside, with the $x$.', 'Backwards: minus means **right 4**.'],
+        check: { q: 'Which way does $y = (x + 2)^2$ move compared with $y = x^2$?', options: ['Left 2', 'Right 2', 'Up 2', 'Down 2'], answer: 0, why: 'Inside the bracket works backwards: $+2$ means left 2.' },
+      },
+      {
+        say: 'A quick trick for the inside number: ask what value of $x$ makes the bracket zero. That value is $h$. It tells you how far the graph moved sideways, and which way.',
+        example: ['$y = (x - 4)^2$', '$x - 4 = 0$ when $x = 4$.', 'So $h = 4$: right 4.', '$y = (x + 2)^2$', '$x + 2 = 0$ when $x = -2$.', 'So $h = -2$: left 2.'],
+        check: { q: 'What value of $x$ makes $(x - 7)$ zero?', options: ['$7$', '$-7$', '$0$', '$1$'], answer: 0, why: '$7 - 7 = 0$, so the graph moved right 7.' },
+      },
+      {
+        say: 'The general form is $y = f(x - h) + k$. The graph moves $h$ sideways and $k$ up or down.',
+        example: ['$y = (x - 1)^2 + 5$', 'Inside: $-1$, so right 1. $h = 1$.', 'Outside: $+5$, so up 5. $k = 5$.'],
+        check: { q: 'For $y = (x + 3)^2 - 2$, what are $h$ and $k$?', options: ['$h = -3$, $k = -2$', '$h = 3$, $k = -2$', '$h = -3$, $k = 2$', '$h = 3$, $k = 2$'], answer: 0, why: '$x + 3 = 0$ gives $h = -3$ (left 3). The $-2$ outside gives $k = -2$ (down 2).' },
+      },
+      {
+        say: 'To move one **point**, add $h$ to its $x$ and add $k$ to its $y$.',
+        example: ['Point $(2, 5)$, with $h = 3$ and $k = -1$.', 'New $x$: $2 + 3 = 5$.', 'New $y$: $5 + (-1) = 4$.', 'New point: $(5, 4)$.'],
+        check: { q: 'Move $(1, 4)$ with $h = -2$ and $k = 3$.', options: ['$(-1, 7)$', '$(3, 7)$', '$(-1, 1)$', '$(3, 1)$'], answer: 0, why: '$1 + (-2) = -1$ and $4 + 3 = 7$.' },
+      },
+      {
+        say: 'The whole graph slides, so the **domain** (the $x$-values) shifts by $h$, and the **range** (the $y$-values) shifts by $k$.',
+        example: ['Domain $0 \\le x \\le 4$, and $h = 2$.', 'Add 2 to both ends: $2 \\le x \\le 6$.'],
+        check: { q: 'The range is $y \\ge 1$. The graph moves down 3. What is the new range?', options: ['$y \\ge -2$', '$y \\ge 4$', '$y \\ge 1$', '$y \\le -2$'], answer: 0, why: 'Down 3 means $k = -3$, and $1 - 3 = -2$.' },
+      },
+    ],
     explain: [
       'A translation slides a graph without changing its shape. In $y - k = f(x - h)$, or $y = f(x - h) + k$, every point moves $h$ units horizontally and $k$ units vertically: $(x, y) \\to (x + h, y + k)$.',
       'The horizontal part feels backwards. $y = f(x - 3)$ moves the graph **right** $3$, because the new graph needs an input $3$ larger to produce the same output. Read $h$ as the value that makes the bracket zero: $x - 3 = 0$ gives $h = 3$; $x + 2 = 0$ gives $h = -2$ (left $2$).',

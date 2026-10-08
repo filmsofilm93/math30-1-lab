@@ -109,7 +109,7 @@ export const U2_LESSONS: Lesson[] = [
       'The **degree** (highest power) and the sign of the **leading coefficient** decide the end behaviour.',
       'Odd degree: the ends go opposite ways. Positive leading coefficient: quadrant III to quadrant I. Negative: quadrant II to quadrant IV.',
       'Even degree: both ends go the same way. Positive: quadrant II to quadrant I (both up). Negative: quadrant III to quadrant IV (both down).',
-      'The **$y$-intercept** is the constant term, $P(0)$. In factored form, multiply the leading coefficient by each factor evaluated at $0$, with exponents.',
+      'The **$y$-intercept** is the constant term, $P(0)$. In factored form, substitute $x = 0$: multiply the number in front by the value of each factor at $0$, with exponents.',
       'A degree-$n$ polynomial has at most $n$ $x$-intercepts and at most $n - 1$ turning points. An odd-degree polynomial always has at least one $x$-intercept; an even-degree one may have none.',
     ],
     examples: [
