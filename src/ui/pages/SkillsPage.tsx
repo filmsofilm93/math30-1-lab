@@ -63,7 +63,7 @@ export function SkillsPage() {
                   </h3>
                   {(SECTION_VIDEOS[sec] ?? []).map((v, i, arr) => (
                     <a key={v.id} className="text-sm font-bold text-accent hover:underline dark:text-accent-d" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noreferrer">
-                      ▶ Video{arr.length > 1 ? ` part ${i + 1}` : ''}
+                      ▶ Video{arr.length > 1 ? ` ${i + 1}` : ''}
                     </a>
                   ))}
                 </div>

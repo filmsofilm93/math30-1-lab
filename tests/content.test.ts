@@ -86,3 +86,16 @@ describe('workbook order', () => {
     for (let i = 1; i < nums.length; i++) expect(nums[i][0] * 10 + nums[i][1]).toBeGreaterThanOrEqual(nums[i - 1][0] * 10 + nums[i - 1][1]);
   });
 });
+
+describe('videos', () => {
+  it('every video and section order names real skills', async () => {
+    const { VIDEOS, SECTION_ORDER, SECTION_VIDEOS } = await import('../src/content/videos');
+    for (const id of Object.keys(VIDEOS)) expect(NODE.has(id), id).toBe(true);
+    for (const [sec, ids] of Object.entries(SECTION_ORDER)) {
+      const inSec = NODES.filter((n) => sectionOf(n) === sec).map((n) => n.id).sort();
+      expect([...ids].sort(), sec).toEqual(inSec);
+      expect(SECTION_VIDEOS[sec]?.length, sec).toBeGreaterThan(0);
+    }
+    for (const v of Object.values(VIDEOS)) expect(v.id).toMatch(/^[\w-]{11}$/);
+  });
+});

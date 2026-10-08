@@ -48,7 +48,7 @@ export function VideoCard({ video }: { video: LessonVideo }) {
           disabled={!online}
           aria-label={`Play video: ${video.title}`}
         >
-          {online && <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80" loading="lazy" />}
+          {online && <img src={`https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`} alt="" className="absolute inset-0 h-full w-full object-cover opacity-80" loading="lazy" onError={(e) => (e.currentTarget.style.display = 'none')} />}
           <span className="absolute inset-0 flex items-center justify-center">
             <span className="rounded-full bg-black/70 px-5 py-3 text-lg font-bold text-white">{online ? '▶ Play' : 'Videos need an internet connection'}</span>
           </span>
